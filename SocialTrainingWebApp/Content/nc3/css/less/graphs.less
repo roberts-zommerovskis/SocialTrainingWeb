@@ -1,0 +1,170 @@
+/**
+ * Graphs & Charts - Nordic Cool 3.0
+*/
+
+@import url("_variables.less");
+@import url("_mixins.less");
+
+.container-graph {
+	min-height: 500px;
+	width: 100%;
+	}
+	
+.highcharts-credits, 
+.highcharts-button.highcharts-contextbutton {
+	display: none !important;
+	}
+	
+div.highcharts-container {
+	background: #ffffff !important;
+	border: 1px solid #ebebeb !important; 
+	}
+	
+.multiple-graphs {
+	background: #ffffff !important;
+	border: 1px solid #ebebeb !important;
+	
+	div.highcharts-container { border: 0px !important;}
+	}
+
+.highcharts-title {
+	font-family: @font-family-base;
+	font-weight: 200 !important;
+    fill: @base-color !important;
+    font-size: 24px !important;
+	}
+	
+.highcharts-subtitle {
+    font-family: @font-family-base;
+    fill: @grey-color !important;
+	font-size: @font-size-base !important;
+	}
+
+.highcharts-legend-item {
+	font-family: @font-family-base;
+	
+	text { 
+		font-weight: normal !important; 
+		fill: @grey-color !important; 
+		font-size: @font-size-base !important;
+		font-family: @font-family-base;
+		}
+	}
+	
+.highcharts-axis-labels text,
+.highcharts-axis-title {
+	font-weight: normal !important; 
+	fill: @grey-color !important; 
+	font-size: @font-size-base !important;
+	font-family: @font-family-base !important;
+	}
+	
+.highcharts-tooltip {
+	> span {
+		color: @base-color !important; 
+		font-weight: normal !important; 
+		font-size: @font-size-base !important;
+		font-family: @font-family-base !important;
+		}
+	}
+
+.solidgauge-data-label > span {
+	color: @grey-color !important; 
+	font-size: @font-size-base !important;
+	font-family: @font-family-base !important;
+	font-weight: normal !important; 
+	text-align: center !important;
+	
+	> span { 
+		display: block;
+		color: @base-color; 
+		font-size: 52px;
+		font-family: @font-family-base;
+		font-weight: 200; 
+		line-height: 1;
+		
+		> span.percent {
+			color: @grey-color; 
+			font-size: 32px;
+			top: -15px;
+			position: relative;
+			margin-left: -12px;
+			}
+		}
+	}
+	
+#line-progress-graph {
+	height: 400px;
+	width: 600px;
+	}
+	
+.highcharts-data-label {
+	text {
+		color: @base-color !important;
+		fill: @base-color !important;
+		}
+		
+	tspan.highcharts-text-outline { display: none; }
+	
+	tspan {
+		color: @base-color !important;
+		font-size: @font-size-base !important;
+		font-family: @font-family-base !important;
+		font-weight: normal !important; 
+		}
+	}
+	
+.legend-symbol-negative {
+	display: block;
+	width: 12px;
+	height: 12px;
+	background: #1687d9;
+	border-radius: 25px;
+	float: left;
+	}
+	
+	
+/* Gauges */
+.highcharts-gauge-series .highcharts-text-outline + tspan { 
+	font-size: 30px !important; 
+	font-weight: 300 !important;
+	}
+	
+	
+	
+/* Table charts */
+.table {
+	div.highcharts-container {
+		background: transparent !important;
+		border: 0 !important;
+		left: auto !important;
+		text-align: center !important;
+		width: 100% !important;
+		}
+		
+	&.table-line-chart .highcharts-grid-line { 
+		stroke: transparent !important;
+		} 
+	}
+
+.graph-arrow {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background: url(../img/graphs-arrows.png) transparent no-repeat;
+	}
+	
+.chart-ascending {
+	.graph-arrow { background-position:  0 0; }
+	.highcharts-series .highcharts-graph { stroke: #599900 !important; }
+	}
+	
+.chart-symmetrical {
+	.graph-arrow { background-position:  -17px 0; }
+	.highcharts-series .highcharts-graph { stroke: #f58f00 !important; }
+	}
+	
+.chart-descending {
+	.graph-arrow { background-position:  -34px 0; }
+	.highcharts-series .highcharts-graph { stroke: #e6454a !important; }
+	}

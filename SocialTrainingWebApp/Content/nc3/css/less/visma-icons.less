@@ -1,0 +1,902 @@
+/**
+ * Visma icons - Nordic Cool 3.0
+*/
+
+@import url("_variables.less");
+@import url("_mixins.less");
+
+/* Catchall baseclass */
+.vismaicon {
+	display: inline-block;
+	position: relative;
+	top: 1px;
+	.user-select(none);
+
+	&:before {
+		display: block;
+		content: "" !important;
+		position: relative;
+		width: 24px;
+		height: 24px;
+		margin: 0 auto;
+		background-color: transparent;
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		/*background-size: 82px 24px; */
+		}
+
+	&:hover:before { background-position: -58px 0; }
+	&:active:before { background-position: 0px 0; }
+	&.disabled:before { background-position: -29px 0; }
+
+	&.vismaicon-sm:before {
+		width: 16px;
+		height: 16px;
+		/*background-size: 58px 16px; */
+		}
+
+	&.vismaicon-sm:hover:before { background-position: -42px 0; }	
+	&.vismaicon-sm:active:before,
+	&.vismaicon-sm.active:before { background-position: 0px 0; }	
+	&.vismaicon-sm.disabled:before { background-position: -21px 0; }		
+	}
+
+.vismaicon.vismaicon-filled {
+	&:before,
+	&:hover:before,
+	&:active:before,
+	&.disabled:before {
+		background-image: url(../img/vismaicons/informative-filled-icons/24_informative_icons.svg);
+		/*background-size: 140px 24px;*/
+		}
+
+	&.vismaicon-sm:before {
+		width: 16px;
+		height: 16px;
+		background-image: url(../img/vismaicons/informative-filled-icons/16_informative_icons.svg);
+		/*background-size: 100px 16px; */
+		}
+
+	&.vismaicon-lg:before {
+		width: 50px;
+		height: 50px;
+		background-image: url(../img/vismaicons/informative-filled-icons/50_informative_icons.svg);
+		/*background-size: 270px 50px; */
+		}
+	}
+
+.vismaicon.vismaicon-menu {
+	top: 0;
+	width: 47px;
+	height: 42px;
+	padding: 9px 12px;
+
+	border-left: 1px solid #1a85c3;
+	color: #fff;
+
+	&:before {
+		content:'';
+		width: 48px;
+		height: 42px;
+		background-position: 0 0;
+		/*background-size: 112px 24px; */
+		}
+		
+	&:hover { background-color: rgba(255, 255, 255, 0.1); } 
+
+	&.active,
+	&:active {
+		background-color: #fff;
+		.box-shadow(1px 0px 0 rgba(0, 0, 0, 0.1), 0px 1px 0 rgba(0, 0, 0, 0.08), -1px 0px 0 rgba(0, 0, 0, 0.1), 0px -1px 0 rgba(0, 0, 0, 0.05), 0 2px 1px rgba(0, 0, 0, 0.05););
+
+		&:before { background-position: -44px 0; }
+		} 		
+	}
+
+.vismaicon.vismaicon-dropdown-menu { 
+	width: 42px;
+	height: 42px;
+
+	&:before {
+		content:'';
+		width: 42px;
+		height: 42px;
+		background-position: -79px 9px;
+		}
+
+	&:hover { background-color: #f0f9ff; }
+
+	&:active,
+	&.vismaicon-active {
+		background-color: #f0f0f0;
+		.box-shadow(1px 1px 0 #e2e2e2 inset, -1px -1px 0 #e2e2e2 inset;);
+
+		&:before { background-position: -35px 9px; }
+		}
+	}
+
+.dropdown.open {
+	.vismaicon.vismaicon-menu {
+		&:before { background-position: -44px 0; }
+		}
+	}
+
+
+
+/**** Individual icons ****/
+.vismaicon-print {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_print.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_print.svg); }
+	}
+
+.vismaicon-edit { 
+	&:before { background-image: url(../img/vismaicons/worksurface/24_edit.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_edit.svg); }
+	}
+
+.vismaicon-save {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_save.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_save.svg); }
+	}
+
+.vismaicon-delete {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_delete.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_delete.svg); }
+	}
+
+.vismaicon-attach {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_attach.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_attach.svg); }
+	}
+
+.vismaicon-briefcase {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_briefcase.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_briefcase.svg); }
+	}
+
+.vismaicon-new { 
+	&:before { background-image: url(../img/vismaicons/worksurface/24_new.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_new.svg); }
+	}
+
+.vismaicon-comment {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_comment.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_comment.svg); }
+	}
+
+.vismaicon-unread-comment {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_unread_comment.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_unread_comment.svg); }
+	}
+
+.vismaicon-add-comment {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_add_comment.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_add_comment.svg); }
+	}
+
+.vismaicon-zoom-in {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_zoom_in.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_zoom_in.svg); }
+	}
+
+.vismaicon-zoom-out {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_zoom_out.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_zoom_out.svg); }
+	}
+
+.vismaicon-undo {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_undo.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_undo.svg); }
+	}
+
+.vismaicon-redo {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_redo.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_redo.svg); }
+	}
+
+.vismaicon-flag {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_flag.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_flag.svg); }
+	}
+
+.vismaicon-cut {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_cut.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_cut.svg); }
+	}
+
+.vismaicon-copy {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_copy.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_copy.svg); }
+	}
+
+.vismaicon-paste {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_paste.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_paste.svg); }
+	}
+
+.vismaicon-report {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_report.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_report.svg); }
+	}
+
+.vismaicon-home {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_home.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_home.svg); }
+	}
+
+.vismaicon-refresh {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_refresh.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_refresh.svg); }
+	}
+
+.vismaicon-user {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_user.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_user.svg); }
+	}
+
+.vismaicon-users {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_users.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_users.svg); }
+	}
+
+.vismaicon-time {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_time.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_time.svg); }
+	}
+
+.vismaicon-reminder {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_reminder.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_reminder.svg); }
+	}
+
+.vismaicon-search {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_search.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_search.svg); }
+	}
+
+.vismaicon-note {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_note.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_note.svg); }
+	}
+
+.vismaicon-graphs {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_graphs.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_graphs.svg); }
+	}
+
+.vismaicon-email {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_email.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_email.svg); }
+	}
+
+.vismaicon-employee { 
+	&:before { background-image: url(../img/vismaicons/worksurface/24_employee.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_employee.svg); }
+	}
+
+.vismaicon-phone {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_phone.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_phone.svg); }
+	}
+
+.vismaicon-locked {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_locked.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_locked.svg); }
+	}
+
+.vismaicon-unlocked {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_unlocked.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_unlocked.svg); }
+	}
+
+.vismaicon-money {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_money.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_money.svg); }
+	}
+
+.vismaicon-web {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_web.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_web.svg); }
+	}
+
+.vismaicon-open {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_open.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_open.svg); }
+	}
+
+.vismaicon-upload {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_upload.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_upload.svg); }
+	}
+
+.vismaicon-download {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_download.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_download.svg); }
+	}
+
+.vismaicon-preview {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_preview.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_preview.svg); }
+	}
+
+.vismaicon-favourite {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_favourite.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_favourite.svg); }
+	}
+
+.vismaicon-like {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_like.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_like.svg); }
+	}
+
+.vismaicon-dislike {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_dislike.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_dislike.svg); }
+	}
+
+.vismaicon-filter {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_filter.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_filter.svg); }
+	}
+
+.vismaicon-office-word {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_word.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_word.svg); }
+	}
+
+.vismaicon-office-powerpoint {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_powerpoint.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_powerpoint.svg); }
+	}
+
+.vismaicon-office-excel {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_excel.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_excel.svg); }
+	}
+
+.vismaicon-export {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_export.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_export.svg); }
+	}
+
+.vismaicon-replace {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_replace.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-pdf {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_pdf.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_pdf.svg); }
+	}
+
+.vismaicon-changelog {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_changelog.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/worksurface/16_changelog.svg); }
+	}
+
+.vismaicon-break {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_break.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-drag {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_Drag.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-image-document {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_image_document.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-xml-document {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_xml_document.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-add-user {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_add_user.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-alert {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_alert.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-announcement {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_announcement.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-archive-document {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_archive_document.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-breadcrumb-folder {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_breadcrumb_folder.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-contract {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_contract.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-database {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_database.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-detach {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_detach.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-document-info {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_document_info.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-education {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_education.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-enter-full-screen {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_enter_full_screen.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-exit-full-screen {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_exit_full_screen.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-evaluate {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_evaluate.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-exclude {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_exclude.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-folder-building {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_folder_building.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-hourglass {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_hourglass.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-link {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_link.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-location {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_location.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+
+.vismaicon-logon-failed {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_logon_failed.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-lunch {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_lunch.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-note-blank {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_note_blank.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-note-filled {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_note_filled.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-office-building {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_office_building.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-panel {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_panel.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-price {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_price.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-rotate-ccw {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_rotate_ccw.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+		
+.vismaicon-rotate-cw {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_rotate_cw.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-secret-document {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_secret_document.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-send {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_send.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-sending-failed {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_sending_failed.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-shared {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_shared_with_me.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-sound {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_sound.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-text-document {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_text_document.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-undifined-document {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_undifined_document.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-user-folder {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_user_folder.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-user-placeholder {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_user_placeholder.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-video {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_video.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-xml {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_xml.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+.vismaicon-filter-column {
+	&:before { background-image: url(../img/vismaicons/worksurface/24_filter_column.svg); }
+	&.vismaicon-sm:before { background-image: none; }
+	}
+	
+
+
+
+
+/**** Social icons ****/
+.vismaicon-facebook {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_facebook.svg); }
+	}
+
+.vismaicon-flickr {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_flickr.svg); }
+	}
+
+.vismaicon-google {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_google.svg); }
+	}
+
+.vismaicon-linkedin {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_linkedin.svg); }
+	}
+
+.vismaicon-pinterest {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_pinterest.svg); }
+	}
+
+.vismaicon-skype {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_skype.svg); }
+	}
+
+.vismaicon-tumblr {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_tumblr.svg); }
+	}
+
+.vismaicon-twitter {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_twitter.svg); }
+	}
+
+.vismaicon-vimeo {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_vimeo.svg); }
+	}
+
+.vismaicon-youtube {
+	&:before { background-image: url(../img/vismaicons/social-media/24_socialmedia_youtube.svg); }
+	}
+
+
+
+/**** Action icons - Circle action icons ****/
+.vismaicon-menu-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_menu.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_menu.svg); }
+	}
+
+.vismaicon-add-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_add.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_add.svg); }
+	}
+
+.vismaicon-add2-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_add2.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_add2.svg); }
+	}
+
+.vismaicon-remove-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_remove.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_remove.svg); }
+	}
+
+.vismaicon-ok-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_ok.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_ok.svg); }
+	}
+
+.vismaicon-cancel-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_cancel.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_cancel.svg); }
+	}
+
+.vismaicon-arrow-up-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_arrow_up.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_arrow_up.svg); }
+	}
+
+.vismaicon-arrow-down-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_arrow_down.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_arrow_down.svg); }
+	}
+
+.active > .vismaicon-arrow-down-circle:before { background-position: -87px 0px; }
+
+.vismaicon-arrow-left-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_arrow_left.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_arrow_left.svg); }
+	}
+
+.vismaicon-arrow-right-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_arrow_right.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_arrow_right.svg); }
+	}
+
+.vismaicon-expand-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_expand.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_expand.svg); }
+	}
+
+.vismaicon-collapse-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_collapse.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_collapse.svg); }
+	}
+
+.vismaicon-other-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_other.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_other.svg); }
+	}
+
+.vismaicon-forward-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_forward.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_forward.svg); }
+	}
+
+.vismaicon-rewind-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_rewind.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_rewind.svg); }
+	}
+
+.vismaicon-pause-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_pause.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_pause.svg); }
+	}
+
+.vismaicon-play-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_play.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_play.svg); }
+	}
+
+.vismaicon-first-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_first.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_first.svg); }
+	}
+
+.vismaicon-last-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_last.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_last.svg); }
+	}
+
+.vismaicon-move-up-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_up.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_up.svg); }
+	}
+
+.vismaicon-move-down-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_down.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_down.svg); }
+	}
+
+.vismaicon-move-left-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_left.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_left.svg); }
+	}
+
+.vismaicon-move-right-circle {
+	&:before { background-image: url(../img/vismaicons/action-icons/24_right.svg); }
+	&.vismaicon-sm:before { background-image: url(../img/vismaicons/action-icons/16_right.svg); }
+	}
+
+
+
+/**** Top menu icons ****/
+.vismaicon-menu.vismaicon-user:before { background-image: url(../img/vismaicons/top_menu/menu_user.svg); }
+
+.vismaicon-menu.vismaicon-user-settings:before { background-image: url(../img/vismaicons/top_menu/menu_user_settings.svg); }
+
+.vismaicon-menu.vismaicon-settings:before { background-image: url(../img/vismaicons/top_menu/menu_settings.svg); }
+
+.vismaicon-menu.vismaicon-help:before { background-image: url(../img/vismaicons/top_menu/menu_help.svg); }
+
+.vismaicon-menu.vismaicon-logout:before { background-image: url(../img/vismaicons/top_menu/menu_logout.svg); }
+
+.vismaicon-menu.vismaicon-search:before { background-image: url(../img/vismaicons/top_menu/menu_search.svg); }
+
+.vismaicon-menu.vismaicon-info:before { background-image: url(../img/vismaicons/top_menu/menu_info.svg); }
+
+.vismaicon-menu.vismaicon-shopping-cart:before { background-image: url(../img/vismaicons/top_menu/menu_shopping_cart.svg); }
+
+.vismaicon-menu.vismaicon-message:before { background-image: url(../img/vismaicons/top_menu/menu_message.svg); }
+
+.vismaicon-menu.vismaicon-home:before { background-image: url(../img/vismaicons/top_menu/menu_home.svg); }
+
+.vismaicon-menu.vismaicon-library:before { background-image: url(../img/vismaicons/top_menu/menu_library.svg); }
+
+.vismaicon-menu.vismaicon-calendar:before { background-image: url(../img/vismaicons/top_menu/menu_calendar.svg); }
+
+.vismaicon-menu.vismaicon-location:before { background-image: url(../img/vismaicons/top_menu/menu_location.svg); }
+
+.vismaicon-menu.vismaicon-document-production:before { background-image: url(../img/vismaicons/top_menu/menu_document_production.svg); }
+
+.vismaicon-menu.vismaicon-tool:before { background-image: url(../img/vismaicons/top_menu/menu_tool.svg); }
+
+.vismaicon-menu.vismaicon-phone:before { background-image: url(../img/vismaicons/top_menu/menu_phone.svg); }
+
+.vismaicon-menu.vismaicon-reminder:before { background-image: url(../img/vismaicons/top_menu/menu_reminder.svg); }
+
+.vismaicon-menu.vismaicon-favorites:before { background-image: url(../img/vismaicons/top_menu/menu_favorites.svg); }
+
+
+
+/**** Dropdown menu icons ****/	
+.vismaicon-dropdown-menu.vismaicon-user:before { background-image: url(../img/vismaicons/top_menu/menu_user.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-user-settings:before { background-image: url(../img/vismaicons/top_menu/menu_user_settings.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-settings:before { background-image: url(../img/vismaicons/top_menu/menu_settings.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-help:before { background-image: url(../img/vismaicons/top_menu/menu_help.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-logout:before { background-image: url(../img/vismaicons/top_menu/menu_logout.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-search:before { background-image: url(../img/vismaicons/top_menu/menu_search.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-info:before { background-image: url(../img/vismaicons/top_menu/menu_info.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-shopping-cart:before { background-image: url(../img/vismaicons/top_menu/menu_shopping_cart.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-message:before { background-image: url(../img/vismaicons/top_menu/menu_message.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-home:before { background-image: url(../img/vismaicons/top_menu/menu_home.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-library:before { background-image: url(../img/vismaicons/top_menu/menu_library.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-calendar:before { background-image: url(../img/vismaicons/top_menu/menu_calendar.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-location:before { background-image: url(../img/vismaicons/top_menu/menu_location.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-doc-production:before { background-image: url(../img/vismaicons/top_menu/menu_document_production.svg); }
+
+.vismaicon-dropdown-menu.vismaicon-tool:before { background-image: url(../img/vismaicons/top_menu/menu_tool.svg); }
+
+
+
+/**** Informative filled icons ****/
+.vismaicon-filled.vismaicon-success:before { background-position: 0px 0; }
+
+.vismaicon-filled.vismaicon-error:before { background-position: -29px 0; }
+
+.vismaicon-filled.vismaicon-warning:before { background-position: -58px 0; }
+
+.vismaicon-filled.vismaicon-info:before { background-position: -87px 0; }
+
+.vismaicon-filled.vismaicon-help:before { background-position: -116px 0; }
+
+
+/* large */
+.vismaicon-lg.vismaicon-filled.vismaicon-success:before { background-position: 0px 0; }
+
+.vismaicon-lg.vismaicon-filled.vismaicon-error:before { background-position: -55px 0; }
+
+.vismaicon-lg.vismaicon-filled.vismaicon-warning:before { background-position: -110px 0; }
+
+.vismaicon-lg.vismaicon-filled.vismaicon-info:before { background-position: -165px 0; }
+
+.vismaicon-lg.vismaicon-filled.vismaicon-help:before { background-position: -220px 0; }
+
+/* small */
+.vismaicon-sm.vismaicon-filled.vismaicon-success:before { background-position: 0px 0; }
+
+.vismaicon-sm.vismaicon-filled.vismaicon-error:before { background-position: -21px 0; }
+
+.vismaicon-sm.vismaicon-filled.vismaicon-warning:before { background-position: -42px 0; }
+
+.vismaicon-sm.vismaicon-filled.vismaicon-info:before { background-position: -63px 0; }
+
+.vismaicon-sm.vismaicon-filled.vismaicon-help:before { background-position: -84px 0; }
+
+
+/* Using the icons */
+.btn-toolbar .btn-group .btn .vismaicon[class*="-circle"] { top: 0px; }
+
+.btn-toolbar .btn-group .btn .vismaicon.vismaicon-sm[class*="-circle"] { top: -1px; }
+
+.btn-toolbar .btn-group .btn .vismaicon { top: 0px; }
+
+.btn .vismaicon {
+	top: -2px;
+	vertical-align: middle;
+	}
+
+.btn .vismaicon-sm {
+	top: -2px;
+	left: -2px;
+	}
+
+.btn-lg .vismaicon {
+	top: -1px;
+	left: -3px;
+	}
+
+.btn-lg .vismaicon-sm { top: 0; }
+
+
+/* Responsive */
+@media (pointer:coarse) {
+.vismaicon.vismaicon-menu {
+	&.active,
+	&:hover {
+		background-color: #fff;
+		.box-shadow(1px 0px 0 rgba(0, 0, 0, 0.1), 0px 1px 0 rgba(0, 0, 0, 0.08), -1px 0px 0 rgba(0, 0, 0, 0.1), 0px -1px 0 rgba(0, 0, 0, 0.05), 0 2px 1px rgba(0, 0, 0, 0.05););
+
+		&:before { background-position: -44px 0; }
+		}
+	}
+}

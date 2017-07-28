@@ -1,0 +1,12 @@
+/* Webfont: PFBeauSansPro-SemiBold */@font-face {
+    font-family: 'PFBeauSansProSemiBold';
+    src: url('PFBeauSansPro-SemiBold.eot'); /* IE9 Compat Modes */
+    src: url('PFBeauSansPro-SemiBold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('PFBeauSansPro-SemiBold.woff') format('woff'), /* Modern Browsers */
+         url('PFBeauSansPro-SemiBold.ttf') format('truetype'); /* Safari, Android, iOS */
+         url('PFBeauSansPro-SemiBold.svg#PFBeauSansPro-SemiBold') format('svg'), /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

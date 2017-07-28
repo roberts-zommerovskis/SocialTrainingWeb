@@ -1,0 +1,37 @@
+{
+  "name": "nc3",
+  "version": "3.3.1",
+  "description": "Nordic Cool 3 theme for Twitter Bootstrap created by Visma",
+  "homepage": "https://ux.visma.com/weblibrary/latest/",
+  "repository": {
+    "type": "git",
+    "url": "https://stash.visma.com/scm/nc/nc3.git"
+  },
+  "main": "css/nc.css",
+  "ignore": [
+    "*",
+    "!css/nc.css",
+    "!css/nc.min.css",
+    "!css/nc.less",
+    "!css/less/**",
+    "!fonts/**",
+    "!img/**.*",
+    "!img/brand-icons/**",
+    "!img/directional-buttons/**",
+    "!img/spinners/**",
+    "!img/tabs/**",
+    "!img/vismaicons/**",
+    "!img/wizard/**",
+    "!js/bootstrap-tabdrop.js",
+    "!js/hideVertMenu.js",
+    "!js/visma-additional.js"
+  ],
+  "authors": [
+    "Johan Strandell <johan.strandell@visma.com>",
+    "Cristina Cristea <cristina.viorica.cristea@visma.com>",
+    "Mihai Baciu <mihai.baciu@visma.com>"
+  ],
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {}
+}

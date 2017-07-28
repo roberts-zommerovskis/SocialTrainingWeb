@@ -1,0 +1,82 @@
+C:\CsProjects\DataAccess\bin\Debug\DataAccess.dll.config
+C:\CsProjects\DataAccess\bin\Debug\DataAccess.dll
+C:\CsProjects\DataAccess\bin\Debug\DataAccess.pdb
+C:\CsProjects\DataAccess\bin\Debug\AutoMapper.dll
+C:\CsProjects\DataAccess\bin\Debug\CsvHelper.dll
+C:\CsProjects\DataAccess\bin\Debug\DataModel.dll
+C:\CsProjects\DataAccess\bin\Debug\EntityFramework.dll
+C:\CsProjects\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Auth.dll
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Core.dll
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.dll
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Drive.v3.dll
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.PlatformServices.dll
+C:\CsProjects\DataAccess\bin\Debug\log4net.dll
+C:\CsProjects\DataAccess\bin\Debug\Newtonsoft.Json.dll
+C:\CsProjects\DataAccess\bin\Debug\Zlib.Portable.dll
+C:\CsProjects\DataAccess\bin\Debug\DataModel.pdb
+C:\CsProjects\DataAccess\bin\Debug\DataModel.dll.config
+C:\CsProjects\DataAccess\bin\Debug\AutoMapper.xml
+C:\CsProjects\DataAccess\bin\Debug\CsvHelper.xml
+C:\CsProjects\DataAccess\bin\Debug\EntityFramework.xml
+C:\CsProjects\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.pdb
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.xml
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Auth.pdb
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Auth.xml
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Auth.PlatformServices.pdb
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Auth.PlatformServices.xml
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Core.pdb
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Core.xml
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.Drive.v3.xml
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.PlatformServices.pdb
+C:\CsProjects\DataAccess\bin\Debug\Google.Apis.PlatformServices.xml
+C:\CsProjects\DataAccess\bin\Debug\log4net.xml
+C:\CsProjects\DataAccess\bin\Debug\Newtonsoft.Json.xml
+C:\CsProjects\DataAccess\bin\Debug\Zlib.Portable.xml
+C:\CsProjects\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\CsProjects\DataAccess\obj\Debug\DataAccess.dll
+C:\CsProjects\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\DataAccess.dll.config
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\AutoMapper.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\CsvHelper.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\DataModel.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Auth.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Core.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\log4net.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Newtonsoft.Json.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Zlib.Portable.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\DataModel.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\DataModel.dll.config
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\AutoMapper.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\CsvHelper.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Auth.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Auth.PlatformServices.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Auth.PlatformServices.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Core.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Core.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.PlatformServices.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Google.Apis.PlatformServices.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\log4net.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Newtonsoft.Json.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\bin\Debug\Zlib.Portable.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataAccess\obj\Debug\DataAccess.pdb
