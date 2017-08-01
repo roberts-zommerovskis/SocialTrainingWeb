@@ -15,7 +15,7 @@ namespace SocialTrainingWebApp.Controllers
             //var a = new JavaScriptSerializer();
             //Dictionary<string, object> results = a.Deserialize<Dictionary<string, object>>(readHtml);
             //var title = results["title"].ToString();
-            GoogleSheetAuthentication.ParameterCreator();
+            //GoogleSheetAuthentication.ParameterCreator();
             return View();
         }
 

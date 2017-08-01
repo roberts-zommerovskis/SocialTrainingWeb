@@ -3,6 +3,7 @@
   <PropertyGroup>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44392</IISExpressSSLPort>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
