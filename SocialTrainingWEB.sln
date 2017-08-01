@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{A35EE260-F613-4339-972A-44D86B09997A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialTrainingWEB", "SocialTrainingWEB\SocialTrainingWEB.csproj", "{BB3C3F6C-925E-4B1D-A767-DEEE66943B2C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialTrainingWebApp", "SocialTrainingWebApp\SocialTrainingWebApp.csproj", "{94B4F58D-2313-4731-934A-5902C7ED56E5}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{A35EE260-F613-4339-972A-44D86B09997A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A35EE260-F613-4339-972A-44D86B09997A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A35EE260-F613-4339-972A-44D86B09997A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB3C3F6C-925E-4B1D-A767-DEEE66943B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB3C3F6C-925E-4B1D-A767-DEEE66943B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB3C3F6C-925E-4B1D-A767-DEEE66943B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB3C3F6C-925E-4B1D-A767-DEEE66943B2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94B4F58D-2313-4731-934A-5902C7ED56E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94B4F58D-2313-4731-934A-5902C7ED56E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94B4F58D-2313-4731-934A-5902C7ED56E5}.Release|Any CPU.ActiveCfg = Release|Any CPU

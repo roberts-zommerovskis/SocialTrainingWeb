@@ -120,3 +120,16 @@ C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTraini
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.dll
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.pdb
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.csprojResolveAssemblyReference.cache
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.GData.Client.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.GData.Extensions.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.GData.Spreadsheets.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.Auth.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.Auth.PlatformServices.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.Core.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.PlatformServices.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.Sheets.v4.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.Auth.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.Core.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\Google.Apis.Sheets.v4.xml

@@ -36,18 +36,7 @@ namespace SocialTrainingWebApp
 
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
 
             app.UseGoogleAuthentication(
                  clientId: "728310900206-pd6c8liuidfbiin4ubk2h28kn3vn9vk3.apps.googleusercontent.com",
