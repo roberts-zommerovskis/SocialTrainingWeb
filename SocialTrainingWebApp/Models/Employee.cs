@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace SocialTrainingWebApp.Models
 {
-    public class Employees
+    public class Employee
     {
-        public int _employeeID;
-        public string _fullName;
-        public DateTime joinDate;
+
+        public int ImportId;
+        public string FullName;
+
     }
 }
