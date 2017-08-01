@@ -1,4 +1,6 @@
-﻿using SocialTrainingWebApp.Models;
+﻿using System.Runtime.InteropServices.ComTypes;
+using System;
+using SocialTrainingWebApp.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -10,9 +12,22 @@ namespace SocialTrainingWebApp.Controllers
         public List<Employee> _employeeList;
         public ActionResult Index()
         {
+            int randomEmployeeNumber;
+            Random rnd = new Random();
+            List<Employee> employeeChoiceTriad = new List<Employee>();
+            _employeeList = DTO.GetEmployees();
+            List<int> rndNumberList = new List<int>();
+            for (int i = 0; i < 3; i++)
+            {
+                do
+                {
+                    randomEmployeeNumber = rnd.Next(_employeeList.Count);
+                } while (rndNumberList.Contains(randomEmployeeNumber));
 
-            GoogleSheetAuthentication.ParameterCreator();
-            return View();
+                rndNumberList.Add(randomEmployeeNumber);
+                employeeChoiceTriad.Add(_employeeList[randomEmployeeNumber]);
+            }
+            return View(employeeChoiceTriad);
         }
 
         public ActionResult About()
@@ -28,5 +43,11 @@ namespace SocialTrainingWebApp.Controllers
 
             return View();
         }
+
+        public RedirectToRouteResult UserChoice(string buttonid)
+        {
+            return RedirectToAction("Contact", "Home");
+        }
+
     }
 }

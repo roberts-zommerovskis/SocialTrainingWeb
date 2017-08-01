@@ -17,27 +17,28 @@ using System.Net;
 
 namespace SocialTrainingWebApp.Models
 {
-    public class GoogleSheetAuthentication
+    public class DTO
     {
-        public const string API_URL = "728310900206-5j6rn058m1djpk0hgs31mpj67von68lr.apps.googleusercontent.com";
 
 
 
 
-        public static void ParameterCreator()
+
+        public static List<Employee> GetEmployees()
         {
-            var request = WebRequest.Create("http://localhost:4567/api/karma/getEmployees");
+            const string API_URL = "http://localhost:4567/api/karma/getEmployees";
+            List<Employee> employees;
+            var request = WebRequest.Create(API_URL);
             request.ContentType = "application/json; charset=utf-8";
             string text;
             var response = (HttpWebResponse)request.GetResponse();
-
             using (var streamReader = new StreamReader(response.GetResponseStream()))
             {
                 text = streamReader.ReadToEnd();
-                List<Employee> employees = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<List<Employee>>(text);
+                employees = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<List<Employee>>(text);
             }
 
-
+            return employees;
         }
 
     }
