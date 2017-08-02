@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices.ComTypes;
+﻿using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System;
 using SocialTrainingWebApp.Models;
 using System.Collections.Generic;
@@ -12,21 +13,26 @@ namespace SocialTrainingWebApp.Controllers
         public List<Employee> _employeeList;
         public ActionResult Index()
         {
-            int randomEmployeeNumber;
+            //int randomEmployeeNumber;
             Random rnd = new Random();
             List<Employee> employeeChoiceTriad = new List<Employee>();
             _employeeList = DTO.GetEmployees();
             List<int> rndNumberList = new List<int>();
-            for (int i = 0; i < 3; i++)
-            {
-                do
-                {
-                    randomEmployeeNumber = rnd.Next(_employeeList.Count);
-                } while (rndNumberList.Contains(randomEmployeeNumber));
+            employeeChoiceTriad.Add(_employeeList.Where(x => x.ImportId == 1007).First());
+            employeeChoiceTriad.Add(_employeeList.Where(x => x.ImportId == 1009).First());
+            employeeChoiceTriad.Add(_employeeList.Where(x => x.ImportId == 1010).First());
 
-                rndNumberList.Add(randomEmployeeNumber);
-                employeeChoiceTriad.Add(_employeeList[randomEmployeeNumber]);
-            }
+
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    do
+            //    {
+            //        randomEmployeeNumber = rnd.Next(_employeeList.Count);
+            //    } while (rndNumberList.Contains(randomEmployeeNumber));
+
+            //    rndNumberList.Add(randomEmployeeNumber);
+            //    employeeChoiceTriad.Add(_employeeList[randomEmployeeNumber]);
+            //}
             return View(employeeChoiceTriad);
         }
 

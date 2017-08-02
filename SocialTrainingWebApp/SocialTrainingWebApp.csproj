@@ -232,10 +232,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DTO.cs" />
+    <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\GoogleSheetAuthentication.cs" />
+    <Compile Include="Models\DTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -901,7 +901,9 @@
     <Content Include="Content\nc3\fonts\subset-OpenSansLight-Italic.woff2" />
     <Content Include="client_secret.json" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="placeholder.png" />
+    <Content Include="MockImages\1007.png" />
+    <Content Include="MockImages\1009.png" />
+    <Content Include="MockImages\1010.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -954,6 +956,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
