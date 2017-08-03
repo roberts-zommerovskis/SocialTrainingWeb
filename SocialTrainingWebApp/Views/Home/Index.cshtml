@@ -1,8 +1,9 @@
-﻿@{
+﻿@using System.Linq;
+@{
     ViewBag.Title = "Home Page";
 }
 
-@model List<SocialTrainingWebApp.Models.Employee>
+@model SocialTrainingWebApp.Models.ChosenEmployees
 
 
 
@@ -12,19 +13,19 @@
             <div class="row ">
                 <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
                     <div class="col-xs-6">
-                        @{Random r = new Random();
-                            int randomEmployeeNumber = r.Next(2);
-                            string chosenEmployeeImageId = $"{Model[randomEmployeeNumber].ImportId.ToString()}.png";
+                        @{
+                            string chosenEmployeeImageId = Model.ChooseIframeImage();
                             <iframe src="~/MockImages/@chosenEmployeeImageId" title="colleaguePortrait" scrolling="no"></iframe>
                         }
                     </div>
                     <div class="col-xs-5">
                         @{int i = 1; }
-                        @foreach (var item in Model)
+                        @foreach (var item in Model._employeeTriad)
                         {
+                            string result = Model.GetOtherOptionEmployeeIDs(new List<int>() { i });
                             string val = "value";
                             <div class="row">
-                                <button class="btn btn-default" value="@val@i" id="@i" onclick="location.href='@Url.Action("UserChoice", "Home")?buttonId=' + $('#'+@i).val()">@item.FullName</button>
+                                <button class="btn btn-default" value="@val@i" id="@i" onclick="location.href='@Url.Action("UserChoice", "Home")?buttonId=' + $('#'+@i).val()+$('#'+@(i-1)).val()+$('#'+@(i+1)).val()">@item.FullName</button>
                             </div>
                             i++;
                         }
@@ -38,16 +39,16 @@
 
     function resizeIFrameToFitContent( iFrame ) {
 
-        iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
-        iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
-    }
+                            iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+                            iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+                        }
 
-    window.addEventListener('DOMContentLoaded', function(e) {
-        var iframes = document.querySelectorAll("iframe");
-        for( var i = 0; i < iframes.length; i++) {
-            resizeIFrameToFitContent( iframes[i] );
-        }
-    } );
+                        window.addEventListener('DOMContentLoaded', function(e) {
+                            var iframes = document.querySelectorAll("iframe");
+                            for( var i = 0; i < iframes.length; i++) {
+                                resizeIFrameToFitContent( iframes[i] );
+                            }
+                        } );
 
 </script>
 

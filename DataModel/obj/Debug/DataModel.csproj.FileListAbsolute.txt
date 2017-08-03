@@ -19,6 +19,6 @@ C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTraini
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataModel\bin\Debug\EntityFramework.xml
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataModel\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataModel\bin\Debug\Newtonsoft.Json.xml
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataModel\obj\Debug\DataModel.dll
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataModel\obj\Debug\DataModel.pdb
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
