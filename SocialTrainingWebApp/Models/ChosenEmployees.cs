@@ -11,16 +11,25 @@ namespace SocialTrainingWebApp.Models
         public List<Employee> _employeeTriad;
         public List<int> _chosenEmployeeNumbers;
         public List<Employee> _allEmployees;
-        public ChosenEmployees()
+        public int _points;
+        public ChosenEmployees(int points)
         {
+            _points = points;
             _employeeTriad = new List<Employee>();
             _chosenEmployeeNumbers = new List<int>();
             _allEmployees = DTO.GetEmployees();
         }
 
-        public string GetOtherOptionEmployeeIDs(List<int> chosenOptionWrapper)
+        public List<int> GetOtherOptionEmployeeIDs(int chosenOption)
         {
-            string result = chosenOptionWrapper.First().ToString() + "!" + string.Join("!", Enumerable.Range(1, 3).Except(chosenOptionWrapper).ToList<int>());
+            List<int> result = new List<int>() { chosenOption };
+            result.AddRange(Enumerable.Range(1, 3).Except(result).ToList<int>());
+            return result;
+        }
+
+        public string GetOtherOptionEmployeeIDs(int chosenOption, List<Employee> employeeTriad, string imageName)
+        {
+            string result = chosenOption.ToString() + "!" + string.Join("!", employeeTriad.Where(x => x.ImportId != chosenOption).Select(x => x.ImportId).ToList<int>()) + "!" + _points.ToString() + "!" + imageName;
             return result;
         }
 

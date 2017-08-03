@@ -22,10 +22,9 @@
                         @{int i = 1; }
                         @foreach (var item in Model._employeeTriad)
                         {
-                            string result = Model.GetOtherOptionEmployeeIDs(new List<int>() { i });
-                            string val = "value";
+                            string result = Model.GetOtherOptionEmployeeIDs(item.ImportId, Model._employeeTriad, chosenEmployeeImageId);
                             <div class="row">
-                                <button class="btn btn-default" value="@val@i" id="@i" onclick="location.href='@Url.Action("UserChoice", "Home")?buttonId=' + $('#'+@i).val()+$('#'+@(i-1)).val()+$('#'+@(i+1)).val()">@item.FullName</button>
+                                <button class="btn btn-default" value="@item.ImportId" id="@i" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@result'">@item.FullName</button>
                             </div>
                             i++;
                         }
