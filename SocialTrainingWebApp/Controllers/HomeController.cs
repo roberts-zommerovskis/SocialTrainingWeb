@@ -18,6 +18,7 @@ namespace SocialTrainingWebApp.Controllers
         {
             if (buttonid != null)
             {
+                System.Threading.Thread.Sleep(4000);
                 List<string> answers = buttonid.Split('!').ToList<string>();
                 string imageId = answers.Last().Substring(0, answers.Last().LastIndexOf('.'));
                 if (answers.First().Equals(imageId))

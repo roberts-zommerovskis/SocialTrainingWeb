@@ -5,7 +5,7 @@
 
 @model SocialTrainingWebApp.Models.ChosenEmployees
 
-
+@Scripts.Render("~/bundles/jquery")
 
 <div class="container">
     <div class="row vertical-center-row">
@@ -24,7 +24,7 @@
                         {
                             string result = Model.GetOtherOptionEmployeeIDs(item.ImportId, Model._employeeTriad, chosenEmployeeImageId);
                             <div class="row">
-                                <button class="btn btn-default" value="@item.ImportId" id="@i" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@result'">@item.FullName</button>
+                                <button class="btn" value="@item.ImportId" id="@i" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@result';setColor(@i)">@item.FullName</button>
                             </div>
                             i++;
                         }
@@ -49,6 +49,15 @@
                             }
                         } );
 
+</script>
+
+
+<script type="text/javascript">
+    $('.btn').on("click", function () {
+        $(this).addClass("btn-success");
+
+
+    })
 </script>
 
 
