@@ -23,7 +23,6 @@ namespace SocialTrainingWebApp.Models
                 _allEmployees = unguessedEmployees;
             }
             _employeeTriad = new List<Employee>();
-            _chosenEmployeeNumbers = new List<int>();
 
         }
 

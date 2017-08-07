@@ -42,6 +42,10 @@ namespace SocialTrainingWebApp.Controllers
                 Session["points"] = 0;
                 _points = 0;
             }
+            if (allEmployees.Count < 3)
+            {
+
+            }
             _chosenEmployees = new ChosenEmployees(allEmployees);
             _chosenEmployees.PickEmployeeOptions();
             _chosenEmployees.ChooseIframeImage();
