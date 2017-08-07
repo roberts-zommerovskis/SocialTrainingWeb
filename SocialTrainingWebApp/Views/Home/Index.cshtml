@@ -18,7 +18,7 @@
                         }
                     </div>
                     <div class="col-xs-5">
-                        @{int i = 1; }
+                        @{int i = 0; }
                         @foreach (var item in Model._employeeTriad)
                         {
                             <div class="row">
@@ -52,8 +52,16 @@
 
 <script type="text/javascript">
     $('.btn').on("click", function () {
-        $(this).addClass("btn-success");
+        if ($(this).attr("id") == "@Model._chosenTriadEmployee") {
+            $(this).addClass("btn-success");
+        }
+        else {
+            $(this).addClass("btn-danger");
+            $("#@Model._chosenTriadEmployee").addClass("btn-success");
+        }
         document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
+
+
     })
 </script>
 

@@ -11,6 +11,7 @@ namespace SocialTrainingWebApp.Models
         public List<Employee> _employeeTriad;
         public List<Employee> _allEmployees;
         public string _chosenEmployeeImageId;
+        public int _chosenTriadEmployee;
 
         public ChosenEmployees(List<Employee> unguessedEmployees)
         {
@@ -45,8 +46,8 @@ namespace SocialTrainingWebApp.Models
         public void ChooseIframeImage()
         {
             Random rnd = new Random();
-            int chosenTriadEmployee = rnd.Next(2);
-            _chosenEmployeeImageId = $"{_employeeTriad[chosenTriadEmployee].ImportId.ToString()}.png";
+            _chosenTriadEmployee = rnd.Next(2);
+            _chosenEmployeeImageId = $"{_employeeTriad[_chosenTriadEmployee].ImportId.ToString()}.png";
         }
     }
 }

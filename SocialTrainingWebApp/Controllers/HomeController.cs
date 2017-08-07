@@ -18,17 +18,17 @@ namespace SocialTrainingWebApp.Controllers
             if (buttonid != null)
             {
                 int buttonNumber = int.Parse(buttonid);
-                System.Threading.Thread.Sleep(4000);
+                System.Threading.Thread.Sleep(2000);
                 List<Employee> currentTriad = (List<Employee>)Session["currentEmployeeTriadChoice"];
                 allEmployees = (List<Employee>)Session["currentDataState"];
                 string imageEmployeeNumber = (string)Session["chosenImage"];
 
-                if (currentTriad[buttonNumber - 1].ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
+                if (currentTriad[buttonNumber].ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
                 {
                     _points = (int)Session["points"];
                     _points++;
                     Session["points"] = _points;
-                    allEmployees.RemoveAll(employee => employee.ImportId == currentTriad[buttonNumber - 1].ImportId);
+                    allEmployees.RemoveAll(employee => employee.ImportId == currentTriad[buttonNumber].ImportId);
 
                 }
                 else
