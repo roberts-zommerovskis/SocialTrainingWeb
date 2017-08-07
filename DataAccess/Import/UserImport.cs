@@ -14,7 +14,7 @@ using Google.Apis.Services;
 namespace DataAccess.Import
 {
     // TODO Error logging!
-    public class UserImport: IDisposable
+    public class UserImport : IDisposable
     {
         private const string ApplicationName = "Social Training";
 
@@ -71,7 +71,7 @@ namespace DataAccess.Import
             {
                 CsvReader csv = new CsvReader(reader);
                 DateTime now = DateTime.Now;
-                
+
                 while (csv.Read())
                 {
                     using (var dbContextTransaction = db.Database.BeginTransaction())
@@ -212,7 +212,7 @@ namespace DataAccess.Import
             user.ImportId = csv.GetField<long>("ID");
             user.FullName = csv.GetField<string>("Name");
             user.Status = (UserStatus)csv.GetField<int>("Status");
-            user.JoinDate = csv.GetField<DateTime ?>("Join Date");
+            user.JoinDate = csv.GetField<DateTime?>("Join Date");
             user.PrimaryClientContact = csv.GetField<string>("Primary Client Contact");
             user.SecondaryClientContact = csv.GetField<string>("Secondary Client contact");
             user.Organization = csv.GetField<string>("Chapter (Organization)");
@@ -275,7 +275,7 @@ namespace DataAccess.Import
         {
             throw new NotImplementedException();
         }
-        
+
         private static string RemoveDiactrics(string x)
         {
             string normalized = x.Normalize(NormalizationForm.FormD);
