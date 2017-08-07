@@ -37,7 +37,7 @@ namespace SocialTrainingWebApp.Controllers
                 Session["points"] = 0;
                 _points = 0;
             }
-            _chosenEmployees = new ChosenEmployees(_points);
+            _chosenEmployees = new ChosenEmployees();
             _chosenEmployees.PickEmployeeOptions();
             _chosenEmployees.ChooseIframeImage();
             Session["chosenImage"] = _chosenEmployees._chosenEmployeeImageId;
