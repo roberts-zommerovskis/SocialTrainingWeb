@@ -9,15 +9,22 @@ namespace SocialTrainingWebApp.Models
     public class ChosenEmployees
     {
         public List<Employee> _employeeTriad;
-        public List<int> _chosenEmployeeNumbers;
         public List<Employee> _allEmployees;
         public string _chosenEmployeeImageId;
 
-        public ChosenEmployees()
+        public ChosenEmployees(List<Employee> unguessedEmployees)
         {
+            if (!unguessedEmployees.Any())
+            {
+                _allEmployees = DTO.GetEmployees();
+            }
+            else
+            {
+                _allEmployees = unguessedEmployees;
+            }
             _employeeTriad = new List<Employee>();
             _chosenEmployeeNumbers = new List<int>();
-            _allEmployees = DTO.GetEmployees();
+
         }
 
         public void PickEmployeeOptions()

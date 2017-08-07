@@ -14,17 +14,22 @@ namespace SocialTrainingWebApp.Controllers
         public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
+            List<Employee> allEmployees = new List<Employee>();
             if (buttonid != null)
             {
                 int buttonNumber = int.Parse(buttonid);
                 System.Threading.Thread.Sleep(4000);
                 List<Employee> currentTriad = (List<Employee>)Session["currentEmployeeTriadChoice"];
+                allEmployees = (List<Employee>)Session["currentDataState"];
                 string imageEmployeeNumber = (string)Session["chosenImage"];
+
                 if (currentTriad[buttonNumber - 1].ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
                 {
                     _points = (int)Session["points"];
                     _points++;
                     Session["points"] = _points;
+                    allEmployees.RemoveAll(employee => employee.ImportId == currentTriad[buttonNumber - 1].ImportId);
+
                 }
                 else
                 {
@@ -37,7 +42,7 @@ namespace SocialTrainingWebApp.Controllers
                 Session["points"] = 0;
                 _points = 0;
             }
-            _chosenEmployees = new ChosenEmployees();
+            _chosenEmployees = new ChosenEmployees(allEmployees);
             _chosenEmployees.PickEmployeeOptions();
             _chosenEmployees.ChooseIframeImage();
             Session["chosenImage"] = _chosenEmployees._chosenEmployeeImageId;
