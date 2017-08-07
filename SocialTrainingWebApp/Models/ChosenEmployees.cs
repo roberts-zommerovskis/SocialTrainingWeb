@@ -12,19 +12,14 @@ namespace SocialTrainingWebApp.Models
         public List<int> _chosenEmployeeNumbers;
         public List<Employee> _allEmployees;
         public int _points;
+        public string _chosenEmployeeImageId;
+
         public ChosenEmployees(int points)
         {
             _points = points;
             _employeeTriad = new List<Employee>();
             _chosenEmployeeNumbers = new List<int>();
             _allEmployees = DTO.GetEmployees();
-        }
-
-        public List<int> GetOtherOptionEmployeeIDs(int chosenOption)
-        {
-            List<int> result = new List<int>() { chosenOption };
-            result.AddRange(Enumerable.Range(1, 3).Except(result).ToList<int>());
-            return result;
         }
 
         public string GetOtherOptionEmployeeIDs(int chosenOption, List<Employee> employeeTriad, string imageName)
@@ -49,13 +44,19 @@ namespace SocialTrainingWebApp.Models
             }
         }
 
-        public string ChooseIframeImage()
+        //public string ChooseIframeImage()
+        //{
+        //    Random rnd = new Random();
+        //    int chosenTriadEmployee = rnd.Next(2);
+        //    string chosenEmployeeImageId = $"{_employeeTriad[chosenTriadEmployee].ImportId.ToString()}.png";
+        //    return chosenEmployeeImageId;
+        //}
+
+        public void ChooseIframeImage()
         {
             Random rnd = new Random();
             int chosenTriadEmployee = rnd.Next(2);
-            string chosenEmployeeImageId = $"{_employeeTriad[chosenTriadEmployee].ImportId.ToString()}.png";
-            return chosenEmployeeImageId;
+            _chosenEmployeeImageId = $"{_employeeTriad[chosenTriadEmployee].ImportId.ToString()}.png";
         }
-
     }
 }

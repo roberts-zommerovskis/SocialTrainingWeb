@@ -14,17 +14,15 @@
                 <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
                     <div class="col-xs-6">
                         @{
-                            string chosenEmployeeImageId = Model.ChooseIframeImage();
-                            <iframe src="~/MockImages/@chosenEmployeeImageId" title="colleaguePortrait" scrolling="no"></iframe>
+                            <iframe src="~/MockImages/@Model._chosenEmployeeImageId" title="colleaguePortrait" scrolling="no"></iframe>
                         }
                     </div>
                     <div class="col-xs-5">
                         @{int i = 1; }
                         @foreach (var item in Model._employeeTriad)
                         {
-                            string result = Model.GetOtherOptionEmployeeIDs(item.ImportId, Model._employeeTriad, chosenEmployeeImageId);
                             <div class="row">
-                                <button class="btn" value="@item.ImportId" id="@i" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@result';setColor(@i)">@item.FullName</button>
+                                <button class="btn" value="@item.ImportId" id="@i" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@i';setColor(@i)">@item.FullName</button>
                             </div>
                             i++;
                         }

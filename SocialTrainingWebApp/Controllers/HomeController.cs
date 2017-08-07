@@ -10,34 +10,40 @@ namespace SocialTrainingWebApp.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
-        public List<Employee> _employeeList;
-        public List<Employee> _employeeChoiceTriad;
-        public List<Employee> _guessedEmployees;
         public int _points;
+        public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
             if (buttonid != null)
             {
+                int buttonNumber = int.Parse(buttonid);
                 System.Threading.Thread.Sleep(4000);
-                List<string> answers = buttonid.Split('!').ToList<string>();
-                string imageId = answers.Last().Substring(0, answers.Last().LastIndexOf('.'));
-                if (answers.First().Equals(imageId))
+                List<Employee> currentTriad = (List<Employee>)Session["currentEmployeeTriadChoice"];
+                string imageEmployeeNumber = (string)Session["chosenImage"];
+                if (currentTriad[buttonNumber - 1].ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
                 {
-                    _points = int.Parse(answers[answers.Count - 2]) + 1;
+                    _points = (int)Session["points"];
+                    _points++;
+                    Session["points"] = _points;
                 }
                 else
                 {
-                    _points = int.Parse(answers[answers.Count - 2]);
+                    _points = (int)Session["points"];
                 }
 
             }
             else
             {
+                Session["points"] = 0;
                 _points = 0;
             }
-            ChosenEmployees chosenEmployees = new ChosenEmployees(_points);
-            chosenEmployees.PickEmployeeOptions();
-            return View(chosenEmployees);
+            _chosenEmployees = new ChosenEmployees(_points);
+            _chosenEmployees.PickEmployeeOptions();
+            _chosenEmployees.ChooseIframeImage();
+            Session["chosenImage"] = _chosenEmployees._chosenEmployeeImageId;
+            Session["currentEmployeeTriadChoice"] = _chosenEmployees._employeeTriad;
+            Session["currentDataState"] = _chosenEmployees._allEmployees;
+            return View(_chosenEmployees);
         }
 
         public ActionResult About()
