@@ -14,7 +14,7 @@ namespace SocialTrainingWebApp.Controllers
         public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
-            GoogleSheetConnector.Connect();
+            //GoogleSheetConnector.Connect();
             List<Employee> allEmployees = new List<Employee>();
             if (buttonid != null)
             {
@@ -42,6 +42,7 @@ namespace SocialTrainingWebApp.Controllers
             {
                 Session["points"] = 0;
                 _points = 0;
+                GoogleSheetConnector.ImportData();
             }
             if (allEmployees.Count < 3)
             {

@@ -23,7 +23,7 @@ namespace SocialTrainingWebApp.Models
         static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
         static string ApplicationName = "Google Sheets API .NET Employees";
 
-        public static void Connect()
+        public static void ImportData()
         {
             UserCredential credential;
 
