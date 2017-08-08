@@ -14,6 +14,7 @@ namespace SocialTrainingWebApp.Controllers
         public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
+            GoogleSheetConnector.Connect();
             List<Employee> allEmployees = new List<Employee>();
             if (buttonid != null)
             {

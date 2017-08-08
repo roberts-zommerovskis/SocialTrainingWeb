@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SocialTrainingWebApp.Models
 {
     public class Employee
     {
-
-        public int ImportId;
-        public string FullName;
-
+        [Key]
+        public int DbId { get; set; }
+        public int ImportId { get; set; }
+        public string FullName { get; set; }
+        public string Sex { get; set; }
     }
 }

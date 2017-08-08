@@ -1,0 +1,81 @@
+﻿using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Runtime.Remoting.Channels;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Google.Apis.Sheets.v4;
+using Google.Apis.Sheets.v4.Data;
+using Google.Apis.Util.Store;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace SocialTrainingWebApp.Models
+{
+    public class GoogleSheetConnector
+    {
+        static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
+        static string ApplicationName = "Google Sheets API .NET Employees";
+
+        public static void Connect()
+        {
+            UserCredential credential;
+
+            string path = HttpContext.Current.Server.MapPath(@"~/client_secret.json");
+            using (var stream =
+                new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                string credPath = System.Environment.GetFolderPath(
+                    System.Environment.SpecialFolder.Personal);
+                credPath = Path.Combine(credPath, ".credentials/sheets.googleapis.com-dotnet-quickstart.json");
+
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "user",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+            }
+
+            var service = new SheetsService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            String spreadsheetId = "1m6k0YyMeVk9ykByZNfAK8sh7CAzXdbn_l8vDlPJF-9k";
+            String range = "Sheet1!A2:I";
+            SpreadsheetsResource.ValuesResource.GetRequest request =
+                    service.Spreadsheets.Values.Get(spreadsheetId, range);
+
+
+            ValueRange response = request.Execute();
+            List<Employee> transferableEmployees = new List<Employee>();
+            IList<IList<Object>> values = response.Values;
+            if (values != null && values.Count > 0)
+            {
+                foreach (var row in values)
+                {
+                    if (row[2].ToString().Equals("2") || row[2].ToString().Equals("1"))
+                    {
+                        var employee = new Employee { FullName = row[1].ToString(), ImportId = int.Parse(row[0].ToString()), Sex = row[8].ToString() };
+                        transferableEmployees.Add(employee);
+                    }
+                }
+                using (var db = new AppDbContext())
+                {
+                    db.Employee.AddRange(transferableEmployees);
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                //TODO: Cover case where data is not found
+            }
+        }
+    }
+}
