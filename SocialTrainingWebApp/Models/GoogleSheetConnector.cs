@@ -49,8 +49,8 @@ namespace SocialTrainingWebApp.Models
                 ApplicationName = ApplicationName,
             });
 
-            //String spreadsheetId = "1m6k0YyMeVk9ykByZNfAK8sh7CAzXdbn_l8vDlPJF-9k";
-            String spreadsheetId = "1EkbujkTOwbYDOMe_rWEBekhZg9LEy8UGCcgc5fPMEjY";
+            String spreadsheetId = "1m6k0YyMeVk9ykByZNfAK8sh7CAzXdbn_l8vDlPJF-9k";
+
             String range = "Sheet1!A2:I";
             SpreadsheetsResource.ValuesResource.GetRequest request =
                     service.Spreadsheets.Values.Get(spreadsheetId, range);
