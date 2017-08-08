@@ -1,4 +1,6 @@
-﻿using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+﻿using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Runtime.Remoting.Channels;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
@@ -68,8 +70,18 @@ namespace SocialTrainingWebApp.Models
                 }
                 using (var db = new AppDbContext())
                 {
-                    db.Employee.AddRange(transferableEmployees);
+                    foreach (var employee in transferableEmployees)
+                    {
+                        var employeeInDb = db.Employee.Where(empDB => empDB.ImportId == employee.ImportId) // or whatever your key is
+                .SingleOrDefault();
+                        if (employeeInDb == null)
+                            db.Employee.Add(employee);
+                    }
                     db.SaveChanges();
+
+
+                    //db.Employee.AddRange(transferableEmployees);
+                    //db.SaveChanges();
                 }
             }
             else
