@@ -305,7 +305,6 @@
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\ChosenEmployees.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\DTO.cs" />
     <Compile Include="Models\ExtraOptionGetter.cs" />

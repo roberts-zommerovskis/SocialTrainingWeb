@@ -49,7 +49,8 @@ namespace SocialTrainingWebApp.Models
                 ApplicationName = ApplicationName,
             });
 
-            String spreadsheetId = "1m6k0YyMeVk9ykByZNfAK8sh7CAzXdbn_l8vDlPJF-9k";
+            //String spreadsheetId = "1m6k0YyMeVk9ykByZNfAK8sh7CAzXdbn_l8vDlPJF-9k";
+            String spreadsheetId = "1EkbujkTOwbYDOMe_rWEBekhZg9LEy8UGCcgc5fPMEjY";
             String range = "Sheet1!A2:I";
             SpreadsheetsResource.ValuesResource.GetRequest request =
                     service.Spreadsheets.Values.Get(spreadsheetId, range);
@@ -68,20 +69,26 @@ namespace SocialTrainingWebApp.Models
                         transferableEmployees.Add(employee);
                     }
                 }
+                List<int> existingEmployeeImportNums = new List<int>();
                 using (var db = new AppDbContext())
                 {
                     foreach (var employee in transferableEmployees)
                     {
+                        existingEmployeeImportNums.Add(employee.ImportId);
                         var employeeInDb = db.Employee.Where(empDB => empDB.ImportId == employee.ImportId) // or whatever your key is
                 .SingleOrDefault();
                         if (employeeInDb == null)
                             db.Employee.Add(employee);
                     }
+
+                    foreach (var dbEmployee in db.Employee)
+                    {
+                        if (!existingEmployeeImportNums.Contains(dbEmployee.ImportId))
+                        {
+                            db.Employee.Remove(dbEmployee);
+                        }
+                    }
                     db.SaveChanges();
-
-
-                    //db.Employee.AddRange(transferableEmployees);
-                    //db.SaveChanges();
                 }
             }
             else
