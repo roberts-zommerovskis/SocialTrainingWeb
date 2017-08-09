@@ -54,6 +54,7 @@ namespace SocialTrainingWebApp.Controllers
             Session["chosenImage"] = _chosenEmployees._chosenEmployeeImageId;
             Session["currentEmployeeTriadChoice"] = _chosenEmployees._employeeTriad;
             Session["currentDataState"] = _chosenEmployees._allEmployees;
+            Session["chosenTriadEmployee"] = _chosenEmployees._chosenTriadEmployee;
             return View(_chosenEmployees);
         }
 
@@ -71,9 +72,17 @@ namespace SocialTrainingWebApp.Controllers
             return View();
         }
 
-        public RedirectToRouteResult UserChoice(string buttonid)
+        public JsonResult CheckAnswer(string ID)
         {
-            return RedirectToAction("Contact", "Home");
+            if (int.Parse(ID) == (int)Session["chosenTriadEmployee"])
+            {
+                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
     }

@@ -32,6 +32,7 @@
         </div>
     </div>
 </div>
+@Html.HiddenFor(a => a._chosenEmployeeImageId);
 <script type="application/javascript">
 
     function resizeIFrameToFitContent( iFrame ) {
@@ -52,7 +53,9 @@
 
 <script type="text/javascript">
     $('.btn').on("click", function () {
-        if ($(this).attr("id") == "@Model._chosenTriadEmployee") {
+        var answer = sendValueToController($(this).attr("id"));
+        @*if ($(this).attr("id") == "@Model._chosenTriadEmployee") {*@
+        if(answer==true){
             $(this).addClass("btn-success");
         }
         else {
@@ -63,6 +66,25 @@
 
 
     })
+
+    function sendValueToController(id)
+    {
+        $.ajax({
+            url: "/Home/CheckAnswer/",
+            data: { ID: id },
+            cache: false,
+            type: "GET",
+            timeout: 10000,
+            dataType: "json",
+            success: function (result) {
+                if (result.Success) { // this sets the value from the response
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+    }
 </script>
 
 
