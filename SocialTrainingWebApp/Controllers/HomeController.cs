@@ -56,7 +56,7 @@ namespace SocialTrainingWebApp.Controllers
             }
             else
             {
-                return View("About");
+                return View("Congratulations");
             }
         }
 
@@ -86,6 +86,12 @@ namespace SocialTrainingWebApp.Controllers
             }
 
         }
+
+        public ActionResult Congratulations()
+        {
+            return View();
+        }
+
 
     }
 }
