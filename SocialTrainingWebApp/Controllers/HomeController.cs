@@ -14,13 +14,11 @@ namespace SocialTrainingWebApp.Controllers
         public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
-            //List<Employee> c = GoogleSheetConnector.AccessData();
-            //GoogleSheetConnector.Connect();
             List<Employee> allEmployees = new List<Employee>();
             if (buttonid != null)
             {
                 int buttonNumber = int.Parse(buttonid);
-                System.Threading.Thread.Sleep(2000);
+                //System.Threading.Thread.Sleep(2000);
                 List<Employee> currentTriad = (List<Employee>)Session["currentEmployeeTriadChoice"];
                 allEmployees = (List<Employee>)Session["currentDataState"];
                 string imageEmployeeNumber = (string)Session["chosenImage"];
@@ -45,18 +43,21 @@ namespace SocialTrainingWebApp.Controllers
                 _points = 0;
                 GoogleSheetConnector.ImportDataIntoDB();
             }
-            if (allEmployees.Count < 3)
+            if (allEmployees.Count != 0 || (allEmployees.Count == 0 && _points == 0))
             {
-
+                _chosenEmployees = new ChosenEmployees(allEmployees);
+                _chosenEmployees.PickEmployeeOptions();
+                _chosenEmployees.ChooseIframeImage();
+                Session["chosenImage"] = _chosenEmployees._chosenEmployeeImageId;
+                Session["currentEmployeeTriadChoice"] = _chosenEmployees._employeeTriad;
+                Session["currentDataState"] = _chosenEmployees._allEmployees;
+                Session["chosenTriadEmployee"] = _chosenEmployees._chosenTriadEmployee;
+                return View(_chosenEmployees);
             }
-            _chosenEmployees = new ChosenEmployees(allEmployees);
-            _chosenEmployees.PickEmployeeOptions();
-            _chosenEmployees.ChooseIframeImage();
-            Session["chosenImage"] = _chosenEmployees._chosenEmployeeImageId;
-            Session["currentEmployeeTriadChoice"] = _chosenEmployees._employeeTriad;
-            Session["currentDataState"] = _chosenEmployees._allEmployees;
-            Session["chosenTriadEmployee"] = _chosenEmployees._chosenTriadEmployee;
-            return View(_chosenEmployees);
+            else
+            {
+                return View("About");
+            }
         }
 
         public ActionResult About()

@@ -30,9 +30,19 @@ namespace SocialTrainingWebApp.Models
         public void PickEmployeeOptions()
         {
             int randomEmployeeNumber;
+            int optionCount;
             Random rnd = new Random();
             List<int> randomNumberList = new List<int>();
-            for (int i = 0; i < 3; i++)
+            if (_allEmployees.Count >= 3)
+            {
+                optionCount = 3;
+            }
+            else
+            {
+                optionCount = _allEmployees.Count;
+            }
+
+            for (int i = 0; i < optionCount; i++)
             {
                 do
                 {
@@ -46,7 +56,14 @@ namespace SocialTrainingWebApp.Models
         public void ChooseIframeImage()
         {
             Random rnd = new Random();
-            _chosenTriadEmployee = rnd.Next(2);
+            if (_employeeTriad.Count > 1)
+            {
+                _chosenTriadEmployee = rnd.Next(_employeeTriad.Count);
+            }
+            else
+            {
+                _chosenTriadEmployee = rnd.Next(1);
+            }
             _chosenEmployeeImageId = $"{_employeeTriad[_chosenTriadEmployee].ImportId.ToString()}.png";
         }
     }
