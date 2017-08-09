@@ -23,7 +23,7 @@ namespace SocialTrainingWebApp.Models
         static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
         static string ApplicationName = "Google Sheets API .NET Employees";
 
-        public static void ImportData()
+        public static void ImportDataIntoDB()
         {
             UserCredential credential;
 
@@ -95,6 +95,16 @@ namespace SocialTrainingWebApp.Models
             {
                 //TODO: Cover case where data is not found
             }
+        }
+
+        public static List<Employee> AccessData()
+        {
+            List<Employee> employeeList;
+            using (var db = new AppDbContext())
+            {
+                employeeList = db.Employee.ToList<Employee>();
+            }
+            return employeeList;
         }
     }
 }

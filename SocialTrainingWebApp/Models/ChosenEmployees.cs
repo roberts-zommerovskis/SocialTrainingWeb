@@ -17,7 +17,7 @@ namespace SocialTrainingWebApp.Models
         {
             if (!unguessedEmployees.Any())
             {
-                _allEmployees = DTO.GetEmployees();
+                _allEmployees = GoogleSheetConnector.AccessData();
             }
             else
             {
