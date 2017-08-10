@@ -106,5 +106,16 @@ namespace SocialTrainingWebApp.Models
             }
             return employeeList;
         }
+
+        public static int GetEmployeeCount()
+        {
+            int employeeCountInDb;
+            using (var db = new AppDbContext())
+            {
+                employeeCountInDb = db.Employee.Count();
+            }
+            return employeeCountInDb;
+        }
+
     }
 }

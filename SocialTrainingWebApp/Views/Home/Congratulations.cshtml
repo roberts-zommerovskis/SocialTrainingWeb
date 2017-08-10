@@ -3,6 +3,8 @@
     ViewBag.Title = "Congratulations";
     Scripts.Render("~/bundle/jquery");
 }
+@model SocialTrainingWebApp.Models.SessionSummaryModel
+
 
 <div class="container">
     <div class="row vertical-center-row">
@@ -13,11 +15,12 @@
                         <div class="panel-body" style="text-align:center">
                             <div><h1>Well done!</h1></div>
                             <div><h2 style="border-bottom:none">You know your colleagues for</h2></div>
-                            <div class="padding-bottom"><text style="font-size:xx-large; color:#0089d9">75%</text></div>
+                            <div class="padding-bottom"><text style="font-size:xx-large; color:#0089d9">@Model._percentageString</text></div>
                             <div class="col-xs-6 col-xs-offset-2-5">
                                 <div class="progress progress-xs">
                                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:75%">
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@Model._percentageString">
+                                        >
                                     </div>
                                 </div>
                             </div>

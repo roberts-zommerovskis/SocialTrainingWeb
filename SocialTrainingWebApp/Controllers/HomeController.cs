@@ -28,20 +28,19 @@ namespace SocialTrainingWebApp.Controllers
                     _points = (int)Session["points"];
                     _points++;
                     Session["points"] = _points;
-                    allEmployees.RemoveAll(employee => employee.ImportId == currentTriad[buttonNumber].ImportId);
-
                 }
                 else
                 {
                     _points = (int)Session["points"];
                 }
-
+                allEmployees.RemoveAll(employee => employee.ImportId == currentTriad[buttonNumber].ImportId);
             }
             else
             {
                 Session["points"] = 0;
                 _points = 0;
                 GoogleSheetConnector.ImportDataIntoDB();
+                Session["employeeCount"] = GoogleSheetConnector.GetEmployeeCount();
             }
             if (allEmployees.Count != 0 || (allEmployees.Count == 0 && _points == 0))
             {
@@ -56,7 +55,7 @@ namespace SocialTrainingWebApp.Controllers
             }
             else
             {
-                return View("Congratulations");
+                return View("Congratulations", new SessionSummaryModel((int)Session["employeeCount"], _points));
             }
         }
 

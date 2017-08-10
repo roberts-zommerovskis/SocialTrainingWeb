@@ -17,7 +17,8 @@ namespace SocialTrainingWebApp.Models
         {
             if (!unguessedEmployees.Any())
             {
-                _allEmployees = GoogleSheetConnector.AccessData().Where(x => x.ImportId < 1002).ToList<Employee>();
+                _allEmployees = GoogleSheetConnector.AccessData();
+                //.Where(x => x.ImportId < 1011).ToList<Employee>(); //for testing purposes
             }
             else
             {
