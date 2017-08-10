@@ -8,6 +8,7 @@ using System.Web.Mvc;
 namespace SocialTrainingWebApp.Controllers
 {
     [RequireHttps]
+    [Authorize]
     public class HomeController : Controller
     {
         public int _points;
