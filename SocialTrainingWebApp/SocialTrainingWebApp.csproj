@@ -964,10 +964,10 @@
     <Content Include="Content\nc3\fonts\subset-OpenSansLight-Italic.ttf" />
     <Content Include="Content\nc3\fonts\subset-OpenSansLight-Italic.woff" />
     <Content Include="Content\nc3\fonts\subset-OpenSansLight-Italic.woff2" />
-    <Content Include="MockImages\1007.png" />
-    <Content Include="MockImages\1009.png" />
-    <Content Include="MockImages\1010.png" />
-    <Content Include="MockImages\1012.png" />
+    <Content Include="MockImages\1001.png" />
+    <Content Include="MockImages\1002.png" />
+    <Content Include="MockImages\1003.png" />
+    <Content Include="MockImages\1006.png" />
     <Content Include="MockImages\1015.png" />
     <Content Include="MockImages\1019.png" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
