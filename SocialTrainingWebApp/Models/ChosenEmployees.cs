@@ -20,12 +20,12 @@ namespace SocialTrainingWebApp.Models
             {
                 _allEmployees = GoogleSheetConnector.AccessData()
                 //.Where(x => x.ImportId == 1007).ToList<Employee>();
-                .Where(x => x.employee.ImportId < 1008).ToList<EmployeeWrapper>(); //for testing purposes
+                .Where(x => x.employee.ImportId < 1007).ToList<EmployeeWrapper>(); //for testing purposes
             }
-            else if (unguessedEmployees.Count < 3)
+            else if (unguessedEmployees.Where(element => element.isUnguessed == true).ToList().Count < 3)
             {
                 //_allEmployees.AddRange(unguessedEmployees);
-                _allEmployees = GetExtraChoicesFromGuessed(unguessedEmployees);
+                _allEmployees = GetExtraChoicesFromGuessed(unguessedEmployees.Where(element => element.isUnguessed == true).ToList());
             }
             else
             {
@@ -37,16 +37,20 @@ namespace SocialTrainingWebApp.Models
 
         private List<EmployeeWrapper> GetExtraChoicesFromGuessed(List<EmployeeWrapper> unguessedEmployees)
         {
+            int neededEmployeeCount = 3 - unguessedEmployees.Count;
             using (var db = new AppDbContext())
             {
                 int extractableEmployeeNumber;
                 int employeeCountInDb = db.Employee.Count();
                 Random rndGenerator = new Random();
-                do
+                for (int i = 0; i < neededEmployeeCount; i++)
                 {
-                    extractableEmployeeNumber = rndGenerator.Next(employeeCountInDb);
-                } while (unguessedEmployees.Select(wrapperElement => wrapperElement.employee.ImportId).ToList<int>().Contains(db.Employee.ToList<Employee>()[extractableEmployeeNumber].ImportId));
-                unguessedEmployees.Add(new EmployeeWrapper { employee = db.Employee.ToList<Employee>()[extractableEmployeeNumber], isUnguessed = false });
+                    do
+                    {
+                        extractableEmployeeNumber = rndGenerator.Next(employeeCountInDb);
+                    } while (unguessedEmployees.Select(wrapperElement => wrapperElement.employee.ImportId).ToList<int>().Contains(db.Employee.ToList<Employee>()[extractableEmployeeNumber].ImportId));
+                    unguessedEmployees.Add(new EmployeeWrapper { employee = db.Employee.ToList<Employee>()[extractableEmployeeNumber], isUnguessed = false });
+                }
             }
             return unguessedEmployees;
         }
