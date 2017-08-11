@@ -73,15 +73,6 @@ namespace SocialTrainingWebApp.Models
                 unrandomisedChoiceList.Add(employeeToGuess);
                 int incorrectChoiceOrderNumber;
                 unrandomisedChoiceList.AddRange(_allEmployees.Where(element => element.employee.ImportId != employeeToGuess.employee.ImportId));
-                //for (int i = 0; i < 2; i++)
-                //{
-                //    numberOfAvailableOptions = availableEmployeesForGuessing.Count;
-                //    incorrectChoiceOrderNumber = rndGenerator.Next(numberOfAvailableOptions);
-                //    int incorrectChoiceImportId = availableEmployeesForGuessing[incorrectChoiceOrderNumber];
-                //    availableEmployeesForGuessing.RemoveAll(element => element == incorrectChoiceImportId);
-                //    EmployeeWrapper extraChoice = _allEmployees.Where(employeeComponent => employeeComponent.employee.ImportId == incorrectChoiceImportId).First();
-                //    unrandomisedChoiceList.Add(extraChoice);
-                //}
                 numberOfAvailableOptions = 3;
                 for (int i = 0; i < 2; i++)
                 {
@@ -93,20 +84,6 @@ namespace SocialTrainingWebApp.Models
                 _employeeTriad.Add(unrandomisedChoiceList.First());
                 _chosenTriadEmployee = _employeeTriad.IndexOf(employeeToGuess);
             }
-        }
-
-        public void ChooseIframeImage()
-        {
-            Random rnd = new Random();
-            if (_employeeTriad.Count > 1)
-            {
-                _chosenTriadEmployee = rnd.Next(_employeeTriad.Count);
-            }
-            else
-            {
-                _chosenTriadEmployee = rnd.Next(1);
-            }
-            _chosenEmployeeImageId = $"{_employeeTriad[_chosenTriadEmployee].employee.ImportId.ToString()}.png";
         }
     }
 }
