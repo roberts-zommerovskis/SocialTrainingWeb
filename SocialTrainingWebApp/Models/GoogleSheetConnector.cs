@@ -97,14 +97,17 @@ namespace SocialTrainingWebApp.Models
             }
         }
 
-        public static List<Employee> AccessData()
+        public static List<EmployeeWrapper> AccessData()
         {
-            List<Employee> employeeList;
+            List<EmployeeWrapper> employeeWrapperList = new List<EmployeeWrapper>();
             using (var db = new AppDbContext())
             {
-                employeeList = db.Employee.ToList<Employee>();
+                foreach (var employeeRecord in db.Employee.ToList<Employee>())
+                {
+                    employeeWrapperList.Add(new EmployeeWrapper { employee = employeeRecord, isUnguessed = true });
+                }
             }
-            return employeeList;
+            return employeeWrapperList;
         }
 
         public static int GetEmployeeCount()

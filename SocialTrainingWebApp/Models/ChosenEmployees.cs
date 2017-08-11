@@ -8,12 +8,12 @@ namespace SocialTrainingWebApp.Models
 {
     public class ChosenEmployees
     {
-        public List<Employee> _employeeTriad;
-        public List<Employee> _allEmployees;
+        public List<EmployeeWrapper> _employeeTriad;
+        public List<EmployeeWrapper> _allEmployees;
         public string _chosenEmployeeImageId;
         public int _chosenTriadEmployee;
 
-        public ChosenEmployees(List<Employee> unguessedEmployees)
+        public ChosenEmployees(List<EmployeeWrapper> unguessedEmployees)
         {
             if (!unguessedEmployees.Any())
             {
@@ -25,7 +25,7 @@ namespace SocialTrainingWebApp.Models
             {
                 _allEmployees = unguessedEmployees;
             }
-            _employeeTriad = new List<Employee>();
+            _employeeTriad = new List<EmployeeWrapper>();
 
         }
 
@@ -66,7 +66,7 @@ namespace SocialTrainingWebApp.Models
             {
                 _chosenTriadEmployee = rnd.Next(1);
             }
-            _chosenEmployeeImageId = $"{_employeeTriad[_chosenTriadEmployee].ImportId.ToString()}.png";
+            _chosenEmployeeImageId = $"{_employeeTriad[_chosenTriadEmployee].employee.ImportId.ToString()}.png";
         }
     }
 }

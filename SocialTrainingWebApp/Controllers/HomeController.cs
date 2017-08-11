@@ -15,16 +15,16 @@ namespace SocialTrainingWebApp.Controllers
         public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
-            List<Employee> allEmployees = new List<Employee>();
+            List<EmployeeWrapper> allEmployees = new List<EmployeeWrapper>();
             if (buttonid != null)
             {
                 int buttonNumber = int.Parse(buttonid);
                 //System.Threading.Thread.Sleep(2000);
-                List<Employee> currentTriad = (List<Employee>)Session["currentEmployeeTriadChoice"];
-                allEmployees = (List<Employee>)Session["currentDataState"];
+                List<EmployeeWrapper> currentTriad = (List<EmployeeWrapper>)Session["currentEmployeeTriadChoice"];
+                allEmployees = (List<EmployeeWrapper>)Session["currentDataState"];
                 string imageEmployeeNumber = (string)Session["chosenImage"];
 
-                if (currentTriad[buttonNumber].ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
+                if (currentTriad[buttonNumber].employee.ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
                 {
                     _points = (int)Session["points"];
                     _points++;
@@ -34,7 +34,7 @@ namespace SocialTrainingWebApp.Controllers
                 {
                     _points = (int)Session["points"];
                 }
-                allEmployees.RemoveAll(employee => employee.ImportId == currentTriad[buttonNumber].ImportId);
+                allEmployees.RemoveAll(wrapper => wrapper.employee.ImportId == currentTriad[buttonNumber].employee.ImportId);
             }
             else
             {
