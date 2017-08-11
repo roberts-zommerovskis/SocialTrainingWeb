@@ -24,9 +24,6 @@
                                 <form action="">
                                     @foreach (var item in Model._employeeTriad)
                                     {
-                                        @*<div class="row">
-                                                <button class="btn btn-default" value="@item.ImportId" id="@i" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@i';setColor(@i)">@item.FullName</button>
-                                            </div>*@
                                         <div class="radio">
                                             <label>
                                                 <input type="radio" name="optionsRadios" id="@i" value="@item.employee.ImportId" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@i'">@item.employee.FullName
@@ -43,53 +40,11 @@
         </div>
     </div>
 </div>
+
+@Scripts.Render("~/bundles/iframe")
+@Scripts.Render("~/bundles/checkAnswers")
 <script type="text/javascript">
-
-    function resizeIFrameToFitContent() {
-        var iframes = document.querySelectorAll("iframe");
-        for (var i = 0; i < iframes.length; i++) {
-            iframes[i].width = iframes[i].contentWindow.document.body.scrollWidth;
-            iframes[i].height = iframes[i].contentWindow.document.body.scrollHeight;
-        }
-    }
-    window.onload = resizeIFrameToFitContent;
-</script>
-
-
-<script type="text/javascript">
-    $("input[name = 'optionsRadios']").on("click", function () {
-        var answer = sendValueToController($(this).attr("id"));
-        if (answer == true) {
-            $(this).parent().css("background-color", "#68a611");
-        }
-        else {
-            $(this).parent().css("background-color", "#c72828");
-            $("#@Model._chosenTriadEmployee").parent().css("background-color", "#68a611");
-        }
-        $(this).attr("id").prop("checked");
-        document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
-
-
-    })
-
-    function sendValueToController(id)
-    {
-        $.ajax({
-            url: "/Home/CheckAnswer/",
-            data: { ID: id },
-            cache: false,
-            type: "GET",
-            timeout: 10000,
-            dataType: "json",
-            success: function (result) {
-                if (result.Success) { // this sets the value from the response
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
-    }
+    checkAnswers(@Model._chosenTriadEmployee);
 </script>
 
 
