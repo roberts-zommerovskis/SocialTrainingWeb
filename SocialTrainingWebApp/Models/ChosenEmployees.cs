@@ -15,75 +15,90 @@ namespace SocialTrainingWebApp.Models
 
         public ChosenEmployees(List<EmployeeWrapper> unguessedEmployees)
         {
+            List<EmployeeWrapper> remainingEmployees = new List<EmployeeWrapper>();
             _allEmployees = new List<EmployeeWrapper>();
             if (!unguessedEmployees.Any())
             {
-                _allEmployees = GoogleSheetConnector.AccessData()
+                _allEmployees = GoogleSheetConnector.AccessData();
                 //.Where(x => x.ImportId == 1007).ToList<Employee>();
-                .Where(x => x.employee.ImportId < 1007).ToList<EmployeeWrapper>(); //for testing purposes
+                //.Where(x => x.employee.ImportId < 1007).ToList(); //for testing purposes
             }
-            else if (unguessedEmployees.Where(element => element.isUnguessed == true).ToList().Count < 3)
+            else if (unguessedEmployees.Count < 3)
             {
-                //_allEmployees.AddRange(unguessedEmployees);
-                _allEmployees = GetExtraChoicesFromGuessed(unguessedEmployees.Where(element => element.isUnguessed == true).ToList());
+                _allEmployees.AddRange(unguessedEmployees);
             }
             else
             {
                 _allEmployees = unguessedEmployees;
             }
             _employeeTriad = new List<EmployeeWrapper>();
+            PickEmployeeForGuessing(_allEmployees);
 
         }
 
-        private List<EmployeeWrapper> GetExtraChoicesFromGuessed(List<EmployeeWrapper> unguessedEmployees)
+        public void PickEmployeeForGuessing(List<EmployeeWrapper> allEmployees)
         {
-            int neededEmployeeCount = 3 - unguessedEmployees.Count;
-            using (var db = new AppDbContext())
+            List<EmployeeWrapper> unrandomisedChoiceList = new List<EmployeeWrapper>();
+            int unguessedEmployeeCount = allEmployees.Count;
+            Random rndGenerator = new Random();
+            int indexOfEmployeeToGuess = rndGenerator.Next(unguessedEmployeeCount);
+            EmployeeWrapper employeeToGuess = allEmployees[indexOfEmployeeToGuess];
+            _chosenEmployeeImageId = $"{employeeToGuess.employee.ImportId.ToString()}.png";
+            unrandomisedChoiceList.Add(employeeToGuess);
+            string employeeToGuessSex = employeeToGuess.employee.Sex;
+            int counter = 0;
+            if (allEmployees.Except(new List<EmployeeWrapper> { employeeToGuess })
+                .Where(wrapperElement => wrapperElement.employee.Sex == employeeToGuessSex)
+                .ToList().Count > 0)
             {
-                int extractableEmployeeNumber;
-                int employeeCountInDb = db.Employee.Count();
-                Random rndGenerator = new Random();
-                for (int i = 0; i < neededEmployeeCount; i++)
+                List<EmployeeWrapper> restOfValidUnguessedEmployees = allEmployees.Except(new List<EmployeeWrapper> { employeeToGuess })
+                .Where(wrapperElement => wrapperElement.employee.Sex == employeeToGuessSex)
+                .ToList();
+                int restOfValidUnguessedEmployeesCount;
+                int indexOfNextValidUnguessedEmployee;
+                do
                 {
-                    do
+                    restOfValidUnguessedEmployeesCount = restOfValidUnguessedEmployees.Count;
+                    indexOfNextValidUnguessedEmployee = rndGenerator.Next(restOfValidUnguessedEmployeesCount);
+                    unrandomisedChoiceList.Add(restOfValidUnguessedEmployees[indexOfNextValidUnguessedEmployee]);
+                    restOfValidUnguessedEmployees.RemoveAt(indexOfNextValidUnguessedEmployee);
+                    counter++;
+                } while (restOfValidUnguessedEmployees.Count != 0 && counter < 2);
+
+            }
+            if (unrandomisedChoiceList.Count < 3)
+            {
+                int missingNumberOfChoices = 3 - unrandomisedChoiceList.Count;
+
+                using (var db = new AppDbContext())
+                {
+                    int employeeCountInDb = db.Employee.Count();
+                    int indexOfExtraChoice;
+                    for (int i = 0; i < missingNumberOfChoices; i++)
                     {
-                        extractableEmployeeNumber = rndGenerator.Next(employeeCountInDb);
-                    } while (unguessedEmployees.Select(wrapperElement => wrapperElement.employee.ImportId).ToList<int>().Contains(db.Employee.ToList<Employee>()[extractableEmployeeNumber].ImportId));
-                    unguessedEmployees.Add(new EmployeeWrapper { employee = db.Employee.ToList<Employee>()[extractableEmployeeNumber], isUnguessed = false });
+                        do
+                        {
+                            indexOfExtraChoice = rndGenerator.Next(employeeCountInDb);
+                        } while (unrandomisedChoiceList.Select(wrapperElement => wrapperElement.employee)
+                        .ToList().Contains(db.Employee.ToList()[indexOfExtraChoice]));
+                        unrandomisedChoiceList.Add(new EmployeeWrapper { employee = db.Employee.ToList()[indexOfExtraChoice], isUnguessed = false });
+                    }
                 }
             }
-            return unguessedEmployees;
-        }
-
-        public void PickEmployeeOptions()
-        {
-            List<int> availableEmployeesForGuessing = _allEmployees
-                .Where(employeeComponent => employeeComponent.isUnguessed == true)
-                .Select(employeeComponent => employeeComponent.employee.ImportId).ToList<int>();
-            int numberOfAvailableOptions = availableEmployeesForGuessing.Count;
-            if (numberOfAvailableOptions != 0)
+            int indexOfRandomisedOption;
+            counter = 0;
+            do
             {
-                Random rndGenerator = new Random();
-                int orderNumberOfEmployeeToGuess = rndGenerator.Next(numberOfAvailableOptions);
-                int importIdOfNextToGuess = availableEmployeesForGuessing[orderNumberOfEmployeeToGuess];
-                EmployeeWrapper employeeToGuess = _allEmployees.Where(employeeComponent => employeeComponent.employee.ImportId == importIdOfNextToGuess).First();
-                _chosenEmployeeImageId = $"{employeeToGuess.employee.ImportId.ToString()}.png";
-                availableEmployeesForGuessing.RemoveAll(element => element == importIdOfNextToGuess);
-                List<EmployeeWrapper> unrandomisedChoiceList = new List<EmployeeWrapper>();
-                unrandomisedChoiceList.Add(employeeToGuess);
-                int incorrectChoiceOrderNumber;
-                unrandomisedChoiceList.AddRange(_allEmployees.Where(element => element.employee.ImportId != employeeToGuess.employee.ImportId));
-                numberOfAvailableOptions = 3;
-                for (int i = 0; i < 2; i++)
+                indexOfRandomisedOption = rndGenerator.Next(unrandomisedChoiceList.Count);
+                EmployeeWrapper randomisedEmployee = unrandomisedChoiceList[indexOfRandomisedOption];
+                if (randomisedEmployee.Equals(employeeToGuess))
                 {
-                    incorrectChoiceOrderNumber = rndGenerator.Next(numberOfAvailableOptions);
-                    numberOfAvailableOptions--;
-                    _employeeTriad.Add(unrandomisedChoiceList[incorrectChoiceOrderNumber]);
-                    unrandomisedChoiceList.Remove(unrandomisedChoiceList[incorrectChoiceOrderNumber]);
+                    _chosenTriadEmployee = counter;
                 }
-                _employeeTriad.Add(unrandomisedChoiceList.First());
-                _chosenTriadEmployee = _employeeTriad.IndexOf(employeeToGuess);
-            }
+                _employeeTriad.Add(randomisedEmployee);
+                unrandomisedChoiceList.RemoveAt(indexOfRandomisedOption);
+                counter++;
+            } while (unrandomisedChoiceList.Count != 0);
         }
     }
 }

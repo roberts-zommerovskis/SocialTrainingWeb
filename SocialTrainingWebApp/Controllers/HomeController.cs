@@ -35,6 +35,7 @@ namespace SocialTrainingWebApp.Controllers
                     _points = (int)Session["points"];
                 }
                 allEmployees.RemoveAll(wrapper => wrapper.employee.ImportId == currentTriad[(int)Session["chosenTriadEmployee"]].employee.ImportId);
+                allEmployees.RemoveAll(wrapper => wrapper.isUnguessed == false);
             }
             else
             {
@@ -46,7 +47,6 @@ namespace SocialTrainingWebApp.Controllers
             if (allEmployees.Count != 0 || (allEmployees.Count == 0 && _points == 0))
             {
                 _chosenEmployees = new ChosenEmployees(allEmployees);
-                _chosenEmployees.PickEmployeeOptions();
                 if (_chosenEmployees._chosenEmployeeImageId == null)
                 {
                     return View("Congratulations", new SessionSummaryModel((int)Session["employeeCount"], _points));
