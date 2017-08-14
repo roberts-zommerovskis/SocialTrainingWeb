@@ -22,14 +22,11 @@ namespace SocialTrainingWebApp.Models
                 _allEmployees = GoogleSheetConnector.AccessData();
                 //.Where(x => x.ImportId == 1007).ToList<Employee>();
                 //.Where(x => x.employee.ImportId < 1007).ToList(); //for testing purposes
-            }
-            else if (unguessedEmployees.Count < 3)
-            {
-                _allEmployees.AddRange(unguessedEmployees);
+                //.Where(x => x.employee.ImportId < 1012).ToList(); //for testing purposes
             }
             else
             {
-                _allEmployees = unguessedEmployees;
+                _allEmployees.AddRange(unguessedEmployees);
             }
             _employeeTriad = new List<EmployeeWrapper>();
             PickEmployeeForGuessing(_allEmployees);
@@ -79,9 +76,14 @@ namespace SocialTrainingWebApp.Models
                         do
                         {
                             indexOfExtraChoice = rndGenerator.Next(employeeCountInDb);
-                        } while (unrandomisedChoiceList.Select(wrapperElement => wrapperElement.employee)
-                        .ToList().Contains(db.Employee.ToList()[indexOfExtraChoice]));
-                        unrandomisedChoiceList.Add(new EmployeeWrapper { employee = db.Employee.ToList()[indexOfExtraChoice], isUnguessed = false });
+                        } while (unrandomisedChoiceList
+                        .Select(wrapperElement => wrapperElement.employee)
+                        .ToList().Contains(db.Employee.ToList()[indexOfExtraChoice])
+                        ||
+                        (db.Employee.ToList()[indexOfExtraChoice].Sex != employeeToGuessSex));
+                        unrandomisedChoiceList
+                            .Add(new EmployeeWrapper
+                            { employee = db.Employee.ToList()[indexOfExtraChoice], isUnguessed = false });
                     }
                 }
             }
