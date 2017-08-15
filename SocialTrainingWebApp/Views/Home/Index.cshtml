@@ -5,41 +5,32 @@
 
 @model SocialTrainingWebApp.Models.ChosenEmployees
 
-@Scripts.Render("~/bundles/jquery")
-
-<div class="container">
-    <div class="row vertical-center-row">
-        <div class="col-lg-12">
-            <div class="row ">
-                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="col-xs-6">
-                                @{
-                                    <iframe src="~/MockImages/@Model._chosenEmployeeImageId" id="iframe1" title="colleaguePortrait" scrolling="no"></iframe>
-                                }
-                            </div>
-                            <div class="col-xs-6" style="transform:translateY(50%)">
-                                @{int i = 0; }
-                                <form action="">
-                                    @foreach (var item in Model._employeeTriad)
-                                    {
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="@i" value="@item.employee.ImportId" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@i'">@item.employee.FullName
-                                            </label>
-                                        </div>
-                                        i++;
-                                    }
-                                </form>
-                            </div>
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-xs-6">
+                @{
+                    <iframe src="~/MockImages/@Model._chosenEmployeeImageId" id="iframe1" title="colleaguePortrait" scrolling="no"></iframe>
+                }
+            </div>
+            <div class="col-xs-6" style="transform:translateY(50%)">
+                @{int i = 0; }
+                <form action="">
+                    @foreach (var item in Model._employeeTriad)
+                    {
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="@i" value="@item.employee.ImportId" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@i'">@item.employee.FullName
+                            </label>
                         </div>
-                    </div>
-                </div>
+                        i++;
+                    }
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 
 @Scripts.Render("~/bundles/iframe")
 @Scripts.Render("~/bundles/checkAnswers")

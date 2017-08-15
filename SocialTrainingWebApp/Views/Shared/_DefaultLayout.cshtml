@@ -12,7 +12,15 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    @RenderBody()
+    <div class="container">
+        <div class="row vertical-center-row">
+            <div class="col-lg-12">
+                <div class="row ">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

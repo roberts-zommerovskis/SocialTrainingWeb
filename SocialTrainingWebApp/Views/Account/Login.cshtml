@@ -1,32 +1,26 @@
 ﻿@using SocialTrainingWebApp.Models
 @model LoginViewModel
 
-<div class="container">
-    <div class="row vertical-center-row">
-        <div class="col-lg-12">
-            <div class="row ">
-                <div class="col-md-5 col-md-offset-3-5 col-sm-5 col-sm-offset-3-5 col-xs-5 col-xs-offset-3-5">
-                    <div class="login-box">
-                        <div class="login-header">
-                            <h1>Know Your colleague</h1>
-                        </div>
-                        <div class="login-content">
-                            <form>
-                                <div class="login-organization-name">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter organization name">
-                                </div>
-                            </form>
-                            <div class="padding-top">
-                                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                            </div>
-                        </div>
-                        <div class="login-footer"><a class="logo-footer">Visma</a></div>
-                    </div>
+
+<div class="col-md-5 col-md-offset-3-5 col-sm-5 col-sm-offset-3-5 col-xs-5 col-xs-offset-3-5">
+    <div class="login-box">
+        <div class="login-header">
+            <h1>Know Your colleague</h1>
+        </div>
+        <div class="login-content">
+            <form>
+                <div class="login-organization-name">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter organization name">
                 </div>
+            </form>
+            <div class="padding-top">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
             </div>
         </div>
+        <div class="login-footer"><a class="logo-footer">Visma</a></div>
     </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialTrainingWebApp.Models
 {
@@ -19,10 +17,9 @@ namespace SocialTrainingWebApp.Models
             _allEmployees = new List<EmployeeWrapper>();
             if (!unguessedEmployees.Any())
             {
-                _allEmployees = GoogleSheetConnector.AccessData();
+                _allEmployees = GoogleSheetConnector.AccessData()
                 //for debugging purposes
-                //.Where(x => x.ImportId == 1007).ToList<Employee>();
-                //.Where(x => x.employee.ImportId < 1007).ToList(); //for testing purposes
+                .Where(x => x.employee.ImportId < 1007).ToList(); //for testing purposes
                 //.Where(x => x.employee.ImportId < 1012).ToList(); //for testing purposes
                 //.Where(x => x.employee.ImportId < 1015).ToList(); //for testing purposes
                 //for debugging purposes

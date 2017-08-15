@@ -1,7 +1,4 @@
-﻿using System.Web.UI.WebControls;
-using System.Linq;
-using System;
-using SocialTrainingWebApp.Models;
+﻿using SocialTrainingWebApp.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
