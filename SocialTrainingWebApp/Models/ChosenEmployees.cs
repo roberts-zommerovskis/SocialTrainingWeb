@@ -19,10 +19,12 @@ namespace SocialTrainingWebApp.Models
             _allEmployees = new List<EmployeeWrapper>();
             if (!unguessedEmployees.Any())
             {
-                _allEmployees = GoogleSheetConnector.AccessData();
+                _allEmployees = GoogleSheetConnector.AccessData()
                 //.Where(x => x.ImportId == 1007).ToList<Employee>();
                 //.Where(x => x.employee.ImportId < 1007).ToList(); //for testing purposes
                 //.Where(x => x.employee.ImportId < 1012).ToList(); //for testing purposes
+                .Where(x => x.employee.ImportId < 1015).ToList(); //for testing purposes
+
             }
             else
             {
@@ -43,6 +45,11 @@ namespace SocialTrainingWebApp.Models
             _chosenEmployeeImageId = $"{employeeToGuess.employee.ImportId.ToString()}.png";
             unrandomisedChoiceList.Add(employeeToGuess);
             string employeeToGuessSex = employeeToGuess.employee.Sex;
+            GetOtherEmployeeChoices(employeeToGuess, unrandomisedChoiceList, employeeToGuessSex, allEmployees);
+        }
+
+        public void GetOtherEmployeeChoices(EmployeeWrapper employeeToGuess, List<EmployeeWrapper> unrandomisedChoiceList, string employeeToGuessSex, List<EmployeeWrapper> allEmployees)
+        {
             int counter = 0;
             if (allEmployees.Except(new List<EmployeeWrapper> { employeeToGuess })
                 .Where(wrapperElement => wrapperElement.employee.Sex == employeeToGuessSex)
@@ -53,6 +60,7 @@ namespace SocialTrainingWebApp.Models
                 .ToList();
                 int restOfValidUnguessedEmployeesCount;
                 int indexOfNextValidUnguessedEmployee;
+                Random rndGenerator = new Random();
                 do
                 {
                     restOfValidUnguessedEmployeesCount = restOfValidUnguessedEmployees.Count;
@@ -61,34 +69,50 @@ namespace SocialTrainingWebApp.Models
                     restOfValidUnguessedEmployees.RemoveAt(indexOfNextValidUnguessedEmployee);
                     counter++;
                 } while (restOfValidUnguessedEmployees.Count != 0 && counter < 2);
-
             }
             if (unrandomisedChoiceList.Count < 3)
             {
-                int missingNumberOfChoices = 3 - unrandomisedChoiceList.Count;
+                PopulateFromAlreadyGuessed(unrandomisedChoiceList, employeeToGuessSex, employeeToGuess);
+            }
+            else
+            {
+                RandomiseOptions(unrandomisedChoiceList, employeeToGuess);
+            }
+        }
 
-                using (var db = new AppDbContext())
+        public void PopulateFromAlreadyGuessed(List<EmployeeWrapper> unrandomisedChoiceList, string employeeToGuessSex, EmployeeWrapper employeeToGuess)
+        {
+            int missingNumberOfChoices = 3 - unrandomisedChoiceList.Count;
+
+            using (var db = new AppDbContext())
+            {
+                int employeeCountInDb = db.Employee.Count();
+                int indexOfExtraChoice;
+                Random rndGenerator = new Random();
+                for (int i = 0; i < missingNumberOfChoices; i++)
                 {
-                    int employeeCountInDb = db.Employee.Count();
-                    int indexOfExtraChoice;
-                    for (int i = 0; i < missingNumberOfChoices; i++)
+                    do
                     {
-                        do
-                        {
-                            indexOfExtraChoice = rndGenerator.Next(employeeCountInDb);
-                        } while (unrandomisedChoiceList
-                        .Select(wrapperElement => wrapperElement.employee)
-                        .ToList().Contains(db.Employee.ToList()[indexOfExtraChoice])
-                        ||
-                        (db.Employee.ToList()[indexOfExtraChoice].Sex != employeeToGuessSex));
-                        unrandomisedChoiceList
-                            .Add(new EmployeeWrapper
-                            { employee = db.Employee.ToList()[indexOfExtraChoice], isUnguessed = false });
-                    }
+                        indexOfExtraChoice = rndGenerator.Next(employeeCountInDb);
+                    } while (unrandomisedChoiceList
+.Select(wrapperElement => wrapperElement.employee)
+                    .ToList().Contains(db.Employee.ToList()[indexOfExtraChoice])
+                    ||
+                    (db.Employee.ToList()[indexOfExtraChoice].Sex != employeeToGuessSex));
+                    unrandomisedChoiceList
+                        .Add(new EmployeeWrapper
+                        { employee = db.Employee.ToList()[indexOfExtraChoice], isUnguessed = false });
                 }
             }
+
+            RandomiseOptions(unrandomisedChoiceList, employeeToGuess);
+        }
+
+        public void RandomiseOptions(List<EmployeeWrapper> unrandomisedChoiceList, EmployeeWrapper employeeToGuess)
+        {
             int indexOfRandomisedOption;
-            counter = 0;
+            int counter = 0;
+            Random rndGenerator = new Random();
             do
             {
                 indexOfRandomisedOption = rndGenerator.Next(unrandomisedChoiceList.Count);
@@ -103,4 +127,9 @@ namespace SocialTrainingWebApp.Models
             } while (unrandomisedChoiceList.Count != 0);
         }
     }
+
+
+
+
 }
+
