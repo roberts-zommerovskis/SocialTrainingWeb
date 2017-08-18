@@ -123,6 +123,11 @@ namespace SocialTrainingWebApp.Controllers
 
         }
 
+        public RedirectToRouteResult Redirector(string ID)
+        {
+            return this.RedirectToAction("Index", new { buttonid = ID });
+        }
+
         public ActionResult Congratulations()
         {
             return View();

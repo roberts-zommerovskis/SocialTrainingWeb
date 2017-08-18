@@ -20,7 +20,7 @@
                     {
                         <div class="radio">
                             <label>
-                                <input type="radio" name="optionsRadios" id="@i" onclick="location.href='@Url.Action("Index", "Home")?buttonId=' +'@i'">@item.employee.FullName
+                                <input type="radio" name="optionsRadios" id="@i">@item.employee.FullName
                             </label>
                         </div>
                         i++;
@@ -37,7 +37,11 @@
 <script type="text/javascript">
     checkAnswers(@Model._chosenTriadEmployee);
 </script>
-
+<script type="text/javascript">
+    function redirect(button) {
+        window.location.href = '@Url.Action("Index", "Home")?buttonId=' + button;
+    }
+</script>
 
 
 

@@ -9,10 +9,10 @@
             $(this).parent().css("background-color", "#c72828");
             $("#" + correctAnswerNumber).parent().css("background-color", "#68a611");
         }
-        $(this).attr("id").prop("checked");
-        document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
-
-
+        //$(this).attr("id").prop("checked");
+        //document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
+        //Redirect($(this).attr("id"));
+        redirect($(this).attr("id"));
     });
 }
 
@@ -30,6 +30,33 @@ function sendValueToController(id) {
             } else {
                 return false;
             }
+        }
+    });
+}
+
+function getCorrectAnswerNumber() {
+    $.ajax({
+        url: "/Home/ReturnCorrectAnswerNumber/",
+        data: {},
+        cache: false,
+        type: "GET",
+        timeout: 10000,
+        dataType: "json",
+        success: function (result) {
+            return result.CorrectAnswerNumber;
+        }
+    });
+}
+
+function Redirect(id) {
+    $.ajax({
+        url: "/Home/Redirector/",
+        data: { ID: id },
+        cache: false,
+        type: "GET",
+        timeout: 10000,
+        dataType: "json",
+        success: function (result) {
         }
     });
 }
