@@ -13,7 +13,7 @@ namespace SocialTrainingWebApp.Controllers
         public ActionResult Index(string buttonid)
         {
             List<EmployeeWrapper> allEmployees = new List<EmployeeWrapper>();
-            if ((bool)Session["buttonPressed"])
+            if (Session["buttonPressed"] != null && (bool)Session["buttonPressed"])
             {
                 Session["buttonPressed"] = false;
                 if (buttonid != null)
@@ -38,15 +38,18 @@ namespace SocialTrainingWebApp.Controllers
                     allEmployees.RemoveAll(wrapper => wrapper.isUnguessed == false);
                 }
             }
-            else if (buttonid == null && (bool)Session["justLoggedIn"])
+            else if (buttonid == null && Session["justLoggedIn"] != null)
             {
-                Session["justLoggedIn"] = false;
-                Session["points"] = 0;
-                _points = 0;
-                GoogleSheetConnector.ImportDataIntoDB();
-                Session["employeeCount"] = GoogleSheetConnector.GetEmployeeCount();
-                //for testing purposes
-                //4; 
+                if ((bool)Session["justLoggedIn"])
+                {
+                    Session["justLoggedIn"] = false;
+                    Session["points"] = 0;
+                    _points = 0;
+                    GoogleSheetConnector.ImportDataIntoDB();
+                    Session["employeeCount"] = GoogleSheetConnector.GetEmployeeCount();
+                    //for testing purposes
+                    //4;  
+                }
             }
 
             if (allEmployees.Count != 0 || (allEmployees.Count == 0 && _points == 0))
