@@ -23,13 +23,13 @@ namespace SocialTrainingWebApp.Controllers
                     List<EmployeeWrapper> currentTriad = (List<EmployeeWrapper>)Session["currentEmployeeTriadChoice"];
                     allEmployees = (List<EmployeeWrapper>)Session["currentDataState"];
                     string imageEmployeeNumber = (string)Session["chosenImage"];
-
+                    if (Session["points"] == null)
+                    {
+                        Session["points"] = 0;
+                    }
                     if (currentTriad[buttonNumber].employee.ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
                     {
-                        if (Session["points"] == null)
-                        {
-                            Session["points"] = 0;
-                        }
+
                         _points = (int)Session["points"];
                         _points++;
                         Session["points"] = _points;

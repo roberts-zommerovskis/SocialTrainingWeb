@@ -35,7 +35,9 @@
 @Scripts.Render("~/bundles/iframe")
 @Scripts.Render("~/bundles/checkAnswers")
 <script type="text/javascript">
-    checkAnswers(@Model._chosenTriadEmployee);
+    $(document).ready(function () {
+        checkAnswers(@Model._chosenTriadEmployee);
+    })
 </script>
 <script type="text/javascript">
     function redirect(button) {

@@ -9,9 +9,8 @@
             $(this).parent().css("background-color", "#c72828");
             $("#" + correctAnswerNumber).parent().css("background-color", "#68a611");
         }
-        //$(this).attr("id").prop("checked");
-        //document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
-        //Redirect($(this).attr("id"));
+        $(this).attr("checked", true);
+        document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
         redirect($(this).attr("id"));
     });
 }
