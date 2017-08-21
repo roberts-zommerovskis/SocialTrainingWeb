@@ -12,7 +12,7 @@ namespace SocialTrainingWebApp.Controllers
         public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(1000);
             List<EmployeeWrapper> allEmployees = new List<EmployeeWrapper>();
             if (Session["buttonPressed"] != null && (bool)Session["buttonPressed"])
             {
@@ -51,8 +51,6 @@ namespace SocialTrainingWebApp.Controllers
                     _points = 0;
                     GoogleSheetConnector.ImportDataIntoDB();
                     Session["employeeCount"] = GoogleSheetConnector.GetEmployeeCount();
-                    //for testing purposes
-                    //4;  
                 }
             }
 
@@ -89,20 +87,6 @@ namespace SocialTrainingWebApp.Controllers
             }
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         public JsonResult CheckAnswer(string ID)
         {
             Session["buttonPressed"] = true;
@@ -123,13 +107,11 @@ namespace SocialTrainingWebApp.Controllers
             Session["chosenImage"] = null;
             Session["points"] = 0;
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
-
-
         }
 
-        public RedirectToRouteResult Redirector(string ID)
+        public JsonResult ReturnCorrectAnswerNumber()
         {
-            return this.RedirectToAction("Index", new { buttonid = ID });
+            return Json(new { Answer = (int)Session["chosenTriadEmployee"] }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Congratulations()
