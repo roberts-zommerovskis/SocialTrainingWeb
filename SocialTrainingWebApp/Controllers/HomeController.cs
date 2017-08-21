@@ -12,6 +12,7 @@ namespace SocialTrainingWebApp.Controllers
         public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
+            System.Threading.Thread.Sleep(2000);
             List<EmployeeWrapper> allEmployees = new List<EmployeeWrapper>();
             if (Session["buttonPressed"] != null && (bool)Session["buttonPressed"])
             {
@@ -19,13 +20,16 @@ namespace SocialTrainingWebApp.Controllers
                 if (buttonid != null)
                 {
                     int buttonNumber = int.Parse(buttonid);
-                    //System.Threading.Thread.Sleep(2000);
                     List<EmployeeWrapper> currentTriad = (List<EmployeeWrapper>)Session["currentEmployeeTriadChoice"];
                     allEmployees = (List<EmployeeWrapper>)Session["currentDataState"];
                     string imageEmployeeNumber = (string)Session["chosenImage"];
 
                     if (currentTriad[buttonNumber].employee.ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
                     {
+                        if (Session["points"] == null)
+                        {
+                            Session["points"] = 0;
+                        }
                         _points = (int)Session["points"];
                         _points++;
                         Session["points"] = _points;
