@@ -7,25 +7,29 @@
 
 <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
     <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-xs-6">
-                @{
-                    <iframe src="~/MockImages/@Model._chosenEmployeeImageId" id="iframe1" title="colleaguePortrait" scrolling="no"></iframe>
-                }
-            </div>
-            <div class="col-xs-6" style="transform:translateY(50%)">
-                @{int i = 0; }
-                <form action="">
-                    @foreach (var item in Model._employeeTriad)
-                    {
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="@i">@item.employee.FullName
-                            </label>
-                        </div>
-                        i++;
+        <div class="panel-body" style="padding: 0 0 0 0">
+            <div style="height:auto;overflow:hidden">
+                <div class="col-xs-6" style="float:right;transform: translateY(60%)">
+                    <form action="">
+                        @{int i = 0; }
+                        @foreach (var item in Model._employeeTriad)
+                        {
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="@i">@item.employee.FullName
+                                </label>
+                            </div>
+                            i++;
+                        }
+                    </form>
+                </div>
+                <div style="float:none;width:auto;overflow:hidden">
+                    @{
+                        <a><img src="~/MockImages/@Model._chosenEmployeeImageId" style="border:none" /></a>
                     }
-                </form>
+
+                </div>
+
             </div>
         </div>
     </div>
