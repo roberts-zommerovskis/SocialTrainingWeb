@@ -19,10 +19,7 @@ namespace SocialTrainingWebApp.Models
             {
                 _allEmployees = GoogleSheetConnector.AccessData()
                 //for debugging purposes
-                .Where(x => x.employee.ImportId < 1007).ToList(); //for testing purposes
-                //.Where(x => x.employee.ImportId < 1012).ToList(); //for testing purposes
-                //.Where(x => x.employee.ImportId < 1015).ToList(); //for testing purposes
-                //for debugging purposes
+                //.Where(x => x.employee.ImportId < 1007).ToList(); //for testing purposes
 
             }
             else

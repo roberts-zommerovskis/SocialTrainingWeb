@@ -12,7 +12,6 @@ namespace SocialTrainingWebApp.Models
         public string _percentageString;
         public SessionSummaryModel(int originalEmployeeCountInDb, double guessedEmployees)
         {
-            //originalEmployeeCountInDb = 7; for testing purposes
             _percentageValue = Math.Round(((guessedEmployees / originalEmployeeCountInDb) * 100), 0, MidpointRounding.ToEven);
             _percentageString = $"{ _percentageValue.ToString()}%";
         }
