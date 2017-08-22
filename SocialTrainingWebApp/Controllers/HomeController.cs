@@ -1,4 +1,5 @@
-﻿using SocialTrainingWebApp.Models;
+﻿using System.Collections.Specialized;
+using SocialTrainingWebApp.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -8,49 +9,20 @@ namespace SocialTrainingWebApp.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        //public int _points;
-        //public ChosenEmployees _chosenEmployees;
         public ActionResult Index(string buttonid)
         {
+            DataManager dataManager = new DataManager();
+            dataManager.Setup(this.Session);
             int points = 0;
-            ChosenEmployees chosenEmployees;
+            ChosenEmployees chosenEmployees = null;
             List<EmployeeWrapper> allEmployees = new List<EmployeeWrapper>();
-            Setup();
-            if (Session["buttonPressed"] != null && (bool)Session["buttonPressed"] && buttonid != null)
+            if ((bool)Session["buttonPressed"] && buttonid != null)
             {
-                Session["buttonPressed"] = false;
-                int buttonNumber = int.Parse(buttonid);
-                List<EmployeeWrapper> currentTriad = (List<EmployeeWrapper>)Session["currentEmployeeTriadChoice"];
-                allEmployees = (List<EmployeeWrapper>)Session["currentDataState"];
-                string imageEmployeeNumber = (string)Session["chosenImage"];
-                if (Session["points"] == null)
-                {
-                    Session["points"] = 0;
-                }
-                if (currentTriad[buttonNumber].employee.ImportId == int.Parse(imageEmployeeNumber.Substring(0, imageEmployeeNumber.LastIndexOf('.'))))
-                {
-
-                    points = (int)Session["points"];
-                    points++;
-                    Session["points"] = points;
-                }
-                else
-                {
-                    points = (int)Session["points"];
-                }
-                allEmployees.RemoveAll(wrapper => wrapper.employee.ImportId == currentTriad[(int)Session["chosenTriadEmployee"]].employee.ImportId);
-                allEmployees.RemoveAll(wrapper => wrapper.isUnguessed == false);
+                dataManager.CalculatePoints(this.Session, buttonid, ref allEmployees, ref points);
             }
-            else if (buttonid == null && Session["justLoggedIn"] != null)
+            else if (buttonid == null && (bool)Session["justLoggedIn"])
             {
-                if ((bool)Session["justLoggedIn"])
-                {
-                    Session["justLoggedIn"] = false;
-                    Session["points"] = 0;
-                    points = 0;
-                    GoogleSheetConnector.ImportDataIntoDB();
-                    Session["employeeCount"] = GoogleSheetConnector.GetEmployeeCount();
-                }
+                dataManager.HandleNewlyLoggedIn(this.Session, ref points);
             }
             if (allEmployees.Count != 0 || (allEmployees.Count == 0 && points == 0))
             {
@@ -63,11 +35,7 @@ namespace SocialTrainingWebApp.Controllers
                     }
                     allEmployees = (List<EmployeeWrapper>)Session["currentDataState"];
                 }
-                chosenEmployees = new ChosenEmployees(allEmployees);
-                Session["chosenImage"] = chosenEmployees._chosenEmployeeImageId;
-                Session["currentEmployeeTriadChoice"] = chosenEmployees._employeeTriad;
-                Session["currentDataState"] = chosenEmployees._allEmployees;
-                Session["chosenTriadEmployee"] = chosenEmployees._chosenTriadEmployee;
+                dataManager.PrepareGuessingOptions(this.Session, ref chosenEmployees, ref allEmployees);
                 return View(chosenEmployees);
             }
             else
@@ -110,27 +78,5 @@ namespace SocialTrainingWebApp.Controllers
         {
             return View();
         }
-
-        public void Setup()
-        {
-            if (Session["chosenImage"] == null)
-            {
-                Session["chosenImage"] = 0;
-            }
-            if (Session["currentEmployeeTriadChoice"] == null)
-            {
-                Session["currentEmployeeTriadChoice"] = 0;
-            }
-            if (Session["chosenTriadEmployee"] == null)
-            {
-                Session["chosenTriadEmployee"] = 0;
-            }
-            if (Session["points"] == null)
-            {
-                Session["points"] = 0;
-            }
-        }
-
-
     }
 }

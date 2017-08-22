@@ -420,11 +420,7 @@ namespace SocialTrainingWebApp.Controllers
                     _signInManager = null;
                 }
             }
-
             base.Dispose(disposing);
-            Session["justLoggedIn"] = true;
-            Session["buttonPressed"] = false;
-            Session["roundCompleted"] = false;
         }
 
         #region Helpers
