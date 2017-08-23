@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+﻿using System.Web.Mvc;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
@@ -60,11 +61,11 @@ namespace SocialTrainingWebApp.Models
                 {
                     if (row[2].ToString().Equals("2") || row[2].ToString().Equals("1"))
                     {
-                        var employee = new Employee { FullName = row[1].ToString(), ImportId = int.Parse(row[0].ToString()), Sex = row[8].ToString(), Email = row[4].ToString() };
+                        var employee = new Employee { FullName = row[1].ToString(), ImportId = long.Parse(row[0].ToString()), Sex = row[8].ToString(), Email = row[4].ToString() };
                         transferableEmployees.Add(employee);
                     }
                 }
-                List<int> existingEmployeeImportNums = new List<int>();
+                List<long> existingEmployeeImportNums = new List<long>();
                 using (var db = new AppDbContext())
                 {
                     foreach (var employee in transferableEmployees)

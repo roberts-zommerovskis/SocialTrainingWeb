@@ -11,5 +11,6 @@ namespace SocialTrainingWebApp.Models
         }
 
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Game> Game { get; set; }
     }
 }

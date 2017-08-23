@@ -277,9 +277,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708230831466_Initial.cs" />
-    <Compile Include="Migrations\201708230831466_Initial.Designer.cs">
-      <DependentUpon>201708230831466_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201708231046231_Initial.cs" />
+    <Compile Include="Migrations\201708231046231_Initial.Designer.cs">
+      <DependentUpon>201708231046231_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
@@ -288,6 +288,7 @@
     <Compile Include="Models\EmployeeWrapper.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GoogleSheetConnector.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1027,8 +1028,8 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708230831466_Initial.resx">
-      <DependentUpon>201708230831466_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708231046231_Initial.resx">
+      <DependentUpon>201708231046231_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
