@@ -60,7 +60,7 @@ namespace SocialTrainingWebApp.Models
                 {
                     if (row[2].ToString().Equals("2") || row[2].ToString().Equals("1"))
                     {
-                        var employee = new Employee { FullName = row[1].ToString(), ImportId = int.Parse(row[0].ToString()), Sex = row[8].ToString() };
+                        var employee = new Employee { FullName = row[1].ToString(), ImportId = int.Parse(row[0].ToString()), Sex = row[8].ToString(), Email = row[4].ToString() };
                         transferableEmployees.Add(employee);
                     }
                 }

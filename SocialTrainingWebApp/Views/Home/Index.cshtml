@@ -10,7 +10,7 @@
         <div class="panel-body" style="padding: 0 0 0 0">
             <div style="height:auto;overflow:hidden">
                 <div class="col-xs-6" style="float:right;transform: translateY(60%)">
-                    <form action="">
+                    <form id="guessingForm" action="">
                         @{int i = 0; }
                         @foreach (var item in Model._employeeTriad)
                         {
@@ -21,6 +21,9 @@
                             </div>
                             i++;
                         }
+                        <ul class="padding-top nav nav-pills">
+                            <li><a href="#">Choose this option</a></li>
+                        </ul>
                     </form>
                 </div>
                 <div style="float:none;width:auto;overflow:hidden">
@@ -36,7 +39,6 @@
 </div>
 
 
-@Scripts.Render("~/bundles/iframe")
 @Scripts.Render("~/bundles/checkAnswers")
 <script type="text/javascript">
     function redirect(button) {
