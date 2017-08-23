@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@model SocialTrainingWebApp.Models.LoggedInUserData
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -7,7 +9,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a style="pointer-events: none;cursor: default;"> @(String.Format("Hello, {0}!", User.Identity.GetUserName()))</a>
+                <a style="pointer-events: none;cursor: default;"> @(String.Format("Hello, {0}!", Model.LoggedInUser))</a>
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>

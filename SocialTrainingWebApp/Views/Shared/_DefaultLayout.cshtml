@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity;
+@using SocialTrainingWebApp.Models;
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -18,7 +20,7 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial", new LoggedInUserData(User.Identity.GetUserName()))
             </div>
         </div>
     </div>
