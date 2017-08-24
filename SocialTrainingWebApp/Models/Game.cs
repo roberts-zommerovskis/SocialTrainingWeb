@@ -8,8 +8,9 @@ namespace SocialTrainingWebApp.Models
         [Key]
         public long MoveId { get; set; }
         public long GameId { get; set; }
-        public string MissedGuesses { get; set; }
-        public string CompletedGuesses { get; set; }
+        public int PointsSoFar { get; set; }
+        public string UnguessedEmployees { get; set; }
+        public string GuessedEmployees { get; set; }
         public long EmployeePK { get; set; }
         [ForeignKey("EmployeePK")]
         public Employee Employee { get; set; }

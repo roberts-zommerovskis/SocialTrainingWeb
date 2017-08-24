@@ -9,7 +9,7 @@ namespace SocialTrainingWebApp.Models
         public long EmployeePK { get; set; }
         public long ImportId { get; set; }
         public string FullName { get; set; }
-        public string Sex { get; set; }
+        public string Gender { get; set; }
         public string Email { get; set; }
         public virtual ICollection<Game> Games { get; set; }
     }

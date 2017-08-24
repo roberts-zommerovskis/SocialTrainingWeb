@@ -72,13 +72,13 @@ namespace SocialTrainingWebApp.Models
             allEmployees.RemoveAll(wrapper => wrapper.isUnguessed == false);
         }
 
-        public void PrepareGuessingOptions(HttpSessionStateBase session, ref ChosenEmployees chosenEmployees, ref List<EmployeeWrapper> allEmployees)
-        {
-            chosenEmployees = new ChosenEmployees(allEmployees);
-            session["chosenImage"] = chosenEmployees._chosenEmployeeImageId;
-            session["currentEmployeeTriadChoice"] = chosenEmployees._employeeTriad;
-            session["currentDataState"] = chosenEmployees._allEmployees;
-            session["chosenTriadEmployee"] = chosenEmployees._chosenTriadEmployee;
-        }
+        //public void PrepareGuessingOptions(HttpSessionStateBase session, ref ChosenEmployees chosenEmployees, ref List<EmployeeWrapper> allEmployees)
+        //{
+        //    chosenEmployees = new ChosenEmployees(allEmployees);
+        //    session["chosenImage"] = chosenEmployees._chosenEmployeeImageId;
+        //    session["currentEmployeeTriadChoice"] = chosenEmployees._employeeTriad;
+        //    //session["currentDataState"] = chosenEmployees._allEmployees;
+        //    session["chosenTriadEmployee"] = chosenEmployees._chosenTriadEmployee;
+        //}
     }
 }

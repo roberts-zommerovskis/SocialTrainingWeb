@@ -281,6 +281,18 @@
     <Compile Include="Migrations\201708231046231_Initial.Designer.cs">
       <DependentUpon>201708231046231_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708240611124_ChangedColumnName.cs" />
+    <Compile Include="Migrations\201708240611124_ChangedColumnName.Designer.cs">
+      <DependentUpon>201708240611124_ChangedColumnName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708240646513_AddedPointColumnToGameDB.cs" />
+    <Compile Include="Migrations\201708240646513_AddedPointColumnToGameDB.Designer.cs">
+      <DependentUpon>201708240646513_AddedPointColumnToGameDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708240725153_ChangedGenderColumnName.cs" />
+    <Compile Include="Migrations\201708240725153_ChangedGenderColumnName.Designer.cs">
+      <DependentUpon>201708240725153_ChangedGenderColumnName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\ChosenEmployees.cs" />
@@ -1031,6 +1043,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708231046231_Initial.resx">
       <DependentUpon>201708231046231_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708240611124_ChangedColumnName.resx">
+      <DependentUpon>201708240611124_ChangedColumnName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708240646513_AddedPointColumnToGameDB.resx">
+      <DependentUpon>201708240646513_AddedPointColumnToGameDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708240725153_ChangedGenderColumnName.resx">
+      <DependentUpon>201708240725153_ChangedGenderColumnName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
