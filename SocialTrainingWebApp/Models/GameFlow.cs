@@ -8,7 +8,16 @@ namespace SocialTrainingWebApp.Models
 {
     public class GameFlow
     {
-        long _indexOfLastGame;
+        private long _indexOfLastGame;
+        private HttpSessionStateBase _session;
+        private Game _lastPlayedGameOfEmployee;
+        private List<Employee> _employeesWithRespectiveEmail;
+        private List<Employee> _unguessedEmployeesOfLastGame;
+        private List<Employee> _guessedEmployeesOfLastGame;
+        private List<Employee> _unsortedGuessingOptions;
+        private int _indexOfEmployeeForOptions;
+        private Random _rndGenerator = new Random();
+
         public void HandleJustLoggedInUser(HttpSessionStateBase session)
         {
             session["justLoggedIn"] = false;
@@ -42,33 +51,28 @@ namespace SocialTrainingWebApp.Models
 
         public ChosenEmployees PlayGame(HttpSessionStateBase session, string currentUser)
         {
-            List<Employee> employeesWithRespectiveEmail;
+            _session = session;
             List<Game> currentUsersGames;
             using (var db = new AppDbContext())
             {
-                employeesWithRespectiveEmail = db.Employee.Where(employees => employees.Email == currentUser).ToList();
-                currentUsersGames = employeesWithRespectiveEmail.First().Games.ToList();
+                _employeesWithRespectiveEmail = db.Employee.Where(employees => employees.Email == currentUser).ToList();
+                currentUsersGames = _employeesWithRespectiveEmail.First().Games.ToList();
             }
             bool lastGameUnfinished = false;
-            Game lastPlayedGameOfEmployee = null;
-            List<Employee> unguessedEmployeesOfLastGame = null;
-            List<Employee> guessedEmployeesOfLastGame = null;
-            if (employeesWithRespectiveEmail.Count > 0)
+            if (_employeesWithRespectiveEmail.Count > 0)
             //if the player is an Employee in the DB
             {
-                GetUsersPlayedGameData(currentUsersGames, employeesWithRespectiveEmail, ref lastGameUnfinished, ref lastPlayedGameOfEmployee, ref unguessedEmployeesOfLastGame, ref guessedEmployeesOfLastGame);
-                Random rndGenerator = new Random();
-                int indexOfEmployeeForOptions = 0;
+                GetUsersPlayedGameData(currentUsersGames, ref lastGameUnfinished);
                 if (lastGameUnfinished)
                 {//first get the guys you are gonna show, then add 1 to guessedList, then serialize it
                  //into a DB record
-                    ResumeFromUnfinishedGame(lastPlayedGameOfEmployee, employeesWithRespectiveEmail, session, rndGenerator, indexOfEmployeeForOptions, unguessedEmployeesOfLastGame, guessedEmployeesOfLastGame);
+                    ResumeFromUnfinishedGame();
                 }
                 else
                 {
-                    StartNewGame(employeesWithRespectiveEmail, session, rndGenerator, indexOfEmployeeForOptions);
+                    StartNewGame();
                 }
-                return (ChosenEmployees)session["chosenEmployeeModel"];
+                return (ChosenEmployees)_session["chosenEmployeeModel"];
             }
             else
             //if the player is not an Employee in the DB
@@ -77,7 +81,7 @@ namespace SocialTrainingWebApp.Models
             }
         }
 
-        public void GetUsersPlayedGameData(List<Game> currentUsersGames, List<Employee> employeesWithRespectiveEmail, ref bool lastGameUnfinished, ref Game lastPlayedGameOfEmployee, ref List<Employee> unguessedEmployeesOfLastGame, ref List<Employee> guessedEmployeesOfLastGame)
+        public void GetUsersPlayedGameData(List<Game> currentUsersGames, ref bool lastGameUnfinished)
         {
             List<Game> allTheGamesInDB;
             using (var db = new AppDbContext())
@@ -107,11 +111,11 @@ namespace SocialTrainingWebApp.Models
             {
                 _indexOfLastGame = currentUsersGames
                     .Select(gameElement => gameElement.GameId).ToList().Max();
-                lastPlayedGameOfEmployee = employeesWithRespectiveEmail.First().Games.Where(gameElements => gameElements.GameId == _indexOfLastGame).Last();
-                unguessedEmployeesOfLastGame = JsonConvert.DeserializeObject<List<Employee>>(lastPlayedGameOfEmployee.UnguessedEmployees);
-                guessedEmployeesOfLastGame = JsonConvert.DeserializeObject<List<Employee>>(lastPlayedGameOfEmployee.GuessedEmployees);
+                _lastPlayedGameOfEmployee = _employeesWithRespectiveEmail.First().Games.Where(gameElements => gameElements.GameId == _indexOfLastGame).Last();
+                _unguessedEmployeesOfLastGame = JsonConvert.DeserializeObject<List<Employee>>(_lastPlayedGameOfEmployee.UnguessedEmployees);
+                _guessedEmployeesOfLastGame = JsonConvert.DeserializeObject<List<Employee>>(_lastPlayedGameOfEmployee.GuessedEmployees);
                 lastGameUnfinished = true;
-                if (unguessedEmployeesOfLastGame == null || unguessedEmployeesOfLastGame.Count == 0)
+                if (_unguessedEmployeesOfLastGame == null || _unguessedEmployeesOfLastGame.Count == 0)
                 {
                     lastGameUnfinished = false;
                     _indexOfLastGame = allTheGamesInDB
@@ -120,94 +124,94 @@ namespace SocialTrainingWebApp.Models
             }
         }
 
-        public void ResumeFromUnfinishedGame(Game lastPlayedGameOfEmployee, List<Employee> employeesWithRespectiveEmail, HttpSessionStateBase session, Random rndGenerator, int indexOfEmployeeForOptions, List<Employee> unguessedEmployeesOfLastGame, List<Employee> guessedEmployeesOfLastGame)
+        public void ResumeFromUnfinishedGame()
         {
-            indexOfEmployeeForOptions = rndGenerator.Next(unguessedEmployeesOfLastGame.Count);
-            Employee employeeToGuess = unguessedEmployeesOfLastGame[indexOfEmployeeForOptions];
-            List<Employee> unsortedGuessingOptions = new List<Employee>() { employeeToGuess };
-            unguessedEmployeesOfLastGame.Remove(employeeToGuess);
+            _indexOfEmployeeForOptions = _rndGenerator.Next(_unguessedEmployeesOfLastGame.Count);
+            Employee employeeToGuess = _unguessedEmployeesOfLastGame[_indexOfEmployeeForOptions];
+            _unsortedGuessingOptions = new List<Employee>() { employeeToGuess };
+            _unguessedEmployeesOfLastGame.Remove(employeeToGuess);
             string employeeToGuessGender = employeeToGuess.Gender;
             List<Employee> sameGenderRemainingUnguessedEmployees =
-                    unguessedEmployeesOfLastGame
+                    _unguessedEmployeesOfLastGame
                     .Where(employeeElements => employeeElements.Gender == employeeToGuessGender)
                     .ToList();
             List<Employee> sameGenderAlreadyGuessedEmployees =
-                guessedEmployeesOfLastGame
+                _guessedEmployeesOfLastGame
                 .Where(employeeElements => employeeElements.Gender == employeeToGuessGender)
                 .ToList();
-            guessedEmployeesOfLastGame.Add(employeeToGuess);
-            if (unguessedEmployeesOfLastGame.Count > 0)
+            _guessedEmployeesOfLastGame.Add(employeeToGuess);
+            if (_unguessedEmployeesOfLastGame.Count > 0)
             //if there is sth in the unguessed list after taking out employee for guessing
             {
                 if (sameGenderRemainingUnguessedEmployees.Count > 0)
                 //if there are any people of the same gender in the unguessedList
                 {
-                    while (sameGenderRemainingUnguessedEmployees.Count != 0 && unsortedGuessingOptions.Count < 3)
+                    while (sameGenderRemainingUnguessedEmployees.Count != 0 && _unsortedGuessingOptions.Count < 3)
                     {
-                        indexOfEmployeeForOptions = rndGenerator.Next(sameGenderRemainingUnguessedEmployees.Count);
-                        Employee extraEmployeeOption = sameGenderRemainingUnguessedEmployees[indexOfEmployeeForOptions];
-                        unsortedGuessingOptions.Add(extraEmployeeOption);
+                        _indexOfEmployeeForOptions = _rndGenerator.Next(sameGenderRemainingUnguessedEmployees.Count);
+                        Employee extraEmployeeOption = sameGenderRemainingUnguessedEmployees[_indexOfEmployeeForOptions];
+                        _unsortedGuessingOptions.Add(extraEmployeeOption);
                         sameGenderRemainingUnguessedEmployees.Remove(extraEmployeeOption);
                     }
-                    if (unsortedGuessingOptions.Count != 3)
+                    if (_unsortedGuessingOptions.Count != 3)
                     {
-                        indexOfEmployeeForOptions = rndGenerator.Next(sameGenderAlreadyGuessedEmployees.Count);
-                        unsortedGuessingOptions.Add(sameGenderAlreadyGuessedEmployees[indexOfEmployeeForOptions]);
+                        _indexOfEmployeeForOptions = _rndGenerator.Next(sameGenderAlreadyGuessedEmployees.Count);
+                        _unsortedGuessingOptions.Add(sameGenderAlreadyGuessedEmployees[_indexOfEmployeeForOptions]);
                     }
                 }
                 else
                 //if there aren't any people of the same gender left unguessed
                 {
-                    GetNeededOptionsFromAlreadyGuessed(unsortedGuessingOptions, sameGenderAlreadyGuessedEmployees, rndGenerator, indexOfEmployeeForOptions);
+                    GetNeededOptionsFromAlreadyGuessed(sameGenderAlreadyGuessedEmployees);
                 }
             }
             else //if the removed for guessing person was the last in the unguessedList (final guess)
             {
-                GetNeededOptionsFromAlreadyGuessed(unsortedGuessingOptions, sameGenderAlreadyGuessedEmployees, rndGenerator, indexOfEmployeeForOptions);
+                GetNeededOptionsFromAlreadyGuessed(sameGenderAlreadyGuessedEmployees);
             }
-            SetupNextMove(employeeToGuess, rndGenerator, indexOfEmployeeForOptions, unsortedGuessingOptions, lastPlayedGameOfEmployee, guessedEmployeesOfLastGame, unguessedEmployeesOfLastGame, employeesWithRespectiveEmail, session);
+            SetupNextMove(employeeToGuess);
 
         }
 
-        public void GetNeededOptionsFromAlreadyGuessed(List<Employee> unsortedGuessingOptions, List<Employee> sameGenderAlreadyGuessedEmployees, Random rndGenerator, int indexOfEmployeeForOptions)
+        public void GetNeededOptionsFromAlreadyGuessed(List<Employee> sameGenderAlreadyGuessedEmployees)
         {
-            while (unsortedGuessingOptions.Count < 3)
+            while (_unsortedGuessingOptions.Count < 3)
             {
                 List<Employee> guessedEmployeeBuffer = new List<Employee>();
                 guessedEmployeeBuffer.AddRange(sameGenderAlreadyGuessedEmployees);
-                indexOfEmployeeForOptions = rndGenerator.Next(guessedEmployeeBuffer.Count);
-                unsortedGuessingOptions.Add(guessedEmployeeBuffer[indexOfEmployeeForOptions]);
-                guessedEmployeeBuffer.Remove(guessedEmployeeBuffer[indexOfEmployeeForOptions]);
+                _indexOfEmployeeForOptions = _rndGenerator.Next(guessedEmployeeBuffer.Count);
+                _unsortedGuessingOptions.Add(guessedEmployeeBuffer[_indexOfEmployeeForOptions]);
+                guessedEmployeeBuffer.Remove(guessedEmployeeBuffer[_indexOfEmployeeForOptions]);
             }
         }
 
-        public void SetupNextMove(Employee employeeToGuess, Random rndGenerator, int indexOfEmployeeForOptions, List<Employee> unsortedGuessingOptions, Game lastPlayedGameOfEmployee, List<Employee> guessedEmployeesOfLastGame, List<Employee> unguessedEmployeesOfLastGame, List<Employee> employeesWithRespectiveEmail, HttpSessionStateBase session)
+        public void SetupNextMove(Employee employeeToGuess)
         {
-            session["currentGameStatus"] = new Game
+            _session["currentGameStatus"] = new Game
             {
                 GameId = _indexOfLastGame,
-                EmployeePK = employeesWithRespectiveEmail.First().EmployeePK,
-                UnguessedEmployees = JsonConvert.SerializeObject(unguessedEmployeesOfLastGame),
-                GuessedEmployees = JsonConvert.SerializeObject(guessedEmployeesOfLastGame),
-                PointsSoFar = lastPlayedGameOfEmployee.PointsSoFar
+                EmployeePK = _employeesWithRespectiveEmail.First().EmployeePK,
+                UnguessedEmployees = JsonConvert.SerializeObject(_unguessedEmployeesOfLastGame),
+                GuessedEmployees = JsonConvert.SerializeObject(_guessedEmployeesOfLastGame),
+                PointsSoFar = _lastPlayedGameOfEmployee.PointsSoFar
             };
-            List<Employee> employeesRandomizedForGuessing = RandomizeGuessingOptions(unsortedGuessingOptions, indexOfEmployeeForOptions, rndGenerator);
-            session["chosenEmployeeModel"] = new ChosenEmployees(employeeToGuess, employeesRandomizedForGuessing);
+            List<Employee> employeesRandomizedForGuessing = RandomizeGuessingOptions();
+            _session["chosenEmployeeModel"] = new ChosenEmployees(employeeToGuess, employeesRandomizedForGuessing);
         }
 
-        public List<Employee> RandomizeGuessingOptions(List<Employee> unsortedGuessingOptions, int indexOfEmployeeForOptions, Random rndGenerator)
+        public List<Employee> RandomizeGuessingOptions()
         {
             List<Employee> employeesRandomizedForGuessing = new List<Employee>();
-            while (unsortedGuessingOptions.Count != 0)
+            while (_unsortedGuessingOptions.Count != 0)
             {
-                indexOfEmployeeForOptions = rndGenerator.Next(unsortedGuessingOptions.Count);
-                employeesRandomizedForGuessing.Add(unsortedGuessingOptions[indexOfEmployeeForOptions]);
-                unsortedGuessingOptions.RemoveAt(indexOfEmployeeForOptions);
+                _indexOfEmployeeForOptions = _rndGenerator.Next(_unsortedGuessingOptions.Count);
+                employeesRandomizedForGuessing.Add(_unsortedGuessingOptions[_indexOfEmployeeForOptions]);
+                _unsortedGuessingOptions.RemoveAt(_indexOfEmployeeForOptions);
             }
             return employeesRandomizedForGuessing;
         }
 
-        public void StartNewGame(List<Employee> employeesWithRespectiveEmail, HttpSessionStateBase session, Random rndGenerator, int indexOfEmployeeForOptions)
+        public void StartNewGame()
         {
             List<Employee> blankListForInitializingGame = new List<Employee>();
             List<Employee> allEmployeesInDB = new List<Employee>();
@@ -216,10 +220,9 @@ namespace SocialTrainingWebApp.Models
                 allEmployeesInDB.AddRange(db.Employee);
             }
             List<Employee> unrandomizedEmployeesForGuessing = new List<Employee>();
-            rndGenerator = new Random();
-            indexOfEmployeeForOptions = rndGenerator.Next(allEmployeesInDB.Count);
-            Employee employeeToGuess = allEmployeesInDB[indexOfEmployeeForOptions];
-            allEmployeesInDB.RemoveAt(indexOfEmployeeForOptions);
+            _indexOfEmployeeForOptions = _rndGenerator.Next(allEmployeesInDB.Count);
+            Employee employeeToGuess = allEmployeesInDB[_indexOfEmployeeForOptions];
+            allEmployeesInDB.RemoveAt(_indexOfEmployeeForOptions);
             unrandomizedEmployeesForGuessing.Add(employeeToGuess);
             string employeeToGuessGender = employeeToGuess.Gender;
             List<Employee> employeeOptionsOfTheSameGender = new List<Employee>();
@@ -228,14 +231,14 @@ namespace SocialTrainingWebApp.Models
                 Except(unrandomizedEmployeesForGuessing));
             for (int i = 0; i < 2; i++)
             {
-                indexOfEmployeeForOptions = rndGenerator.Next(employeeOptionsOfTheSameGender.Count);
-                unrandomizedEmployeesForGuessing.Add(employeeOptionsOfTheSameGender[indexOfEmployeeForOptions]);
-                employeeOptionsOfTheSameGender.RemoveAt(indexOfEmployeeForOptions);
+                _indexOfEmployeeForOptions = _rndGenerator.Next(employeeOptionsOfTheSameGender.Count);
+                unrandomizedEmployeesForGuessing.Add(employeeOptionsOfTheSameGender[_indexOfEmployeeForOptions]);
+                employeeOptionsOfTheSameGender.RemoveAt(_indexOfEmployeeForOptions);
             }
-            session["currentGameStatus"] = new Game
+            _session["currentGameStatus"] = new Game
             {
                 GameId = ++_indexOfLastGame,
-                EmployeePK = employeesWithRespectiveEmail.First().EmployeePK,
+                EmployeePK = _employeesWithRespectiveEmail.First().EmployeePK,
                 UnguessedEmployees = JsonConvert.SerializeObject(allEmployeesInDB),
                 GuessedEmployees = JsonConvert.SerializeObject(new List<Employee>() { employeeToGuess }),
                 PointsSoFar = 0
@@ -243,11 +246,11 @@ namespace SocialTrainingWebApp.Models
             List<Employee> randomizedEmployeeOptions = new List<Employee>();
             while (unrandomizedEmployeesForGuessing.Count != 0)
             {
-                indexOfEmployeeForOptions = rndGenerator.Next(unrandomizedEmployeesForGuessing.Count);
-                randomizedEmployeeOptions.Add(unrandomizedEmployeesForGuessing[indexOfEmployeeForOptions]);
-                unrandomizedEmployeesForGuessing.RemoveAt(indexOfEmployeeForOptions);
+                _indexOfEmployeeForOptions = _rndGenerator.Next(unrandomizedEmployeesForGuessing.Count);
+                randomizedEmployeeOptions.Add(unrandomizedEmployeesForGuessing[_indexOfEmployeeForOptions]);
+                unrandomizedEmployeesForGuessing.RemoveAt(_indexOfEmployeeForOptions);
             }
-            session["chosenEmployeeModel"] = new ChosenEmployees(employeeToGuess, randomizedEmployeeOptions);
+            _session["chosenEmployeeModel"] = new ChosenEmployees(employeeToGuess, randomizedEmployeeOptions);
         }
 
 

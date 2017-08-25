@@ -109,7 +109,6 @@ C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTraini
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Web.WebPages.xml
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Web.WebPages.Deployment.xml
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Web.WebPages.Razor.xml
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.csprojResolveAssemblyReference.cache
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.Initial.resources
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.ChangedColumnName.resources
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.AddedPointColumnToGameDB.resources
