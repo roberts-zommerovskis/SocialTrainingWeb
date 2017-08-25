@@ -144,25 +144,19 @@ namespace SocialTrainingWebApp.Models
                 if (sameGenderRemainingUnguessedEmployees.Count > 0)
                 //if there are any people of the same gender in the unguessedList
                 {
-                    while (sameGenderRemainingUnguessedEmployees.Count != 0 && _unsortedGuessingOptions.Count < 3)
-                    {
-                        _indexOfEmployeeForOptions = _rndGenerator.Next(sameGenderRemainingUnguessedEmployees.Count);
-                        Employee extraEmployeeOption = sameGenderRemainingUnguessedEmployees[_indexOfEmployeeForOptions];
-                        _unsortedGuessingOptions.Add(extraEmployeeOption);
-                        sameGenderRemainingUnguessedEmployees.Remove(extraEmployeeOption);
-                    }
+                    GetNeededOptions(sameGenderRemainingUnguessedEmployees);
                 }
             }
-            GetNeededOptionsFromAlreadyGuessed(sameGenderAlreadyGuessedEmployees);
+            GetNeededOptions(sameGenderAlreadyGuessedEmployees);
             SetupNextMove(employeeToGuess);
         }
 
-        public void GetNeededOptionsFromAlreadyGuessed(List<Employee> sameGenderAlreadyGuessedEmployees)
+        public void GetNeededOptions(List<Employee> employeeOptionSource)
         {
-            while (_unsortedGuessingOptions.Count < 3)
+            while (_unsortedGuessingOptions.Count < 3 && employeeOptionSource.Count != 0)
             {
                 List<Employee> guessedEmployeeBuffer = new List<Employee>();
-                guessedEmployeeBuffer.AddRange(sameGenderAlreadyGuessedEmployees);
+                guessedEmployeeBuffer.AddRange(employeeOptionSource);
                 _indexOfEmployeeForOptions = _rndGenerator.Next(guessedEmployeeBuffer.Count);
                 _unsortedGuessingOptions.Add(guessedEmployeeBuffer[_indexOfEmployeeForOptions]);
                 guessedEmployeeBuffer.Remove(guessedEmployeeBuffer[_indexOfEmployeeForOptions]);
@@ -197,28 +191,21 @@ namespace SocialTrainingWebApp.Models
 
         public void StartNewGame()
         {
-            List<Employee> blankListForInitializingGame = new List<Employee>();
             List<Employee> allEmployeesInDB = new List<Employee>();
             using (var db = new AppDbContext())
             {
                 allEmployeesInDB.AddRange(db.Employee);
             }
-            List<Employee> unrandomizedEmployeesForGuessing = new List<Employee>();
             _indexOfEmployeeForOptions = _rndGenerator.Next(allEmployeesInDB.Count);
             Employee employeeToGuess = allEmployeesInDB[_indexOfEmployeeForOptions];
             allEmployeesInDB.RemoveAt(_indexOfEmployeeForOptions);
-            unrandomizedEmployeesForGuessing.Add(employeeToGuess);
+            _unsortedGuessingOptions = new List<Employee> { employeeToGuess };
             string employeeToGuessGender = employeeToGuess.Gender;
             List<Employee> employeeOptionsOfTheSameGender = new List<Employee>();
             employeeOptionsOfTheSameGender.AddRange(allEmployeesInDB.
                 Where(employeeElement => employeeElement.Gender == employeeToGuessGender).
-                Except(unrandomizedEmployeesForGuessing));
-            for (int i = 0; i < 2; i++)
-            {
-                _indexOfEmployeeForOptions = _rndGenerator.Next(employeeOptionsOfTheSameGender.Count);
-                unrandomizedEmployeesForGuessing.Add(employeeOptionsOfTheSameGender[_indexOfEmployeeForOptions]);
-                employeeOptionsOfTheSameGender.RemoveAt(_indexOfEmployeeForOptions);
-            }
+                Except(_unsortedGuessingOptions));
+            GetNeededOptions(employeeOptionsOfTheSameGender);
             _session["currentGameStatus"] = new Game
             {
                 GameId = ++_indexOfLastGame,
@@ -227,14 +214,8 @@ namespace SocialTrainingWebApp.Models
                 GuessedEmployees = JsonConvert.SerializeObject(new List<Employee>() { employeeToGuess }),
                 PointsSoFar = 0
             };
-            List<Employee> randomizedEmployeeOptions = new List<Employee>();
-            while (unrandomizedEmployeesForGuessing.Count != 0)
-            {
-                _indexOfEmployeeForOptions = _rndGenerator.Next(unrandomizedEmployeesForGuessing.Count);
-                randomizedEmployeeOptions.Add(unrandomizedEmployeesForGuessing[_indexOfEmployeeForOptions]);
-                unrandomizedEmployeesForGuessing.RemoveAt(_indexOfEmployeeForOptions);
-            }
-            _session["chosenEmployeeModel"] = new ChosenEmployees(employeeToGuess, randomizedEmployeeOptions);
+            List<Employee> employeesRandomizedForGuessing = RandomizeGuessingOptions();
+            _session["chosenEmployeeModel"] = new ChosenEmployees(employeeToGuess, employeesRandomizedForGuessing);
         }
 
 
