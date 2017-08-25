@@ -151,24 +151,10 @@ namespace SocialTrainingWebApp.Models
                         _unsortedGuessingOptions.Add(extraEmployeeOption);
                         sameGenderRemainingUnguessedEmployees.Remove(extraEmployeeOption);
                     }
-                    if (_unsortedGuessingOptions.Count != 3)
-                    {
-                        _indexOfEmployeeForOptions = _rndGenerator.Next(sameGenderAlreadyGuessedEmployees.Count);
-                        _unsortedGuessingOptions.Add(sameGenderAlreadyGuessedEmployees[_indexOfEmployeeForOptions]);
-                    }
-                }
-                else
-                //if there aren't any people of the same gender left unguessed
-                {
-                    GetNeededOptionsFromAlreadyGuessed(sameGenderAlreadyGuessedEmployees);
                 }
             }
-            else //if the removed for guessing person was the last in the unguessedList (final guess)
-            {
-                GetNeededOptionsFromAlreadyGuessed(sameGenderAlreadyGuessedEmployees);
-            }
+            GetNeededOptionsFromAlreadyGuessed(sameGenderAlreadyGuessedEmployees);
             SetupNextMove(employeeToGuess);
-
         }
 
         public void GetNeededOptionsFromAlreadyGuessed(List<Employee> sameGenderAlreadyGuessedEmployees)
