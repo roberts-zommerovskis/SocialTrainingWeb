@@ -303,6 +303,7 @@
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameFlow.cs" />
     <Compile Include="Models\GoogleSheetConnector.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoggedInUserData.cs" />

@@ -55,6 +55,7 @@ C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTraini
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Reflection.Metadata.dll
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Runtime.Serialization.Primitives.dll
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Security.Cryptography.Algorithms.dll
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Security.Cryptography.Encoding.dll
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Security.Cryptography.Primitives.dll
@@ -108,13 +109,12 @@ C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTraini
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Web.WebPages.xml
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Web.WebPages.Deployment.xml
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.csprojResolveAssemblyReference.cache
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.Initial.resources
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.ChangedColumnName.resources
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.AddedPointColumnToGameDB.resources
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.ChangedGenderColumnName.resources
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.csproj.GenerateResource.Cache
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.csproj.CoreCompileInputs.cache
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.dll
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.pdb
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.Initial.resources
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.csproj.GenerateResource.Cache
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.ChangedColumnName.resources
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.csprojResolveAssemblyReference.cache
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.AddedPointColumnToGameDB.resources
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.ChangedGenderColumnName.resources
-C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Runtime.Serialization.Primitives.dll
