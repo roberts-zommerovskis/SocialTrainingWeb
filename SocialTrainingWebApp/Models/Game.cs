@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SocialTrainingWebApp.Models
 {
+
     public class Game
     {
         [Key]
@@ -13,6 +14,6 @@ namespace SocialTrainingWebApp.Models
         public string GuessedEmployees { get; set; }
         public long EmployeePK { get; set; }
         [ForeignKey("EmployeePK")]
-        public Employee Employee { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

@@ -117,3 +117,4 @@ C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTraini
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.csprojResolveAssemblyReference.cache
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.AddedPointColumnToGameDB.resources
 C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\obj\Debug\SocialTrainingWebApp.Migrations.ChangedGenderColumnName.resources
+C:\Users\roberts.zommerovskis\documents\visual studio 2017\Projects\SocialTrainingWEB\SocialTrainingWebApp\bin\System.Runtime.Serialization.Primitives.dll

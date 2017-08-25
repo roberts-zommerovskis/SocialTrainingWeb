@@ -21,16 +21,27 @@ namespace SocialTrainingWebApp.Controllers
 
             string currentUser = User.Identity.GetUserName();
 
-            Employee employeeOfInterest;
-            Game lastPlayedGameOfEmployee;
+            Game lastPlayedGameOfEmployee = null;
             List<Employee> unguessedEmployeesOfLastGame = null;
             List<Employee> guessedEmployeesOfLastGame = null;
+            if (Session["justLoggedIn"] == null)
+            {
+                Session["justLoggedIn"] = false;
+                GoogleSheetConnector.ImportDataIntoDB();
+            }
+
+
             if (Session["answerSubmitted"] != null)
             {
                 if ((bool)Session["answerSubmitted"] == true)
                 {
                     Session["answerSubmitted"] = false;
                     Game currentGameToAdd = (Game)Session["currentGameStatus"];
+                    if ((bool)Session["answeredCorrectly"])
+                    {
+                        Session["answeredCorrectly"] = false;
+                        currentGameToAdd.PointsSoFar++;
+                    }
                     using (var db = new AppDbContext())
                     {
                         db.Game.Add(currentGameToAdd);
@@ -50,12 +61,11 @@ namespace SocialTrainingWebApp.Controllers
                 //if there is such an employee in the DB
                 {
                     long indexOfLastGame;
-                    GoogleSheetConnector.ImportDataIntoDB();
                     List<Game> currentUsersGames = employeesWithRespectiveEmail.First().Games.ToList();
                     if (currentUsersGames == null || currentUsersGames.Count == 0) //TODO: remove null stuff
                     //if User hasn't gamed at all
                     {
-                        if (db.Game.ToList() == null || db.Game.ToList().Count == 0)
+                        if (db.Game.ToList() == null || db.Game.ToList().Count == 0) //TODO: remove null stuff
                         //if nobody has gamed at all
                         {
                             indexOfLastGame = 0;
@@ -75,8 +85,7 @@ namespace SocialTrainingWebApp.Controllers
                     {
                         indexOfLastGame = currentUsersGames
                             .Select(gameElement => gameElement.GameId).ToList().Max();
-                        employeeOfInterest = db.Employee.Where(employeeElement => employeeElement == employeesWithRespectiveEmail.First()).First();
-                        lastPlayedGameOfEmployee = employeeOfInterest.Games.Where(gameElements => gameElements.GameId == indexOfLastGame).First();
+                        lastPlayedGameOfEmployee = employeesWithRespectiveEmail.First().Games.Where(gameElements => gameElements.GameId == indexOfLastGame).Last();
                         unguessedEmployeesOfLastGame = JsonConvert.DeserializeObject<List<Employee>>(lastPlayedGameOfEmployee.UnguessedEmployees);
                         guessedEmployeesOfLastGame = JsonConvert.DeserializeObject<List<Employee>>(lastPlayedGameOfEmployee.GuessedEmployees);
                         lastGameUnfinished = true;
@@ -104,6 +113,7 @@ namespace SocialTrainingWebApp.Controllers
                             guessedEmployeesOfLastGame
                             .Where(employeeElements => employeeElements.Gender == employeeToGuessGender)
                             .ToList();
+                        guessedEmployeesOfLastGame.Add(employeeToGuess);
                         if (unguessedEmployeesOfLastGame.Count > 0)
                         //if there is sth in the unguessed list after taking out employee for guessing
                         {
@@ -111,7 +121,7 @@ namespace SocialTrainingWebApp.Controllers
                             //if there are any people of the same gender in the unguessedList
                             {
 
-                                while (sameGenderRemainingUnguessedEmployees.Count != 0 || unsortedGuessingOptions.Count < 3)
+                                while (sameGenderRemainingUnguessedEmployees.Count != 0 && unsortedGuessingOptions.Count < 3)
                                 {
                                     indexOfEmployeeForOptions = rndGenerator.Next(sameGenderRemainingUnguessedEmployees.Count);
                                     Employee extraEmployeeOption = sameGenderRemainingUnguessedEmployees[indexOfEmployeeForOptions];
@@ -151,10 +161,11 @@ namespace SocialTrainingWebApp.Controllers
 
                         Session["currentGameStatus"] = new Game
                         {
-                            GameId = indexOfLastGame++,
+                            GameId = indexOfLastGame,
                             EmployeePK = employeesWithRespectiveEmail.First().EmployeePK,
-                            UnguessedEmployees = JsonConvert.SerializeObject(unguessedEmployeesOfLastGame),
-                            GuessedEmployees = JsonConvert.SerializeObject(guessedEmployeesOfLastGame)
+                            UnguessedEmployees = JsonConvert.SerializeObject(unguessedEmployeesOfLastGame),//, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Serialize, PreserveReferencesHandling = PreserveReferencesHandling.Objects }),
+                            GuessedEmployees = JsonConvert.SerializeObject(guessedEmployeesOfLastGame),// , Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Serialize, PreserveReferencesHandling = PreserveReferencesHandling.Objects }),
+                            PointsSoFar = lastPlayedGameOfEmployee.PointsSoFar
                         };
                         List<Employee> employeesRandomizedForGuessing = new List<Employee>();
                         while (unsortedGuessingOptions.Count != 0)
@@ -163,7 +174,8 @@ namespace SocialTrainingWebApp.Controllers
                             employeesRandomizedForGuessing.Add(unsortedGuessingOptions[indexOfEmployeeForOptions]);
                             unsortedGuessingOptions.RemoveAt(indexOfEmployeeForOptions);
                         }
-                        return View(new ChosenEmployees(employeeToGuess, employeesRandomizedForGuessing));
+                        Session["chosenEmployeeModel"] = new ChosenEmployees(employeeToGuess, employeesRandomizedForGuessing);
+                        return View((ChosenEmployees)Session["chosenEmployeeModel"]);
                     }
                     else //if a new game has to be started
                     {
@@ -174,6 +186,7 @@ namespace SocialTrainingWebApp.Controllers
                         Random rndGenerator = new Random();
                         int indexOfEmployeeOption = rndGenerator.Next(allEmployeesInDB.Count);
                         Employee employeeToGuess = allEmployeesInDB[indexOfEmployeeOption];
+                        allEmployeesInDB.RemoveAt(indexOfEmployeeOption);
                         unrandomizedEmployeesForGuessing.Add(employeeToGuess);
                         string employeeToGuessGender = employeeToGuess.Gender;
                         List<Employee> employeeOptionsOfTheSameGender = new List<Employee>();
@@ -188,7 +201,7 @@ namespace SocialTrainingWebApp.Controllers
                         }
                         Session["currentGameStatus"] = new Game
                         {
-                            GameId = indexOfLastGame++,
+                            GameId = ++indexOfLastGame,
                             EmployeePK = employeesWithRespectiveEmail.First().EmployeePK,
                             UnguessedEmployees = JsonConvert.SerializeObject(allEmployeesInDB),
                             GuessedEmployees = JsonConvert.SerializeObject(new List<Employee>() { employeeToGuess }),
@@ -201,7 +214,8 @@ namespace SocialTrainingWebApp.Controllers
                             randomizedEmployeeOptions.Add(unrandomizedEmployeesForGuessing[indexOfEmployeeOption]);
                             unrandomizedEmployeesForGuessing.RemoveAt(indexOfEmployeeOption);
                         }
-                        return View(new ChosenEmployees(employeeToGuess, randomizedEmployeeOptions));
+                        Session["chosenEmployeeModel"] = new ChosenEmployees(employeeToGuess, randomizedEmployeeOptions);
+                        return View((ChosenEmployees)Session["chosenEmployeeModel"]);
                     }
                 }
                 else
@@ -210,58 +224,19 @@ namespace SocialTrainingWebApp.Controllers
                     return null;
                 }
             }
-
-
-
-
-
-
-
-
-
-            //DataManager dataManager = new DataManager();
-            //dataManager.Setup(this.Session);
-            //int points = 0;
-            //ChosenEmployees chosenEmployees = null;
-            //List<EmployeeWrapper> allEmployees = new List<EmployeeWrapper>();
-            //if ((bool)Session["buttonPressed"] && buttonid != null)
-            //{
-            //    dataManager.CalculatePoints(this.Session, buttonid, ref allEmployees, ref points);
-            //}
-            //else if (buttonid == null && (bool)Session["justLoggedIn"])
-            //{
-            //    dataManager.HandleNewlyLoggedIn(this.Session, ref points);
-            //}
-            //if (allEmployees.Count != 0 || (allEmployees.Count == 0 && points == 0))
-            //{
-            //    if (Session["currentDataState"] != null)
-            //    {
-            //        if (((List<EmployeeWrapper>)Session["currentDataState"]).Count == 0 && Session["chosenImage"] != null)
-            //        {
-            //            Session["roundCompleted"] = true;
-            //            return View("Congratulations", new SessionSummaryModel((int)Session["employeeCount"], (int)Session["points"]));
-            //        }
-            //        allEmployees = (List<EmployeeWrapper>)Session["currentDataState"];
-            //    }
-            //    dataManager.PrepareGuessingOptions(this.Session, ref chosenEmployees, ref allEmployees);
-            //    return View(chosenEmployees);
-            //}
-            //else
-            //{
-            //    Session["roundCompleted"] = true;
-            //    return View("Congratulations", new SessionSummaryModel((int)Session["employeeCount"], (int)Session["points"]));
-            //}
         }
 
         public JsonResult CheckAnswer(string ID)
         {
-            Session["buttonPressed"] = true;
-            if (int.Parse(ID) == (int)Session["chosenTriadEmployee"])
+            Session["answerSubmitted"] = true;
+            if (int.Parse(ID) == ((ChosenEmployees)Session["chosenEmployeeModel"])._chosenTriadEmployee)
             {
+                Session["answeredCorrectly"] = true;
                 return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
             }
             else
             {
+                Session["answeredCorrectly"] = false;
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
 
@@ -269,17 +244,12 @@ namespace SocialTrainingWebApp.Controllers
 
         public JsonResult PlayAgain(bool PlayAgain)
         {
-            Session["roundCompleted"] = false;
-            Session["chosenImage"] = null;
-            Session["points"] = 0;
-            Session["justLoggedIn"] = true;
-            Session["currentDataState"] = null;
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ReturnCorrectAnswerNumber()
         {
-            return Json(new { Answer = (int)Session["chosenTriadEmployee"] }, JsonRequestBehavior.AllowGet);
+            return Json(new { Answer = ((ChosenEmployees)Session["chosenEmployeeModel"])._chosenTriadEmployee }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Congratulations()
