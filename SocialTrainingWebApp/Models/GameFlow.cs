@@ -88,12 +88,10 @@ namespace SocialTrainingWebApp.Models
             {
                 allTheGamesInDB = db.Game.ToList();
             }
-            if (currentUsersGames == null || currentUsersGames.Count == 0)
-            //TODO: remove null stuff
+            if (currentUsersGames.Count == 0)
             //if User hasn't gamed at all
             {
-                if (allTheGamesInDB == null || allTheGamesInDB.Count == 0)
-                //TODO: remove null stuff
+                if (allTheGamesInDB.Count == 0)
                 //if nobody has gamed at all
                 {
                     _indexOfLastGame = 0;
