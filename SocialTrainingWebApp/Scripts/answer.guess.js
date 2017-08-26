@@ -1,28 +1,44 @@
 ﻿$(document).ready(function () {
-    var element = $(this);
+    var chosenOption;
     $("input[name = 'optionsRadios']").on("click", function () {
-        element = $(this);
-        sendValueToController($(this).attr("id"), myCallback);
+        chosenOption = $(this);
+        $('#optionButton').removeClass('disabled');
+        $('#optionButton').addClass('acceptAns');
+    });
+
+    $("#optionButton").click(function () {
+        if ($("#optionButton").hasClass("acceptAns")) {
+            sendValueToController(chosenOption.attr("id"), myCallback);
+        }
+        else if ($("#optionButton").hasClass("navFurther")) {
+            redirect();
+        }
     });
 
     function myCallback(result) {
         if (result.Success) {
-            element.parent().css("background-color", "#68a611");
-            element.attr("checked", true);
+            chosenOption.parent().css("background-color", "#68a611");
+            chosenOption.attr("checked", true);
             document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
-            redirect(element.attr("id"));
+            redirect(chosenOption.attr("id"));
         }
         else {
-            element.parent().css("background-color", "#c72828");
-            getCorrectAnswerNumber(myCallback2)
+            chosenOption.parent().css("background-color", "#c72828");
+            getCorrectAnswerNumber(myCallback2);
         }
     }
 
     function myCallback2(result) {
         $("#" + result.Answer).parent().css("background-color", "#68a611");
-        element.attr("checked", true);
-        document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
-        redirect(element.attr("id"));
+        chosenOption.attr("checked", true);
+        $("#guessingForm input:radio").attr('disabled', true);
+        $("#guessingForm").unbind("click");
+        $("#guessingForm").addClass('disabled-radios');
+        $('#optionButton').removeClass('acceptAns');
+        $('#optionButton').addClass("navFurther");
+        $('#optionButton a').text('Next');
+        //document.body.innerHTML += '<div style="background-color: rgba(1, 1, 1, 0.01);bottom: 0;left: 0;position: fixed;right: 0;top: 0;"></div>';
+        //redirect();
     }
 
     function sendValueToController(id, callback) {
@@ -49,4 +65,4 @@
         });
     }
 
-})
+});

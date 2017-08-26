@@ -21,10 +21,11 @@
                             </div>
                             i++;
                         }
-                        <ul class="padding-top nav nav-pills">
-                            <li><a href="#">Choose this option</a></li>
-                        </ul>
+
                     </form>
+                    <ul class="padding-top nav nav-pills">
+                        <li id="optionButton" class="disabled"><a href="#">Choose this option</a></li>
+                    </ul>
                 </div>
                 <div style="float:none;width:auto;overflow:hidden">
                     @{
@@ -41,7 +42,7 @@
 
 @Scripts.Render("~/bundles/checkAnswers")
 <script type="text/javascript">
-    function redirect(button) {
-        window.location.href = '@Url.Action("Index", "Home")';
-    }
+        function redirect() {
+            window.location.href = '@Url.Action("Index", "Home")';
+        }
 </script>
