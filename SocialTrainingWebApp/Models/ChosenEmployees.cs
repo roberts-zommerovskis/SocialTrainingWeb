@@ -13,7 +13,14 @@ namespace SocialTrainingWebApp.Models
         public ChosenEmployees(Employee employeeToGuess, List<Employee> allEmployeeGuessingOptions)
         {
             _employeeTriad = allEmployeeGuessingOptions;
-            _chosenEmployeeImageId = $"1001.png";
+            if (employeeToGuess.Gender == "Female")
+            {
+                _chosenEmployeeImageId = "1020.png";
+            }
+            else
+            {
+                _chosenEmployeeImageId = "1001.png";
+            }
             _chosenTriadEmployee = allEmployeeGuessingOptions.IndexOf(employeeToGuess);
         }
     }

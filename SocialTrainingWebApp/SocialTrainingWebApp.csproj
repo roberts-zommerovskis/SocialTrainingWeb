@@ -971,6 +971,7 @@
     <Content Include="client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MockImages\1020.png" />
     <Content Include="Scripts\answer.guess.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
