@@ -10,10 +10,19 @@ namespace SocialTrainingWebApp.Models
     {
         public double _percentageValue;
         public string _percentageString;
-        public SessionSummaryModel(int originalEmployeeCountInDb, double guessedEmployees)
+        public string _congratulationsButtonText;
+        public SessionSummaryModel(int originalEmployeeCountInDb, double guessedEmployees, bool gameCompleted)
         {
             _percentageValue = Math.Round(((guessedEmployees / originalEmployeeCountInDb) * 100), 0, MidpointRounding.ToEven);
             _percentageString = $"{ _percentageValue.ToString()}%";
+            if (gameCompleted)
+            {
+                _congratulationsButtonText = "Play again!";
+            }
+            else
+            {
+                _congratulationsButtonText = "Continue game!";
+            }
         }
     }
 }
