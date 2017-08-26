@@ -26,18 +26,21 @@ namespace SocialTrainingWebApp.Models
 
         public bool RegisterAnswer(HttpSessionStateBase session, out Game currentGameToAdd)
         {
-            session["answerSubmitted"] = false;
             currentGameToAdd = (Game)session["currentGameStatus"];
             if ((bool)session["answeredCorrectly"])
             {
                 session["answeredCorrectly"] = false;
                 currentGameToAdd.PointsSoFar++;
             }
-            using (var db = new AppDbContext())
+            if ((bool)session["answerSubmitted"] == true)
             {
-                db.Game.Add(currentGameToAdd);
-                db.SaveChanges();
+                using (var db = new AppDbContext())
+                {
+                    db.Game.Add(currentGameToAdd);
+                    db.SaveChanges();
+                }
             }
+            session["answerSubmitted"] = false;
             List<Employee> unguessedEmployees = JsonConvert.DeserializeObject<List<Employee>>(currentGameToAdd.UnguessedEmployees);
             if (unguessedEmployees == null || unguessedEmployees.Count == 0)
             {
@@ -52,6 +55,7 @@ namespace SocialTrainingWebApp.Models
         public ChosenEmployees PlayGame(HttpSessionStateBase session, string currentUser)
         {
             _session = session;
+            _session["canProceed"] = true;
             List<Game> currentUsersGames;
             using (var db = new AppDbContext())
             {

@@ -20,8 +20,9 @@ namespace SocialTrainingWebApp.Controllers
             }
             if (Session["answerSubmitted"] != null)
             {
-                if ((bool)Session["answerSubmitted"] == true)
+                if ((bool)Session["answerSubmitted"] == true || !(bool)Session["canProceed"])
                 {
+                    Session["canProceed"] = false;
                     Game currentGameToAdd = new Game();
                     bool gameCompleted = gameFlow.RegisterAnswer(Session, out currentGameToAdd);
                     return View("Congratulations", new SessionSummaryModel(JsonConvert.DeserializeObject<List<Employee>>(currentGameToAdd.GuessedEmployees).Count, currentGameToAdd.PointsSoFar, gameCompleted));
@@ -49,6 +50,7 @@ namespace SocialTrainingWebApp.Controllers
 
         public JsonResult PlayAgain(bool PlayAgain)
         {
+            Session["canProceed"] = true;
             return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
         }
 
