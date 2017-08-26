@@ -157,10 +157,10 @@ namespace SocialTrainingWebApp.Models
 
         public void GetNeededOptions(List<Employee> employeeOptionSource)
         {
+            List<Employee> guessedEmployeeBuffer = new List<Employee>();
+            guessedEmployeeBuffer.AddRange(employeeOptionSource);
             while (_unsortedGuessingOptions.Count < 3 && employeeOptionSource.Count != 0)
             {
-                List<Employee> guessedEmployeeBuffer = new List<Employee>();
-                guessedEmployeeBuffer.AddRange(employeeOptionSource);
                 _indexOfEmployeeForOptions = _rndGenerator.Next(guessedEmployeeBuffer.Count);
                 _unsortedGuessingOptions.Add(guessedEmployeeBuffer[_indexOfEmployeeForOptions]);
                 guessedEmployeeBuffer.Remove(guessedEmployeeBuffer[_indexOfEmployeeForOptions]);
