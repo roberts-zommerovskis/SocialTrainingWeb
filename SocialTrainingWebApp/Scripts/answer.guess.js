@@ -22,7 +22,7 @@
         $("#guessingForm").addClass('disabled-radios');
         $('#optionButton').removeClass('acceptAns');
         $('#optionButton').addClass("navFurther");
-        $('#optionButton a').text('Next');
+        $('#optionButton').text('Next');
         if (result.Success) {
             chosenOption.parent().css("background-color", "#68a611");
         }
