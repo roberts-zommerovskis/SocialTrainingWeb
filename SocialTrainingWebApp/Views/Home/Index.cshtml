@@ -5,11 +5,11 @@
 
 @model SocialTrainingWebApp.Models.ChosenEmployees
 
-<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+<div class="col-xs-7 col-xs-offset-2-5">
     <div class="panel panel-default">
         <div class="panel-body" style="padding: 0 0 0 0">
             <div style="height:auto;overflow:hidden">
-                <div class="col-xs-6" style="float:right;transform: translateY(60%)">
+                <div class="col-xs-6" style="padding-right:0; float:right;transform: translateY(40%)">
                     <form id="guessingForm" action="">
                         @{int i = 0; }
                         @foreach (var item in Model._employeeTriad)
@@ -23,8 +23,8 @@
                         }
 
                     </form>
-                    <div class="col-md-9" style="padding-left:0">
-                        <button id="optionButton" class="btn-block disabled margin-top bttn-jelly bttn-md bttn-primary bttn-no-outline">Choose this option</button>
+                    <div class="col-xs-11 col-sm-11 col-md-8 col-lg-6-5" style="padding-left:0; padding-right:0">
+                        <button id="optionButton" class="btn-block disabled margin-top bttn-jelly bttn-sm bttn-primary">Choose this option</button>
                     </div>
                 </div>
                 <div style="float:none;width:auto;overflow:hidden">

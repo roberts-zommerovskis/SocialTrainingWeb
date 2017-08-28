@@ -8,11 +8,15 @@
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
     {
         @Html.AntiForgeryToken()
-        <p>
-            @{AuthenticationDescription p = loginProviders[0];
-                <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
-            }
-        </p>
 
-                }
+        {
+            AuthenticationDescription p = loginProviders[0];
+            <button type="submit" id="@p.AuthenticationType" style="font-size:20px; background:#fff; color: #1d89ff; border: 1px solid #1d89ff;" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account" class="bttn-jelly bttn-sm bttn-primary">
+                <span aria-hidden="true" class="vismaicon vismaicon-google"></span>
+                @p.AuthenticationType
+            </button>
+
+        }
+
+    }
 }
