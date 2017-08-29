@@ -25,7 +25,7 @@ namespace SocialTrainingWebApp.Controllers
                     Session["canProceed"] = false;
                     Game currentGameToAdd = new Game();
                     bool gameCompleted = gameFlow.RegisterAnswer(Session, out currentGameToAdd);
-                    return View("Congratulations", new SessionSummaryModel(JsonConvert.DeserializeObject<List<Employee>>(currentGameToAdd.GuessedEmployees).Count, currentGameToAdd.PointsSoFar, gameCompleted));
+                    return View("Congratulations", new SessionSummaryModel(JsonConvert.DeserializeObject<List<Employee>>(currentGameToAdd.GuessedEmployees).Count + (JsonConvert.DeserializeObject<List<Employee>>(currentGameToAdd.UnguessedEmployees)).Count, currentGameToAdd.PointsSoFar, gameCompleted));
                 }
             }
             gameFlow.PlayGame(Session, User.Identity.GetUserName());
