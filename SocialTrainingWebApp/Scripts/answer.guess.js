@@ -24,16 +24,22 @@
         $('#optionButton').addClass("navFurther");
         $('#optionButton').text('Next');
         if (result.Success) {
-            chosenOption.parent().css("background-color", "#DCE5CF");
+            chosenOption.css("color", "#68A611");
+            chosenOption.parent().parent().css("background", "#DCE5CF");
         }
         else {
-            chosenOption.parent().css("background-color", "#E57377");
+            chosenOption.parent().parent().css("background", "#E57377");
+            chosenOption.removeClass("option-input");
+            chosenOption.addClass("incorrect-input")
             getCorrectAnswerNumber(markCorrectAnswer);
         }
     }
 
     function markCorrectAnswer(result) {
-        $("#" + result.Answer).parent().css("background-color", "#DCE5CF");
+        $("#" + result.Answer).removeClass("option-input");
+        $("#" + result.Answer).addClass("correct-input");
+        $("#" + result.Answer).parent().parent().css("background", "#DCE5CF");
+
     }
 
     function sendValueToController(id, callback) {

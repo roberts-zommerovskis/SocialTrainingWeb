@@ -5,23 +5,32 @@
 
 @model SocialTrainingWebApp.Models.ChosenEmployees
 
-<div class="col-xs-7 col-xs-offset-2-5">
-    <div class="panel panel-default">
+<div class="col-xs-12 col-sm-9 col-sm-offset-1-5 col-md-7 col-md-offset-2-5">
+    <div class="panel panel-default" style="min-width:400px">
         <div class="panel-body" style="padding: 0 0 0 0">
             <div style="height:auto;overflow:hidden">
-                <div class="col-xs-6" style="padding-right:0; float:right;transform: translateY(40%)">
-                    <form id="guessingForm" action="">
-                        @{int i = 0; }
-                        @foreach (var item in Model._employeeTriad)
-                        {
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="@i">@item.FullName
-                                </label>
-                            </div>
-                            i++;
-                        }
+                <div class="col-xs-6" style="padding-right:0; float:right;">
 
+                    <form id="guessingForm" class="padding-top" action="">
+                        <div class="guessContainer padding-top">
+                            @{int i = 0; }
+                            @foreach (var item in Model._employeeTriad)
+                            {
+                                @*<div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="@i">@item.FullName
+                                        </label>
+                                    </div>*@
+                                <div>
+                                    <label class="stackGuessLabels padding-bottom">
+                                        <input type="radio" class="option-input radio margin-right" name="optionsRadios" id="@i" style="outline:0;display:inline-flex; border:1px solid #cbd1d8" />@item.FullName
+                                    </label>
+                                </div>
+
+
+                                i++;
+                            }
+                        </div>
                     </form>
                     <div class="col-xs-11 col-sm-11 col-md-8 col-lg-6-5" style="padding-left:0; padding-right:0">
                         <button id="optionButton" class="btn-block disabled margin-top bttn-jelly bttn-sm bttn-primary">Choose this option</button>
