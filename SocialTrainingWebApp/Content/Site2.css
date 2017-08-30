@@ -69,12 +69,7 @@ button.bttn-jelly.disabled {
     -webkit-transform: none;
 }
 
-/*guessingbuttons
-*
-*
-*
-*
-*/
+
 .stackGuessLabels {
     display: inline-block;
 }
@@ -97,7 +92,6 @@ button.bttn-jelly.disabled {
     border: none;
     color: #0091e6;
     cursor: pointer;
-    /*display: inline-block;*/
     margin-right: 0.5rem;
     outline: none;
     position: relative;
@@ -117,7 +111,6 @@ button.bttn-jelly.disabled {
             width: 10px;
             position: absolute;
             content: '✔';
-            /*display: inline-block;*/
             font-size: 26.66667px;
             text-align: center;
             line-height: 10px;
@@ -130,7 +123,6 @@ button.bttn-jelly.disabled {
     .option-input:checked::after {
         background: #40e0d0;
         content: '';
-        /*display: block;*/
         position: relative;
         z-index: 100;
     }
@@ -153,7 +145,6 @@ button.bttn-jelly.disabled {
     border: none;
     color: #C72828;
     cursor: pointer;
-    /*display: inline-block;*/
     margin-right: 0.5rem;
     outline: none;
     position: relative;
@@ -174,7 +165,6 @@ button.bttn-jelly.disabled {
             width: 10px;
             position: absolute;
             content: 'X';
-            /*display: inline-block;*/
             font-size: 26.66667px;
             text-align: center;
             line-height: 20px;
@@ -187,7 +177,6 @@ button.bttn-jelly.disabled {
     .incorrect-input:checked::after {
         background: #40e0d0;
         content: '';
-        /*display: block;*/
         position: relative;
         z-index: 100;
     }
@@ -205,7 +194,6 @@ button.bttn-jelly.disabled {
     position: relative;
     top: 6.66666px;
     content: 'X';
-    /*display: inline-block;*/
     font-size: 26.66667px;
     text-align: center;
     line-height: 20px;
@@ -219,10 +207,8 @@ button.bttn-jelly.disabled {
     border: none;
     color: #C72828;
     cursor: pointer;
-    /*display: inline-block;*/
     margin-right: 0.5rem;
     outline: none;
-    position: relative;
     z-index: 1000;
 }
 
@@ -236,25 +222,10 @@ button.bttn-jelly.disabled {
         position: absolute;
         content: '✔';
         color: #68A611;
-        /*display: inline-block;*/
         font-size: 26.66667px;
         text-align: center;
-        line-height: 20px;
+        line-height: 10px;
     }
-
-
-
-
-/*guessingbuttons
-*
-*
-*
-*
-*/
-
-
-
-
 
 /*!
  *

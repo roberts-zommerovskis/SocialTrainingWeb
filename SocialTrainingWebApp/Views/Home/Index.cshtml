@@ -16,12 +16,7 @@
                             @{int i = 0; }
                             @foreach (var item in Model._employeeTriad)
                             {
-                                @*<div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="@i">@item.FullName
-                                        </label>
-                                    </div>*@
-                                <div>
+                                <div style="border-radius:10px">
                                     <label class="stackGuessLabels padding-bottom">
                                         <input type="radio" class="option-input radio margin-right" name="optionsRadios" id="@i" style="outline:0;display:inline-flex; border:1px solid #cbd1d8" />@item.FullName
                                     </label>
