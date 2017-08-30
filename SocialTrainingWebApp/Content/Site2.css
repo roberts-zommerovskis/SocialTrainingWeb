@@ -49,6 +49,8 @@ button.bttn-jelly.disabled {
     box-shadow: none !important;
 }
 
+#Google:hover,
+#Google:focus:hover,
 #optionButton.navFurther:hover,
 #optionButton.acceptAns:hover,
 #optionButton.acceptAns:focus:hover,
@@ -57,6 +59,7 @@ button.bttn-jelly.disabled {
     transform: scale(1.1);
 }
 
+#Google:focus,
 #optionButton.navFurther:focus,
 #optionButton.acceptAns:focus {
     box-shadow: 0 1px 8px rgba(58,51,53,0.4);
