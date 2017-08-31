@@ -5,45 +5,42 @@
 
 @model SocialTrainingWebApp.Models.ChosenEmployees
 
-<div class="col-xs-12 col-sm-9 col-sm-offset-1-5 col-md-7 col-md-offset-2-5">
-    <div class="panel panel-default" style="min-width:400px">
-        <div class="panel-body" style="padding: 0 0 0 0">
-            <div style="height:auto;overflow:hidden">
-                <div class="col-xs-6" style="padding-right:0; float:right;">
+<div class="container-fluid" style="width:35%; display:table;vertical-align:middle;height:100%">
+    <div class="row vertical-center-row">
+        <div class="panel panel-default" style="min-width:443px">
+            <div class="panel-body" style="padding: 0 0 0 0">
+                <div class="row">
+                    <div class="col-xs-5 col-sm-5-5 col-md-5-5 col-lg-6" style="padding-left: 0;padding-right: 0;float: left;overflow:hidden;">
+                        <a>
+                            <img src="~/MockImages/@Model._chosenEmployeeImageId" style="border:none;width: auto;">
+                        </a>
+                    </div>
+                    <div class="col-xs-5-5 col-sm-5-5 col-md-5-5 col-lg-5-5 margin-left padding-right" style="margin-top:10px;padding-left: 0;padding-right: 0">
+                        <form id="guessingForm" action="">
+                            <div class="guessContainer">
+                                @{int i = 0; }
+                                @foreach (var item in Model._employeeTriad)
+                                {
+                                    <div style="border-radius:10px">
+                                        <label class="stackGuessLabels padding-left padding-top">
+                                            <input type="radio" class="option-input radio margin-right" name="optionsRadios" id="@i" style="margin-bottom:10px;outline:0;display:inline-flex; border:1px solid #cbd1d8" />@item.FullName
+                                        </label>
+                                    </div>
 
-                    <form id="guessingForm" class="padding-top" action="">
-                        <div class="guessContainer padding-top">
-                            @{int i = 0; }
-                            @foreach (var item in Model._employeeTriad)
-                            {
-                                <div style="border-radius:10px">
-                                    <label class="stackGuessLabels padding-bottom">
-                                        <input type="radio" class="option-input radio margin-right" name="optionsRadios" id="@i" style="outline:0;display:inline-flex; border:1px solid #cbd1d8" />@item.FullName
-                                    </label>
-                                </div>
 
-
-                                i++;
-                            }
+                                    i++;
+                                }
+                            </div>
+                        </form>
+                        <div class="col-xs-12 col-sm-11 col-md-12 col-lg-offset-0-5 col-lg-11" style="padding-left:0;">
+                            <button id="optionButton" class="btn-block disabled bttn-jelly bttn-sm bttn-primary" style="margin-top: 30px;">Choose this option</button>
                         </div>
-                    </form>
-                    <div class="col-xs-11 col-sm-11 col-md-8 col-lg-6-5" style="padding-left:0; padding-right:0">
-                        <button id="optionButton" class="btn-block disabled margin-top bttn-jelly bttn-sm bttn-primary">Choose this option</button>
                     </div>
                 </div>
-                <div style="float:none;width:auto;overflow:hidden">
-                    @{
-                        <a><img src="~/MockImages/@Model._chosenEmployeeImageId" style="border:none" /></a>
-                    }
-
-                </div>
-
             </div>
         </div>
     </div>
 </div>
-
-
 @Scripts.Render("~/bundles/checkAnswers")
 <script type="text/javascript">
         function redirect() {

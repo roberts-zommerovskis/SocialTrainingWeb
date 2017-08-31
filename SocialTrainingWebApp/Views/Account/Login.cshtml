@@ -1,21 +1,28 @@
 ﻿@using SocialTrainingWebApp.Models
 @model LoginViewModel
 
-
-<div class="col-lg-5 col-lg-offset-3-5 col-md-7 col-md-offset-2-5 col-sm-9 col-sm-offset-1-5 col-xs-12">
-    <div class="login-box">
-        <div class="login-header">
-            <h1 style="text-align:center">Know Your colleague</h1>
-        </div>
-        <div class="login-content" style="padding-left:0;padding-right:0">
-            <form class="form-horizontal no-margin">
-                <div class="login-organization-name padding-bottom padding-left padding-right">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter organization name">
+<div class="container">
+    <div class="row vertical-center-row">
+        <div class="col-lg-12">
+            <div class="row ">
+                <div class="col-lg-5 col-lg-offset-3-5 col-md-7 col-md-offset-2-5 col-sm-9 col-sm-offset-1-5 col-xs-12">
+                    <div class="login-box">
+                        <div class="login-header">
+                            <h1 style="text-align:center">Know Your colleague</h1>
+                        </div>
+                        <div class="login-content" style="padding-left:0;padding-right:0">
+                            <form class="form-horizontal no-margin">
+                                <div class="login-organization-name padding-bottom padding-left padding-right">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter organization name">
+                                </div>
+                            </form>
+                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                        </div>
+                        <div class="login-footer"><a class="logo-footer">Visma</a></div>
+                    </div>
                 </div>
-            </form>
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </div>
         </div>
-        <div class="login-footer"><a class="logo-footer">Visma</a></div>
     </div>
 </div>
 
