@@ -1,4 +1,8 @@
-﻿.icon-adjust {
+﻿.nav-pane-adjust {
+    height: 42px;
+}
+
+.icon-adjust {
     width: 24px;
     height: 42px !important;
 }
