@@ -16,16 +16,9 @@ namespace SocialTrainingWebApp.Models
         {
             _percentageValue = Math.Round(((guessedEmployees / originalEmployeeCountInDb) * 100), 0, MidpointRounding.ToEven);
             _percentageString = $"{ _percentageValue.ToString()}%";
-            if (gameCompleted)
-            {
-                _congratulationsButtonText = "Play again!";
-                _informativeGameText = "Game over!";
-            }
-            else
-            {
-                _congratulationsButtonText = "Continue game!";
-                _informativeGameText = "Well done!";
-            }
+            _congratulationsButtonText = "Play again!";
+            _informativeGameText = "Game over!";
+
         }
     }
 }
