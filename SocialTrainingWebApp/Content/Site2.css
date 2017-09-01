@@ -1,4 +1,13 @@
-﻿html, body, .container {
+﻿.icon-adjust {
+    width: 24px;
+    height: 42px !important;
+}
+
+    .icon-adjust:before {
+        width: 24px !important;
+    }
+
+html, body, .container {
     height: 100%;
 }
 
