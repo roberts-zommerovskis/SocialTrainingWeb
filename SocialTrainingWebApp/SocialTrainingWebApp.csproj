@@ -308,6 +308,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoggedInUserData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProgressBar.cs" />
     <Compile Include="Models\SessionSummaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1026,6 +1027,7 @@
     <Content Include="Views\Shared\_DefaultLayout.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Home\Congratulations.cshtml" />
+    <Content Include="Views\Shared\_ProgressBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,16 @@
-﻿.nav-pane-adjust {
+﻿.progress-bar-adjust {
+    background: #fff !important;
+    color: #fff;
+    background-color: #fff;
+}
+
+    .progress-bar-adjust:before {
+        background: #fff !important;
+        color: #fff;
+        background-color: #fff;
+    }
+
+.nav-pane-adjust {
     height: 42px;
 }
 
