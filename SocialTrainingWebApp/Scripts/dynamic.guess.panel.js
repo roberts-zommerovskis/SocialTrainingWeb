@@ -1,7 +1,10 @@
-﻿$(window).on('resize', resize);
-$(document).ready(resize);
+﻿$(window).on('resize', resizePanel);
+$(window).on('resize', adjustPercentage);
+$(document).ready(resizePanel);
+$(document).ready(adjustPercentage);
 
-function resize() {
+
+function resizePanel() {
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
     if ((windowWidth < 1450 && windowWidth > 630) && $(".container-fluid").width != 640) {
@@ -15,5 +18,12 @@ function resize() {
     }
     else {
         $(".container-fluid").css("height", "100%");
+    }
+}
+
+function adjustPercentage() {
+    var answerContainerHeight = $(".guessContainer").height();
+    if (answerContainerHeight > 200) {
+        $("#progress").css("margin-top", "10px");
     }
 }
