@@ -17,7 +17,7 @@ function resizePanel() {
         $(".container-fluid").css("height", "80%");
     }
     else {
-        $(".container-fluid").css("height", "100%");
+        $(".container-fluid").css("height", "90%");
     }
 }
 
