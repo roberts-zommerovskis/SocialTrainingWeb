@@ -16,7 +16,7 @@
                 <div class="row">
                     <text style="pointer-events: none;cursor: default; color:#fff;"> @(String.Format("Hello, {0}!", Model.LoggedInUser))</text>
                 </div>
-                @Html.Partial("_ProgressBarPartial", new ProgressBar());
+                @Html.Partial("_ProgressBarPartial", new ProgressBar())
             </li>
             <li class=""><a href="javascript:document.getElementById('logoutForm').submit()" class="vismaicon vismaicon-menu vismaicon-logout icon-adjust"></a></li>
         </ul>
