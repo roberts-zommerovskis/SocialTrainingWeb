@@ -8,6 +8,9 @@ namespace SocialTrainingWebApp
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/guessPanelAdjust").Include(
+          "~/Scripts/dynamic.guess.panel.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/checkAnswers").Include(
            "~/Scripts/answer.guess.js"));
 

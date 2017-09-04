@@ -30,7 +30,7 @@
         else {
             chosenOption.parent().parent().css("background", "#E57377");
             chosenOption.removeClass("option-input");
-            chosenOption.addClass("incorrect-input")
+            chosenOption.addClass("incorrect-input");
             getCorrectAnswerNumber(markCorrectAnswer);
         }
     }

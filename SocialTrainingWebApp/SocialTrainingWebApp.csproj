@@ -971,6 +971,7 @@
     <Content Include="Scripts\answer.guess.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dynamic.guess.panel.js" />
     <Content Include="Scripts\iframe.size.dynamically.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
