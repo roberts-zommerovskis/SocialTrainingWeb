@@ -1,4 +1,8 @@
-﻿.progress-bar-adjust {
+﻿.disableLink {
+    pointer-events: none;
+}
+
+.progress-bar-adjust {
     background: #fff !important;
     color: #fff;
     background-color: #fff;

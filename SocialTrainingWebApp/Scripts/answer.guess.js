@@ -22,6 +22,7 @@
         $("#guessingForm").addClass('disabled-radios');
         $('#optionButton').removeClass('acceptAns');
         $('#optionButton').addClass("navFurther");
+        $('#skipBtn').addClass("disableLink");
         $('#optionButton').text('Next');
         if (result.Success) {
             chosenOption.css("color", "#68A611");
