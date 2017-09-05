@@ -11,13 +11,13 @@ function resizePanel() {
         $(".container-fluid").css("width", "640px");
     }
     else if (windowWidth < 630 && $(".container-fluid").width !== "50%") {
-        $(".container-fluid").css("width", "90%");
+        $(".container-fluid").css("width", "80%");
     }
     if (windowWidth < 775 && $(".container-fluid").width !== "80%") {
         $(".container-fluid").css("height", "80%");
     }
     else {
-        $(".container-fluid").css("height", "90%");
+        $(".container-fluid").css("height", "80%");
     }
 }
 
