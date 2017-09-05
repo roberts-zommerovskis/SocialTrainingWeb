@@ -1,4 +1,111 @@
-﻿.login-btn {
+﻿.logged-in-user-formatted {
+    pointer-events: none;
+    cursor: default;
+    color: #fff;
+}
+
+.navbar-user-icon-adjust {
+    border-right: 1px solid #1a85c3 !important;
+}
+
+.navbar-collapsed-format {
+    height: 1px !important;
+    overflow-y: visible !important;
+    min-width: 400px !important;
+}
+
+.navbar-header-adjust {
+    height: 42px !important;
+}
+
+.navbar-adjust {
+    min-width: 300px !important;
+}
+
+.colleague-knowledge-percentage-formatted {
+    font-size: xx-large;
+    color: #0091e6;
+}
+
+.know-colleagues-text-adjust {
+    border-bottom: none;
+}
+
+.congratulations-panel-fixed-min-width {
+    min-width: 329px !important;
+}
+
+.progress-number-no-pointers {
+    pointer-events: none;
+}
+
+.progress-number-adjust {
+    padding-left: 0 !important;
+    margin-top: 20px !important;
+}
+
+.skipBtn-wrapper-adjust {
+    margin-top: 25px;
+}
+
+#optionButton {
+    margin-top: 20px !important;
+}
+
+.no-left-padding-guess-buttons {
+    padding-left: 0 !important;
+}
+
+.guess-radio-adjust {
+    margin-bottom: 10px !important;
+    outline: 0 !important;
+    display: inline-flex !important;
+    border: 1px solid #cbd1d8 !important;
+}
+
+.accepted-answer-frame {
+    border-radius: 10px !important;
+}
+
+.guessing-form-wrapper-adjust {
+    margin-top: 10px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.guess-image-formatted {
+    border: none;
+    width: auto;
+}
+
+.guess-image-container-formatted {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    float: left !important;
+    overflow: hidden !important;
+}
+
+.guess-panel-body-no-padding {
+    padding: 0 0 0 0 !important;
+}
+
+.guess-panel-adjust {
+    min-width: 443px;
+    max-height: 300px;
+}
+
+.index-container-adjust {
+    max-width: 640px;
+    width: 640px;
+    display: table;
+    vertical-align: middle;
+}
+
+.fit-container {
+    height: 80% !important;
+}
+
+.login-btn {
     font-size: 20px !important;
     background: #fff !important;
     color: #1d89ff !important;
@@ -225,10 +332,6 @@ button.bttn-jelly.disabled {
         position: relative;
         z-index: 100;
     }
-
-
-
-/**/
 
 .correct-input {
     -webkit-appearance: none;

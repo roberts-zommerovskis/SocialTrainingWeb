@@ -8,13 +8,13 @@
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav nav-tabs navbar-right first-level">
-            <li class="margin-right padding-right">
-                <span class="vismaicon vismaicon-menu vismaicon-user icon-adjust" style="border-right: 1px solid #1a85c3;" aria-hidden="true"></span>
+        <ul class="nav navbar-nav nav-tabs navbar-right first-level navbar-header-adjust">
+            <li class="margin-right padding-right navbar-header-adjust">
+                <span class="vismaicon vismaicon-menu vismaicon-user icon-adjust navbar-user-icon-adjust" aria-hidden="true"></span>
             </li>
             <li class="margin-right padding-right">
                 <div class="row">
-                    <text style="pointer-events: none;cursor: default; color:#fff;"> @(String.Format("Hello, {0}!", Model.LoggedInUser))</text>
+                    <text class="logged-in-user-formatted"> @(String.Format("Hello, {0}!", Model.LoggedInUser))</text>
                 </div>
                 @Html.Partial("_ProgressBarPartial", new ProgressBar())
             </li>

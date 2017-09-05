@@ -7,26 +7,26 @@
 @model SocialTrainingWebApp.Models.ChosenEmployees
 
 
-<div class="container-fluid" style="max-width:640px; width:640px; display:table;vertical-align:middle;height:80%;">
+<div class="container-fluid fit-container index-container-adjust">
 
     <div class="row vertical-center-row">
-        <div class="panel panel-default" style="min-width:443px; max-height:300px;">
-            <div class="panel-body" style="padding: 0 0 0 0">
+        <div class="panel panel-default guess-panel-adjust">
+            <div class="panel-body guess-panel-body-no-padding">
                 <div class="row">
-                    <div class="col-xs-5 col-sm-5-5 col-md-5-5 col-lg-6" style="padding-left: 0;padding-right: 0;float: left;overflow:hidden;">
+                    <div class="col-xs-5 col-sm-5-5 col-lg-6 guess-image-container-formatted">
                         <a>
-                            <img src="~/MockImages/@Model._chosenEmployeeImageId" style="border:none;width: auto;">
+                            <img class="guess-image-formatted" src="~/MockImages/@Model._chosenEmployeeImageId">
                         </a>
                     </div>
-                    <div class="col-xs-5-5 col-sm-5-5 col-md-5-5 col-lg-5-5 margin-left padding-right" style="margin-top:10px;padding-left: 0;padding-right: 0">
+                    <div class="col-xs-5-5 margin-left padding-right guessing-form-wrapper-adjust">
                         <form id="guessingForm" action="">
                             <div class="guessContainer">
                                 @{int i = 0; }
                                 @foreach (var item in Model._employeeTriad)
                                 {
-                                    <div style="border-radius:10px">
+                                    <div class="accepted-answer-frame">
                                         <label class="stackGuessLabels padding-left padding-top">
-                                            <input type="radio" class="option-input radio margin-right" name="optionsRadios" id="@i" style="margin-bottom:10px;outline:0;display:inline-flex; border:1px solid #cbd1d8" />@item.FullName
+                                            <input type="radio" class="option-input radio margin-right guess-radio-adjust" name="optionsRadios" id="@i" />@item.FullName
                                         </label>
                                     </div>
 
@@ -35,10 +35,10 @@
                                 }
                             </div>
                         </form>
-                        <div class="col-xs-6 col-xs-offset-2" style="padding-left:0;">
-                            <button id="optionButton" class="btn-block disabled bttn-jelly bttn-sm bttn-primary" style="margin-top: 20px;">Select</button>
+                        <div class="col-xs-6 col-xs-offset-2 no-left-padding-guess-buttons">
+                            <button id="optionButton" class="btn-block disabled bttn-jelly bttn-sm bttn-primary">Select</button>
                         </div>
-                        <div class="col-xs-2" style="margin-top: 25px;padding-left:0;">
+                        <div class="col-xs-2 no-left-padding-guess-buttons skipBtn-wrapper-adjust">
                             <a id="skipBtn" href="/">Skip</a>
                         </div>
                         @Html.Partial("_ProgressSoFarPartial", new ProgressBar())
