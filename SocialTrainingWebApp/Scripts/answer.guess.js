@@ -27,6 +27,8 @@
         if (result.Success) {
             chosenOption.css("color", "#68A611");
             chosenOption.parent().parent().css("background", "#DCE5CF");
+            $('.progress-bar-success').css("width", result.UpdatedPercentage);
+            $(".percentage").html(result.UpdatedPercentage);
         }
         else {
             chosenOption.parent().parent().css("background", "#E57377");

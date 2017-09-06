@@ -306,7 +306,6 @@
     <Compile Include="Models\GameFlow.cs" />
     <Compile Include="Models\GoogleSheetConnector.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IncorrectAnswerHandler.cs" />
     <Compile Include="Models\LoggedInUserData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProgressBar.cs" />

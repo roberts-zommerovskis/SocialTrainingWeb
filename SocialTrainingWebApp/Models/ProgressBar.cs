@@ -9,14 +9,32 @@ namespace SocialTrainingWebApp.Models
     {
         public string _percentageString;
         public string _progressSoFar;
+        public double _dividend;
+        public int _divisor;
+        public Game _gameStatus;
         public ProgressBar()
         {
-            Game gameStatus = (Game)HttpContext.Current.Session["currentGameStatus"];
-            double dividend = gameStatus.PointsSoFar;
-            int divisor = JsonConvert.DeserializeObject<List<Employee>>(gameStatus.UnguessedEmployees).Count + JsonConvert.DeserializeObject<List<Employee>>(gameStatus.GuessedEmployees).Count;
-            double _percentage = Math.Round(((dividend / divisor) * 100), 0, MidpointRounding.ToEven);
-            _percentageString = $"{ _percentage.ToString()}%";
-            _progressSoFar = $"{gameStatus.PointsSoFar + 1}/{JsonConvert.DeserializeObject<List<Employee>>(gameStatus.UnguessedEmployees).Count + JsonConvert.DeserializeObject<List<Employee>>(gameStatus.GuessedEmployees).Count}";
+            _gameStatus = (Game)HttpContext.Current.Session["currentGameStatus"];
+            _dividend = _gameStatus.PointsSoFar;
+            _divisor = JsonConvert.DeserializeObject<List<Employee>>(_gameStatus.UnguessedEmployees).Count + JsonConvert.DeserializeObject<List<Employee>>(_gameStatus.GuessedEmployees).Count;
+            CalculatePercentages(false);
         }
+
+        public void CalculatePercentages(bool shouldIncrease)
+        {
+            if (shouldIncrease)
+            {
+                ++_dividend;
+            }
+            double percentage = Math.Round(((_dividend / _divisor) * 100), 0, MidpointRounding.ToEven);
+            _percentageString = $"{ percentage.ToString()}%";
+            _progressSoFar = $"{_gameStatus.PointsSoFar + 1}/{JsonConvert.DeserializeObject<List<Employee>>(_gameStatus.UnguessedEmployees).Count + JsonConvert.DeserializeObject<List<Employee>>(_gameStatus.GuessedEmployees).Count}";
+        }
+
+
+
+
+
+
     }
 }

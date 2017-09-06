@@ -41,12 +41,13 @@ namespace SocialTrainingWebApp.Controllers
             if (int.Parse(ID) == ((ChosenEmployees)Session["chosenEmployeeModel"])._chosenTriadEmployee)
             {
                 Session["answeredCorrectly"] = true;
-                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                ProgressBar progressModel = new ProgressBar();
+                progressModel.CalculatePercentages(true);
+                return Json(new { Success = true, UpdatedPercentage = progressModel._percentageString }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                Session["answeredCorrectly"] = false; //TODO: Add functionality to remove the guessed person
-                IncorrectAnswerHandler incorrectAnswer = new IncorrectAnswerHandler(Session);
+                Session["answeredCorrectly"] = false;
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
 
