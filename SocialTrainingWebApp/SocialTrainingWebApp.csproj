@@ -306,6 +306,7 @@
     <Compile Include="Models\GameFlow.cs" />
     <Compile Include="Models\GoogleSheetConnector.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IncorrectAnswerHandler.cs" />
     <Compile Include="Models\LoggedInUserData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProgressBar.cs" />
@@ -963,10 +964,10 @@
     <Content Include="Content\nc3\fonts\subset-OpenSansLight-Italic.ttf" />
     <Content Include="Content\nc3\fonts\subset-OpenSansLight-Italic.woff" />
     <Content Include="Content\nc3\fonts\subset-OpenSansLight-Italic.woff2" />
-    <Content Include="MockImages\1001.png" />
     <Content Include="client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MockImages\1001.png" />
     <Content Include="MockImages\1020.png" />
     <Content Include="Scripts\answer.guess.js" />
     <Content Include="Scripts\bootstrap.js" />

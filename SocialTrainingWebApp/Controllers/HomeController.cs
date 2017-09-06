@@ -45,7 +45,8 @@ namespace SocialTrainingWebApp.Controllers
             }
             else
             {
-                Session["answeredCorrectly"] = false;
+                Session["answeredCorrectly"] = false; //TODO: Add functionality to remove the guessed person
+                IncorrectAnswerHandler incorrectAnswer = new IncorrectAnswerHandler(Session);
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
 

@@ -31,6 +31,14 @@ namespace SocialTrainingWebApp.Models
             {
                 session["answeredCorrectly"] = false;
                 currentGameToAdd.PointsSoFar++;
+                List<Employee> guessedPeople = JsonConvert.DeserializeObject<List<Employee>>(currentGameToAdd.GuessedEmployees);
+                Employee employeeJustGuessed = ((ChosenEmployees)session["chosenEmployeeModel"])._employeeTriad[((ChosenEmployees)session["chosenEmployeeModel"])._chosenTriadEmployee];
+                guessedPeople.Add(employeeJustGuessed);
+                currentGameToAdd.GuessedEmployees = JsonConvert.SerializeObject(guessedPeople);
+                List<Employee> peopleToGuess = JsonConvert.DeserializeObject<List<Employee>>(currentGameToAdd.UnguessedEmployees);
+                peopleToGuess.RemoveAll(unguessedList => unguessedList.ImportId == employeeJustGuessed.ImportId);
+                currentGameToAdd.UnguessedEmployees = JsonConvert.SerializeObject(peopleToGuess);
+
             }
             if ((bool)session["answerSubmitted"] == true)
             {
@@ -131,17 +139,16 @@ namespace SocialTrainingWebApp.Models
             _indexOfEmployeeForOptions = _rndGenerator.Next(_unguessedEmployeesOfLastGame.Count);
             Employee employeeToGuess = _unguessedEmployeesOfLastGame[_indexOfEmployeeForOptions];
             _unsortedGuessingOptions = new List<Employee>() { employeeToGuess };
-            _unguessedEmployeesOfLastGame.Remove(employeeToGuess);
             string employeeToGuessGender = employeeToGuess.Gender;
             List<Employee> sameGenderRemainingUnguessedEmployees =
                     _unguessedEmployeesOfLastGame
-                    .Where(employeeElements => employeeElements.Gender == employeeToGuessGender)
+                    .Where(employeeElements => employeeElements.Gender == employeeToGuessGender
+                    && employeeElements.ImportId != employeeToGuess.ImportId)
                     .ToList();
             List<Employee> sameGenderAlreadyGuessedEmployees =
                 _guessedEmployeesOfLastGame
                 .Where(employeeElements => employeeElements.Gender == employeeToGuessGender)
                 .ToList();
-            _guessedEmployeesOfLastGame.Add(employeeToGuess);
             if (_unguessedEmployeesOfLastGame.Count > 0)
             //if there is sth in the unguessed list after taking out employee for guessing
             {
@@ -202,7 +209,6 @@ namespace SocialTrainingWebApp.Models
             }
             _indexOfEmployeeForOptions = _rndGenerator.Next(allEmployeesInDB.Count);
             Employee employeeToGuess = allEmployeesInDB[_indexOfEmployeeForOptions];
-            allEmployeesInDB.RemoveAt(_indexOfEmployeeForOptions);
             _unsortedGuessingOptions = new List<Employee> { employeeToGuess };
             string employeeToGuessGender = employeeToGuess.Gender;
             List<Employee> employeeOptionsOfTheSameGender = new List<Employee>();
@@ -215,7 +221,7 @@ namespace SocialTrainingWebApp.Models
                 GameId = ++_indexOfLastGame,
                 EmployeePK = _employeesWithRespectiveEmail.First().EmployeePK,
                 UnguessedEmployees = JsonConvert.SerializeObject(allEmployeesInDB),
-                GuessedEmployees = JsonConvert.SerializeObject(new List<Employee>() { employeeToGuess }),
+                GuessedEmployees = JsonConvert.SerializeObject(new List<Employee>()),
                 PointsSoFar = 0
             };
             List<Employee> employeesRandomizedForGuessing = RandomizeGuessingOptions();

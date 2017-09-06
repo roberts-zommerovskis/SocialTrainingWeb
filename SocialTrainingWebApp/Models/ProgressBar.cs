@@ -13,10 +13,10 @@ namespace SocialTrainingWebApp.Models
         {
             Game gameStatus = (Game)HttpContext.Current.Session["currentGameStatus"];
             double dividend = gameStatus.PointsSoFar;
-            int divisor = JsonConvert.DeserializeObject<List<Employee>>(gameStatus.UnguessedEmployees).Count + JsonConvert.DeserializeObject<List<Employee>>(gameStatus.GuessedEmployees).Count - 1;
+            int divisor = JsonConvert.DeserializeObject<List<Employee>>(gameStatus.UnguessedEmployees).Count + JsonConvert.DeserializeObject<List<Employee>>(gameStatus.GuessedEmployees).Count;
             double _percentage = Math.Round(((dividend / divisor) * 100), 0, MidpointRounding.ToEven);
             _percentageString = $"{ _percentage.ToString()}%";
-            _progressSoFar = $"{ JsonConvert.DeserializeObject<List<Employee>>(gameStatus.GuessedEmployees).Count}/{JsonConvert.DeserializeObject<List<Employee>>(gameStatus.UnguessedEmployees).Count + JsonConvert.DeserializeObject<List<Employee>>(gameStatus.GuessedEmployees).Count}";
+            _progressSoFar = $"{gameStatus.PointsSoFar + 1}/{JsonConvert.DeserializeObject<List<Employee>>(gameStatus.UnguessedEmployees).Count + JsonConvert.DeserializeObject<List<Employee>>(gameStatus.GuessedEmployees).Count}";
         }
     }
 }

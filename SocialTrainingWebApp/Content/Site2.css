@@ -75,7 +75,9 @@
 
 .guess-image-formatted {
     border: none;
-    width: auto;
+    width: 300px !important;
+    height: 300px !important;
+    border: none !important;
 }
 
 .guess-image-container-formatted {

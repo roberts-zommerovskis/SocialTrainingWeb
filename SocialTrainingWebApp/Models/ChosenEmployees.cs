@@ -13,6 +13,7 @@ namespace SocialTrainingWebApp.Models
         public ChosenEmployees(Employee employeeToGuess, List<Employee> allEmployeeGuessingOptions)
         {
             _employeeTriad = allEmployeeGuessingOptions;
+            //_chosenEmployeeImageId = $"{ employeeToGuess.ImportId}.png"; TODO: uncomment and update mock images for real data
             if (employeeToGuess.Gender == "Female")
             {
                 _chosenEmployeeImageId = "1020.png";
