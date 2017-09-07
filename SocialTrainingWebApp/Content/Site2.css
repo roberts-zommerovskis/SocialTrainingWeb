@@ -1,4 +1,16 @@
-﻿.logged-in-user-formatted {
+﻿.visma-logo-adjust {
+    width: auto !important;
+    height: auto !important;
+    text-align: center !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    min-width: 130px !important;
+    padding-bottom: 20px !important;
+}
+
+.logged-in-user-formatted {
     pointer-events: none;
     cursor: default;
     color: #fff;
