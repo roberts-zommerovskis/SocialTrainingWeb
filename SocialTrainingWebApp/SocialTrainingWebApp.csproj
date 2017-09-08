@@ -1030,6 +1030,7 @@
     <Content Include="Views\Home\Congratulations.cshtml" />
     <Content Include="Views\Shared\_ProgressBarPartial.cshtml" />
     <Content Include="Views\Shared\_ProgressSoFarPartial.cshtml" />
+    <Content Include="Views\Account\RedirectToVismaLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

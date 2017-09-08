@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SocialTrainingWebApp.Models;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace SocialTrainingWebApp.Controllers
 {
@@ -323,6 +325,17 @@ namespace SocialTrainingWebApp.Controllers
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            Regex rgx = new Regex("[^a-zA-Z0-9]");
+            string transformedLogin = rgx.Replace(loginInfo.Email, ".").ToLower();
+            List<string> loginContents = transformedLogin.Split('.').ToList();
+
+            if (loginContents[loginContents.IndexOf(loginContents.Last()) - 1] != "visma")
+            {
+                Session["currentDataState"] = null;
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                return View("RedirectToVismaLogin");
+            }
+
             if (loginInfo == null)
             {
                 return RedirectToAction("Login");

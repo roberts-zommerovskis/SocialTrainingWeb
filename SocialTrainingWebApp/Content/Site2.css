@@ -1,4 +1,10 @@
-﻿.visma-logo-adjust {
+﻿.white-background-register {
+    background: #fff !important;
+    color: #a0a0a0 !important;
+    border: 1px solid #e5e5e5 !important;
+}
+
+.visma-logo-adjust {
     width: auto !important;
     height: auto !important;
     text-align: center !important;
@@ -215,7 +221,7 @@ button.bttn-jelly.disabled {
     box-shadow: none !important;
 }
 
-#Google:hover,
+#RegisterEmail:hover, #RegisterEmail:focus:hover, #Google:hover,
 #Google:focus:hover,
 #optionButton.navFurther:hover,
 #optionButton.acceptAns:hover,
@@ -225,6 +231,7 @@ button.bttn-jelly.disabled {
     transform: scale(1.1);
 }
 
+#RegisterEmail:focus,
 #Google:focus,
 #optionButton.navFurther:focus,
 #optionButton.acceptAns:focus {
