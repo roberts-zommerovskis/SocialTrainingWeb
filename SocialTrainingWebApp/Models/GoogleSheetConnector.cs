@@ -59,7 +59,7 @@ namespace SocialTrainingWebApp.Models
             {
                 foreach (var row in values)
                 {
-                    if (row[2].ToString().Equals("2") || row[2].ToString().Equals("1"))
+                    if (row.Count == 9 && (row[2].ToString().Equals("2") || row[2].ToString().Equals("1")))
                     {
                         var employee = new Employee { FullName = row[1].ToString(), ImportId = long.Parse(row[0].ToString()), Gender = row[8].ToString(), Email = row[4].ToString() };
                         transferableEmployees.Add(employee);
